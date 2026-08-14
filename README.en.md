@@ -38,6 +38,20 @@ Third-party skin / wallpaper plugin · native integration with DSH's `--dsw-*` t
 | ↩️ **Default restore** | Back to DSH's built-in appearance (follow system) in one click |
 | 💾 **Local persistence** | Skin & wallpaper stored in `localStorage`, survives reload |
 
+## 🚀 Advanced capabilities (P0)
+
+Differentiation inspired by existing DSH skin projects plus Codex's skin UX:
+
+| Capability | Description |
+|------------|-------------|
+| 📦 **Theme-pack format + import/export** | A `*.dsh-theme.json` pack = format marker + version + manifest (id/name/author/scheme/accent/tokens). Import a file, one-click apply, and copy a **share link** (encoded in the URL hash) |
+| 🌈 **Per-user Accent** | Stack a custom brand-accent color over the active skin (`overrideTokens` layer, the skin itself untouched), or **randomize** / clear |
+| 🖼️ **Wallpaper 2.0** | Besides local images: **image URL** and **gradient presets**, with a **per-skin suggested gradient** and an **auto-dim** mode (gently fades while focusing tasks) |
+| 🧩 **Local pack library** | All built-in skins + imported packs in one place; **apply / favorite** in a click |
+| 🎲 **Surprise me** | Randomly switch to a theme different from the current one |
+| ⭐ **Favorites** | Star your favorite skins and switch between them fast |
+| ✅ **Validation + rollback** | Pack import validates format / required tokens / color legality; failures or removals fall back safely |
+
 ## 🖼️ Preview
 
 > Screenshot / animation placeholder: drop a real DSH screenshot with a skin + wallpaper applied, or a theme-switch GIF.
@@ -143,17 +157,24 @@ The client bundle is written directly in the `__ModuleLoader__` format (the same
 `ui-*` packages), so **no build step** is required. `lib/client.js` may `require` only module-table entities: platform
 seeds (`react`, `react/jsx-runtime`, …) and registered client bundles (`@deepseek-ai/dsh-client-runtime/client`, …).
 
-**Add a skin**: append an object (`id` + `colorScheme` + `tokens`) to the `SKINS` array in `lib/client.js`; it then
-appears in Settings automatically. Add a `skin.<id>` key to both the `zh` and `en` dictionaries. **Repaint**:
-reference the `--dsw-alias-*` tokens.
+- **Add a built-in skin**: append an object (`id` + `colorScheme` + `tokens`) to the `SKINS` array in `lib/client.js`;
+  it then appears in Settings automatically. Add a `skin.<id>` key to both the `zh` and `en` dictionaries.
+- **Ship a theme pack (recommended)**: follow [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json) —
+  one `*.dsh-theme.json` is importable in Settings and shareable via a link, no code changes needed.
+- **Validate**: `npm test` (VM smoke tests covering factory eval, `apply()`, and pack import/persistence).
+- **Repaint**: reference the `--dsw-alias-*` tokens (full contract in [`docs/themes-spec.md`](./docs/themes-spec.md)).
 
 ## 📌 Roadmap
 
 - [x] v0.1: 8 themes + custom wallpaper (opacity / blur) + local persistence
-- [ ] Online palette / theme-preview Studio (pure frontend)
-- [ ] Community theme gallery (share / import-export presets as JSON)
-- [ ] Theme-pack format (like Codex's `.zip` theme import)
+- [x] Theme-pack format + import / export / share link (JSON + manifest + validation)
+- [x] Per-user Accent + randomize
+- [x] Wallpaper 2.0 (URL / gradient / per-skin suggestion / auto-dim)
+- [x] Local pack library + one-click apply / favorites / surprise-me
+- [ ] Online palette / theme-preview Studio (pure frontend, contrast checker)
+- [ ] Community theme gallery (submit packs to the repo / online gallery)
 - [ ] Full i18n copy & docs (zh / en / more)
+- [ ] First-paint (FOUC) improvement
 
 ## 🤝 Contributing
 

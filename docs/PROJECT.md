@@ -17,38 +17,53 @@ GitHub 上 [Fei-Away/Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-S
 
 把「换肤 + 自定义壁纸」作为一套**独立开源、可分发（npm）的 dsh 插件**发布出去，让 DSH 用户一条命令装完就能换皮肤。
 
-## 能力范围（第一版）
+## 能力范围
 
+**v0.1（已完成）**
 - 8 套主题预设（Mirage 幻梦），浅/深色兼顾，品牌锚点用 DeepSeek 蓝。
 - 自选背景壁纸，含透明度和模糊调节。
 - `localStorage` 持久化。
-- 在 `Settings → General` 里出现「皮肤 / 背景图片」两行。
+- 在 `Settings → General` 出现「皮肤 / 背景图片」行。
+
+**v0.2 - P0 差异化（已完成）**
+- **主题包格式 + 导入 / 导出 / 分享链接**（JSON + manifest + 校验）。
+- **每用户强调色 Accent**（`overrideTokens` 叠加层）+ 随机 / 恢复。
+- **壁纸 2.0**：URL / 渐变 / 每皮肤建议 / 自动弱化。
+- **本地主题包库**（内置 + 导入）、一键应用 / 收藏 /「换一个试试」。
+- 冒烟测试 `npm test`、示例主题包、`docs/themes-spec.md`。
 
 > Codex-Dream-Skin 的「桌面托盘 / 主题库在线一键换肤 / 一键恢复」依赖桌面端 CDP 与原生托盘，DSH 是浏览器
-> Web GUI，不在第一版范围。
+> Web GUI，不在本插件范围；对应能力用「分享链接 + 本地主题包库 + 校验回滚」在纯前端实现。
 
 ## 技术要点
 
 - 插件 = **双面插件**：host 半边插入 loader 入口；浏览器半边为 `dsh.client` bundle。
 - 主题注册：`ctx.theme.register({ id, colorScheme, tokens })`，token 为**标量字符串**（每个色系一份）。
-- 壁纸叠加：`ctx.theme.overrideTokens(source, { '--token': { light, dark } })`，注意 override 层要求
-  **`{ light, dark }` 成对字符串**（与注册主题的标量 token 不同）。
+- 叠加层：`ctx.theme.overrideTokens(source, { '--token': { light, dark } })`，override 层要求**`{ light, dark }` 成对**
+  字符串（与注册主题的标量 token 不同）；accent / 壁纸着色 / 未来调优层可**多层叠加正交共存**。
 - 设置插槽：`ctx.slots.inject('settings.general.item', () => ctx.slots.register({...}, Component))`。
-- 持久化边界：浏览器只能用 `localStorage`（Host settings 白名单未对第三方浏览器客户端开放）。
+- 持久化边界：浏览器第三方只能用 `localStorage`（DSH `WEB_SETTINGS_NAMESPACES` 是硬编码白名单，第三方 namespace
+  即使注册也答 `settings-not-exposed`）。
+- 分享链接：主题包 base64 编码进 URL hash（`#dream-skin-pack=`），打开页面时自动导入。
 
 ## 目录结构
 
 ```
 dsh-dream-skin/
-├─ package.json            # dsh.bundle + dsh.client 清单、exports
+├─ package.json            # dsh.bundle + dsh.client 清单、exports、test 脚本
 ├─ cordis.patch.yml        # 插入 dream-skin loader 入口
 ├─ lib/
 │  ├─ index.js             # host 半边（no-op apply）
-│  ├─ client.js            # 浏览器半边（__ModuleLoader__ bundle）
+│  ├─ client.js            # 浏览器半边（__ModuleLoader__ bundle，含 P0）
 │  └─ types/               # 类型声明（辅助，非运行时）
+├─ tests/
+│  └─ client.smoke.test.cjs# VM 冒烟测试（npm test）
 ├─ docs/
 │  ├─ PROJECT.md           # 本文（项目说明）
-│  └─ publishing-to-npm.md # npm / GitHub 发布指引
+│  ├─ themes-spec.md       # 主题包 / 令牌契约
+│  ├─ publishing-to-npm.md # npm / GitHub 发布指引
+│  └─ examples/            # 示例主题包
+│     └─ sample-theme-pack.json
 ├─ .github/                # Issue / PR 模板
 ├─ README.md / README.en.md
 ├─ CONTRIBUTING.md         # 贡献指南
