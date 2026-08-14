@@ -46,10 +46,37 @@ dsh-dream-skin/
 │  ├─ index.js             # host 半边（no-op apply）
 │  ├─ client.js            # 浏览器半边（__ModuleLoader__ bundle）
 │  └─ types/               # 类型声明（辅助，非运行时）
+├─ docs/
+│  ├─ PROJECT.md           # 本文（项目说明）
+│  └─ publishing-to-npm.md # npm / GitHub 发布指引
+├─ .github/                # Issue / PR 模板
 ├─ README.md / README.en.md
+├─ CONTRIBUTING.md         # 贡献指南
+├─ CODE_OF_CONDUCT.md      # 行为准则
+├─ SECURITY.md             # 安全策略
 ├─ CHANGELOG.md
 └─ LICENSE (MIT)
 ```
+
+## 快速搭建 / 验证
+
+```sh
+# 1. 装入本地 web profile 并重启
+dsh plugin --profile web add -w /path/to/dsh-dream-skin
+dsh web
+
+# 2. 无头验证 loader 是否进树
+dsh --profile web --dump-config   # 应出现 `- id: dream-skin / name: dsh-dream-skin`
+
+# 3. 语法自检
+node --check lib/client.js && node --check lib/index.js
+```
+
+## 社区规范
+
+- 想改代码：见 [CONTRIBUTING.md](../CONTRIBUTING.md)。
+- 报安全漏洞：见 [SECURITY.md](../SECURITY.md)。
+- 提交 Issue / PR 模板在 [`.github/`](../.github/)。
 
 ## 安全 / 版权说明
 

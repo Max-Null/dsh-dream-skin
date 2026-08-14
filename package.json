@@ -28,6 +28,10 @@
     "type": "git",
     "url": "git+https://github.com/<your-account>/dsh-dream-skin.git"
   },
+  "bugs": {
+    "url": "https://github.com/<your-account>/dsh-dream-skin/issues"
+  },
+  "homepage": "https://github.com/<your-account>/dsh-dream-skin#readme",
   "keywords": [
     "deepseek-harness",
     "dsh",
