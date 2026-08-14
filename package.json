@@ -46,6 +46,9 @@
   "engines": {
     "node": ">=18"
   },
+  "scripts": {
+    "test": "node --test tests/client.smoke.test.cjs"
+  },
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
