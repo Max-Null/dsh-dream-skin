@@ -1,0 +1,17 @@
+# Dependency directories
+node_modules/
+
+# npm / pnpm artifacts
+*.tgz
+*.log
+.npmrc.bak
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+
+# Local test artifacts
+research/
+.idea/
+.vscode/

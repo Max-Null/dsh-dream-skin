@@ -1,0 +1,67 @@
+# 发布到 npm 与 GitHub
+
+`dsh-dream-skin` 是一个标准的 dsh 插件包。如果希望用户能一条命令 `dsh plugin ... add dsh-dream-skin`
+安装，需要把它发到 **npm 官方源**，并把源码托管到 **GitHub**。
+
+> DSH (rc.6) **没有单独的插件市场**——插件分发渠道**就是 npm 源**。只要有 `dsh.bundle`（host patch 层）和
+> `dsh.client`（浏览器 bundle）的包，就能被 `dsh plugin --profile web add <package>` 安装。
+
+## 一、发布前检查
+
+1. 包名全局唯一。scope 名更安全（如 `@你的账号/dsh-dream-skin`）——如需改 scope，改 `package.json` 里的
+   `name` 即可。
+2. 填好 `author`、`repository`、`description`、`keywords`（均已预留）。
+3. 确认 `files` 里带上了这些文件（当前已配置）：
+   ```json
+   "files": ["lib/index.js", "lib/client.js", "lib/types", "cordis.patch.yml"]
+   ```
+   这样 npm 只会上传这些，不会带源码里不需要的东西。
+
+## 二、GitHub 发布（开源）
+
+```sh
+# 1. 初始化 git（若还没有）
+git init
+git add .
+git commit -m "feat: initial release of dsh-dream-skin"
+
+# 2. 在 GitHub 新建空仓库（例如 dsh-dream-skin），然后：
+git remote add origin git@github.com:<你的账号>/dsh-dream-skin.git
+git push -u origin main
+```
+
+> 如果没配 SSH，也可用 HTTPS：`git remote add origin https://github.com/<你的账号>/dsh-dream-skin.git`，
+> push 时会提示输入用户名 / token。
+
+## 三、npm 发布
+
+```sh
+# 1. 登录 npm（只登录一次）
+npm login
+
+# 2. 发布到官方源。注意：如果本机默认源是镜像（如淘宝镜像），它不会真正发布到 npmjs
+npm publish --registry https://registry.npmjs.org
+
+# 3. 以后发新版本：改 vERSION（semver），再执行上面的 publish
+```
+
+检查 publish 前先看本机 npm 源：
+```sh
+npm config get registry
+```
+
+## 四、用户安装
+
+```sh
+dsh plugin --profile web add -w dsh-dream-skin
+# 重启 dsh web
+```
+
+> 本地测试同理：`dsh plugin --profile web add -w /path/to/dsh-dream-skin`。
+
+## 五、常见注意事项
+
+- **镜像源**：发布必须 `--registry https://registry.npmjs.org`。
+- **版本号**：遵循语义化版本；首发 `0.1.0`。
+- **peerDependencies**：以 `^0.1.0-rc.6` 对齐 DSH 当前版本；DSH 升级到正式版后记得跟进。
+- **LICENSE / README**：npm 页会展示仓库提交的内容，建议发布前同步。
