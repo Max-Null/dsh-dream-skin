@@ -26,12 +26,12 @@
   "author": "dsh-dream-skin contributors",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/<your-account>/dsh-dream-skin.git"
+    "url": "git+https://github.com/RevolutionLA/dsh-dream-skin.git"
   },
   "bugs": {
-    "url": "https://github.com/<your-account>/dsh-dream-skin/issues"
+    "url": "https://github.com/RevolutionLA/dsh-dream-skin/issues"
   },
-  "homepage": "https://github.com/<your-account>/dsh-dream-skin#readme",
+  "homepage": "https://github.com/RevolutionLA/dsh-dream-skin#readme",
   "keywords": [
     "deepseek-harness",
     "dsh",

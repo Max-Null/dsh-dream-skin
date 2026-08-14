@@ -13,7 +13,7 @@ Third-party skin / wallpaper plugin · native integration with DSH's `--dsw-*` t
 [中文](./README.md) · [Changelog](./CHANGELOG.md) · [Project Notes](./docs/PROJECT.md) · [Publishing Guide](./docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
-![license](https://img.shields.io/github/license/<your-account>/dsh-dream-skin?color=34d399)
+![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
 ![node](https://img.shields.io/badge/node-%3E%3D18-6d9af6)
 ![dsh](https://img.shields.io/badge/dsh-0.1.0--rc.6-blueviolet)
 
