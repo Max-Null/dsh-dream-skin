@@ -68,9 +68,10 @@ Differentiation inspired by existing DSH skin projects plus Codex's skin UX:
 | Capability | Description |
 |------------|-------------|
 | 📦 **Theme-pack format + import/export** | A `*.dsh-theme.json` pack = format marker + version + manifest (id/name/author/scheme/accent/tokens). Import a file, one-click apply, and copy a **share link** (encoded in the URL hash) |
-| 🌈 **Per-user Accent** | Stack a custom brand-accent color over the active skin (`overrideTokens` layer, the skin itself untouched), or **randomize** / clear |
-| 🖼️ **Wallpaper 2.0** | Besides local images: **image URL** and **gradient presets**, with a **per-skin suggested gradient** and an **auto-dim** mode (gently fades while focusing tasks) |
+| 🌈 **Per-user Accent** | Stack a custom brand-accent over the active skin (`overrideTokens` layer, the skin untouched): **12 one-click preset swatches**, a color picker, **randomize**, and clear |
+| 🖼️ **Wallpaper 2.0** | Local image / **image URL** / **gradient presets**, with a **per-skin suggested gradient** and **auto-dim**; **Recent** (up to 5) to switch back in one click |
 | 🧩 **Local pack library** | All built-in skins + imported packs in one place; **apply / favorite** in a click |
+| ✅ **Clear selection feedback** | Switching skins updates the checked/bordered highlight **instantly** — no stale white highlight box |
 | 🎲 **Surprise me** | Randomly switch to a theme different from the current one |
 | ⭐ **Favorites** | Star your favorite skins and switch between them fast |
 | ✅ **Validation + rollback** | Pack import validates format / required tokens / color legality; failures or removals fall back safely |
@@ -231,6 +232,8 @@ seeds (`react`, `react/jsx-runtime`, …) and registered client bundles (`@deeps
   it then appears in Settings automatically. Add a `skin.<id>` key to both the `zh` and `en` dictionaries.
 - **Ship a theme pack (recommended)**: follow [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json) —
   one `*.dsh-theme.json` is importable in Settings and shareable via a link, no code changes needed.
+- **Add your own wallpapers**: drop images into [`wallpapers/`](./wallpapers/) (distribute only what you have rights
+  to), then import them via DSH's "Wallpaper" row.
 - **Validate**: `npm test` (VM smoke tests covering factory eval, `apply()`, and pack import/persistence).
 - **Repaint**: reference the `--dsw-alias-*` tokens (full contract in [`docs/themes-spec.md`](./docs/themes-spec.md)).
 
