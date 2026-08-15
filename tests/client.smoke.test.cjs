@@ -24,7 +24,7 @@ function makeEl() {
 		style: {}, dataset: {}, children: [],
 		setAttribute() {}, removeAttribute() {},
 		appendChild(c) { this.children.push(c); },
-		click() {}, remove() { this.removed = true; }
+		prepend() {}, click() {}, remove() { this.removed = true; }
 	};
 }
 
@@ -32,6 +32,8 @@ function buildSandbox(overrides = {}) {
 	const body = makeEl();
 	const document = { body, createElement: () => makeEl(), createTextNode: () => ({}), querySelector: () => null, head: makeEl() };
 	const store = new Map();
+	// seed localStorage from overrides.seed
+	if (overrides.seed) for (const [k, v] of Object.entries(overrides.seed)) store.set(k, String(v));
 	const localStorage = {
 		getItem: (k) => (store.has(k) ? store.get(k) : null),
 		setItem: (k, v) => store.set(k, String(v)),
@@ -139,4 +141,42 @@ test('share-link theme pack import registers and persists', () => {
 	assert.ok(h.registered.includes('dream-pack:test-skin'), 'pack imported via share link');
 	const persisted = h.localStorage.getItem('dsh-dream-skin:packs');
 	assert.ok(persisted && persisted.indexOf('dream-pack:test-skin') !== -1, 'pack persisted to localStorage');
+});
+
+test('wallpaper apply does not recurse into a stack overflow when overrideTokens emits theme/change', () => {
+	// Regression: applyWallpaper2 -> shadeTokens2 -> ctx.theme.overrideTokens, which
+	// the real ThemeRuntime answers by emitting `theme/change` synchronously; our
+	// syncSkin listener re-applies the wallpaper, which used to call overrideTokens
+	// again -> infinite recursion -> "Maximum call stack size exceeded" (which DSH's
+	// slot boundaries then report as a crashed/abdicated entry). A re-entrancy guard
+	// must keep this to a single overrideTokens call.
+	const h = buildSandbox({ seed: { 'dsh-dream-skin:wallpaper': 'data:image/png;base64,AAAA' } });
+	const e = h.factory(makeRequire());
+
+	let themeChangeHandler = null;
+	let overrideCount = 0;
+	const theme = {
+		register() { return () => {}; },
+		setTheme() {},
+		getTheme() {
+			return { preference: 'dark', active: { id: 'dark', colorScheme: 'dark', tokens: { '--dsw-alias-brand-primary': '#4f83f2', '--dsw-alias-bg-base': '#000' } }, themes: [], revision: 1 };
+		},
+		overrideTokens() {
+			overrideCount += 1;
+			// mimic ThemeRuntime.publish: emit theme/change synchronously
+			if (themeChangeHandler) themeChangeHandler({ preference: 'dark', active: { id: 'dark', colorScheme: 'dark', tokens: {} }, revision: overrideCount });
+			return () => {};
+		}
+	};
+	const ctx = {
+		theme,
+		slots: { inject() {}, register() { return {}; } },
+		locale: { register() {} },
+		on(ev, fn) { if (ev === 'theme/change') themeChangeHandler = fn; return () => {}; },
+		effect(t) { const d = t(); if (typeof d === 'function') d(); }
+	};
+
+	assert.doesNotThrow(() => e.apply(ctx), 'apply with wallpaper set must not overflow the stack');
+	assert.ok(overrideCount >= 1, 'overrideTokens was applied');
+	assert.ok(overrideCount < 10, `re-entrancy guard kept overrideTokens finite (got ${overrideCount})`);
 });
