@@ -62,6 +62,36 @@ dsh plugin --profile web add -w dsh-dream-skin
 ## 五、常见注意事项
 
 - **镜像源**：发布必须 `--registry https://registry.npmjs.org`。
-- **版本号**：遵循语义化版本；首发 `0.1.0`。
+- **版本号**：遵循语义化版本；首发 `0.2.0`。
 - **peerDependencies**：以 `^0.1.0-rc.6` 对齐 DSH 当前版本；DSH 升级到正式版后记得跟进。
 - **LICENSE / README**：npm 页会展示仓库提交的内容，建议发布前同步。
+
+## 六、让社区发现你（.dsh-plugin topic / awesome / dsh-market）
+
+DeepSeek Harness「一切皆插件」，社区通过 [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)
+与 [dsh-market](https://github.com/dsh-market/dsh-market)（DSH 内的插件市场）发现插件。
+
+1. **给 GitHub 仓库打 topic**（建仓后），至少包括：
+   ```
+   dsh-plugin
+   dsh-plugin-theme
+   deepseek-harness
+   dsh
+   theme
+   skin
+   ```
+2. **提 PR 收录进 awesome-dsh-plugin**：在 `README.md` 和 `README.zh.md` 的 **「主题与外观」** 分类各加一行：
+   ```markdown
+   - [RevolutionLA/dsh-dream-skin](https://github.com/RevolutionLA/dsh-dream-skin) — 一句话中文/英文描述
+   ```
+   收录后会自动出现在 dsh-market 的 **主题 Tab**，用户可一键安装、切换（无需重启）。
+3. 主题类插件保持**安装即生效、切换即时、选择跨重启保留**——我们已经是这种体验。
+
+## 七、（可选）manifest 契约自检
+
+想确认自己的 `dsh` manifest 符合官方契约，可用社区只读检查器（无需授权）：
+
+```sh
+dsh plugin --profile web add dsh-plugin-check
+```
+

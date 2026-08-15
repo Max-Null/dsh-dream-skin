@@ -18,6 +18,7 @@ Native skinning + wallpaper + theme packs — a romance-engineered project built
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
 ![node](https://img.shields.io/badge/node-%3E%3D18-6d9af6)
 ![dsh](https://img.shields.io/badge/dsh-0.1.0--rc.6-blueviolet)
+![plugin type](https://img.shields.io/badge/plugin-dual--face%20(dsh.bundle%2Bdsh.client)-4f83f2)
 ![ci](https://img.shields.io/github/actions/workflow/status/RevolutionLA/dsh-dream-skin/ci.yml?branch=main&label=CI&color=34d399)
 ![code size](https://img.shields.io/github/languages/code-size/RevolutionLA/dsh-dream-skin?color=orange)
 
