@@ -81,6 +81,29 @@ dsh web
 
 > `-w` (workspace) is required because every profile ships a `pnpm-workspace.yaml`.
 
+## 🧩 What kind of plugin is this
+
+**A standard dual-face "everything-is-a-plugin" `dsh-plugin` — loaded and used exactly like the official `ui-theme` package.**
+
+DeepSeek Harness's motto is *everything is a plugin*: models, tools, sandboxes, sessions, UI, even the Agent Loop
+itself are plugins. `dsh-dream-skin` ships skinning as an npm package that is **isomorphic with the official UI
+packages**:
+
+```text
+            ┌──────────── dsh-dream-skin (standard dsh-plugin / dual-face) ─────────────┐
+            │  dsh.bundle   → cordis.patch.yml inserts the dream-skin entry  (host half)│
+            │  dsh.client   → lib/client.js (browser bundle)                (browser half)│
+            └───────────────────────────────────────────────────────────────────────────┘
+```
+
+- **Install command = the official one**: `dsh plugin --profile web add dsh-dream-skin`
+- **Uses official extension points**: `ctx.theme` (register themes), `ctx.theme.overrideTokens` (override layers),
+  `ctx.slots` (mount UI into **Settings → General**).
+- **Manifest contract matches official packages**: `dsh.bundle` + `dsh.client` + `exports["./client"]`.
+
+In other words: you are not installing a fringe script — this is a standard skin plugin inside DSH's official plugin
+system.
+
 ## 🖼️ Preview — the Mirage series
 
 > Previews below are generated from each skin's **real tokens** — what you see is what you get.

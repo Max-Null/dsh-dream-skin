@@ -68,6 +68,27 @@
 | ⭐ **收藏** | 收藏喜欢的皮肤，快速切换 |
 | ✅ **校验 + 回滚** | 导入时会校验格式/必填 token/颜色合法性；失败或移除时安全回退，不做破坏性更改 |
 
+## 🧩 它是什么形式的插件
+
+**它是 DeepSeek Harness 的标准「双面插件」（`dsh-plugin`）——加载和用法与官方 `ui-theme` 完全一致。**
+
+DeepSeek Harness 的口号是「一切皆插件」：模型、工具、沙箱、会话、UI，乃至 Agent Loop 本身都是插件。
+`dsh-dream-skin` 的本质就是把「换肤」做成一个和官方 UI 包**同构**的 npm 包：
+
+```text
+            ┌────────────── dsh-dream-skin（标准 dsh-plugin / 双面插件）──────────────┐
+            │  dsh.bundle   → cordis.patch.yml 插入 dream-skin 入口   (host 半边)     │
+            │  dsh.client   → lib/client.js（浏览器 bundle）          (浏览器半边)     │
+            └─────────────────────────────────────────────────────────────────────────┘
+```
+
+- **安装命令 = 官方唯一安装命令**：`dsh plugin --profile web add dsh-dream-skin`
+- **调用的是官方扩展点**：`ctx.theme`（注册主题）、`ctx.theme.overrideTokens`（叠加层）、
+  `ctx.slots`（把 UI 挂进 **设置 → 常规**）。
+- **manifest 契约与官方一致**：`dsh.bundle` + `dsh.client` + `exports["./client"]`。
+
+也就是说：**你装的不是一个旁门左道的脚本，而是 DSH 官方插件体系里的标准皮肤插件。**
+
 ## 🖼️ 预览 — Mirage 幻梦系列
 
 > 以下色卡由各皮肤的**真实 token** 生成，所见即所得。点开可放大。
