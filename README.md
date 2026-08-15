@@ -24,6 +24,11 @@
 
 </div>
 
+> 🚀 **现已发布到 npm！** 装好 DSH 后，一条命令即可安装，无需 clone：
+> ```sh
+> dsh plugin --profile web add dsh-dream-skin
+> ```
+
 > **致敬 [Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-Skin)。** 但实现路径不同：Codex 是往桌面客户端渲染进程
 > 注入 CSS（CDP），而 DSH 本身是 **token 驱动的 Web GUI**，官方就提供了「第三方插件注册主题」的能力——所以本插件是
 > **纯原生接入**，无注入、不改二进制、不因客户端更新失效。
@@ -126,24 +131,21 @@ DeepSeek Harness 的口号是「一切皆插件」：模型、工具、沙箱、
 
 ```sh
 # 1. 安装
-dsh plugin --profile web add -w dsh-dream-skin
+dsh plugin --profile web add dsh-dream-skin
 # 2. 重启
 dsh web
 # 3. 打开 设置 → 常规 → 皮肤，挑一套 → 完。
 ```
 
-> 传入 `-w`（workspace）是因为每个 profile 自带 `pnpm-workspace.yaml`，pnpm 需要知道这是 workspace 安装。
+> 装的是 npm 已完成发布的正式包，无需 clone。若 `dsh plugin add` 报 workspace 相关错误，补一个 `-w` 即可。
 
 ## 📦 安装
 
-### 方式一：从源码 / 本地目录
+### 方式一：npm（已发布，**推荐**）
 
 ```sh
-dsh plugin --profile web add -w /path/to/dsh-dream-skin
+dsh plugin --profile web add dsh-dream-skin
 ```
-
-> `-w` 标志**必需**：每个 profile 自带 `pnpm-workspace.yaml`，pnpm 会把它当作 workspace 根，裸 `add` 会报
-> `ERR_PNPM_ADDING_TO_ROOT`。
 
 然后**重启** web 服务：
 
@@ -154,10 +156,13 @@ dsh web
 
 打开 **设置 → 常规**，即可看到「皮肤」「强调色」「背景图片 / 高级壁纸」与「主题包」等行。
 
-### 方式二：npm 安装（发布后）
+> `-w` 标志在裸 `add` 时必需：每个 profile 自带 `pnpm-workspace.yaml`，pnpm 会把它当作 workspace 根，裸加报错
+> `ERR_PNPM_ADDING_TO_ROOT`。若已加过 `-w`，后续用现有 workspace 即无需重复。
+
+### 方式二：从源码 / 本地目录（开发者）
 
 ```sh
-dsh plugin --profile web add -w dsh-dream-skin
+dsh plugin --profile web add -w /path/to/dsh-dream-skin
 ```
 
 ## 🧩 兼容性

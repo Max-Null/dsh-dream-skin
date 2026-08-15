@@ -24,6 +24,11 @@ Native skinning + wallpaper + theme packs — a romance-engineered project built
 
 </div>
 
+> 🚀 **Now on npm!** With DSH installed, add it in one command — no cloning needed:
+> ```sh
+> dsh plugin --profile web add dsh-dream-skin
+> ```
+
 > **Homage to [Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-Skin).** But the approach is different:
 > Codex injects CSS into the desktop client's renderer via CDP, whereas DSH is a **token-driven Web GUI** that ships
 > first-class "third-party plugins registering themes". So this plugin is **purely native** — no injection, no binary
@@ -74,13 +79,13 @@ Differentiation inspired by existing DSH skin projects plus Codex's skin UX:
 
 ```sh
 # 1. install
-dsh plugin --profile web add -w dsh-dream-skin
+dsh plugin --profile web add dsh-dream-skin
 # 2. restart
 dsh web
 # 3. open Settings → General → Skins and pick one → done.
 ```
 
-> `-w` (workspace) is required because every profile ships a `pnpm-workspace.yaml`.
+> Installs the published npm package — no cloning. If `dsh plugin add` reports a workspace error, append `-w`.
 
 ## 🧩 What kind of plugin is this
 
@@ -139,15 +144,11 @@ system.
 
 ## 📦 Install
 
-
-### Option A: From source / a local directory
+### Option A: From npm (published, **recommended**)
 
 ```sh
-dsh plugin --profile web add -w /path/to/dsh-dream-skin
+dsh plugin --profile web add dsh-dream-skin
 ```
-
-> The `-w` flag is **required**: every profile ships a `pnpm-workspace.yaml`, so pnpm treats the profile directory
-> as a workspace root and a bare `add` fails with `ERR_PNPM_ADDING_TO_ROOT`.
 
 Then **restart** the web server:
 
@@ -158,10 +159,14 @@ dsh web
 
 Open **Settings → General** to see the **Skins**, **Accent**, **Wallpaper** / **Advanced Wallpaper**, and **Theme Packs** rows.
 
-### Option B: From npm (after publishing)
+> The `-w` (workspace) flag is needed on a bare `add` because every profile ships a `pnpm-workspace.yaml`; pnpm treats
+> the profile directory as a workspace root, so a bare add fails with `ERR_PNPM_ADDING_TO_ROOT`. If your profile already
+> uses the workspace, you won't need to repeat it.
+
+### Option B: From source / a local directory (developers)
 
 ```sh
-dsh plugin --profile web add -w dsh-dream-skin
+dsh plugin --profile web add -w /path/to/dsh-dream-skin
 ```
 
 ## 🧩 Compatibility
