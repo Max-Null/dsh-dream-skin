@@ -6,9 +6,11 @@
 
 # dsh-dream-skin 🔮
 
-**给 DeepSeek Harness 换一张会呼吸的脸。**
+**让 DeepSeek Harness 也会呼吸、有情绪、属于你。**
 
-第三方换肤 / 壁纸插件 · 原生接入 DSH 的 `--dsw-*` token 主题系统 · 不改官方安装包
+原生换肤 + 壁纸 + 主题包，一套完全用官方 `--dsw-*` token 系统实现的浪漫工程。
+
+> 3 行安装 · 8 套原创主题 · 2 层视觉叠加 · 1 键分享
 
 [English](./README.en.md) · [变更日志](./CHANGELOG.md) · [项目说明](./docs/PROJECT.md) · [发布指引](./docs/publishing-to-npm.md)
 
@@ -16,6 +18,8 @@
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
 ![node](https://img.shields.io/badge/node-%3E%3D18-6d9af6)
 ![dsh](https://img.shields.io/badge/dsh-0.1.0--rc.6-blueviolet)
+![ci](https://img.shields.io/github/actions/workflow/status/RevolutionLA/dsh-dream-skin/ci.yml?branch=main&label=CI&color=34d399)
+![code size](https://img.shields.io/github/languages/code-size/RevolutionLA/dsh-dream-skin?color=orange)
 
 </div>
 
@@ -26,6 +30,19 @@
 > **不是官方产品。** 仅供美化你的 DeepSeek Harness 工作区。
 
 ---
+
+## 🏆 为什么值得用（vs 同类）
+
+| 能力 | 本插件 | 其它 DSH 换肤方案 | Codex-Dream-Skin (桌面) |
+|------|:---:|:---:|:---:|
+| 原生 token 主题，不注入、不改安装包 | ✅ | ✅ | ❌ (CDP 注入) |
+| 自定义壁纸 + 透明度/模糊 | ✅ | 部分 | ✅ |
+| **主题包导入/导出 + 分享链接** | ✅ | ❌ | ✅ (zip 主题) |
+| **每用户强调色 Accent** | ✅ | ❌ | 部分 |
+| **壁纸 2.0（URL / 渐变 / 每皮肤建议 / 自动弱化）** | ✅ | ❌ | ✅ |
+| 本地主题包库 + 收藏 + 随机 | ✅ | ❌ | 部分 |
+| 校验 + 回滚 | ✅ | 部分 | ✅ |
+| **浏览器 Web GUI，天然跨平台** | ✅ | ✅ | ❌ (需桌面 App) |
 
 ## ✨ 功能一览
 
@@ -51,15 +68,26 @@
 | ⭐ **收藏** | 收藏喜欢的皮肤，快速切换 |
 | ✅ **校验 + 回滚** | 导入时会校验格式/必填 token/颜色合法性；失败或移除时安全回退，不做破坏性更改 |
 
-## 🖼️ 预览
+## 🖼️ 预览 — Mirage 幻梦系列
 
-> 截图 / 动图占位：这里放一张开启某套皮肤 + 壁纸时 DSH 界面的实机截图，或一个主题切换的 GIF。
+> 以下色卡由各皮肤的**真实 token** 生成，所见即所得。点开可放大。
 
-| 深色 · abyss | 浅色 · ivory |
-|---|---|
-| ![abyss 预览](https://via.placeholder.com/420x240/060a14/4f83f2?text=abyss) | ![ivory 预览](https://via.placeholder.com/420x240/f7f4ee/a16207?text=ivory) |
+<table>
+  <tr>
+    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · 深海渊</td>
+    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · 极光</td>
+    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · 星云</td>
+    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · 余烬</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · 午夜</td>
+    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · 象牙暖</td>
+    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · 晨雾蓝</td>
+    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · 蔷薇粉</td>
+  </tr>
+</table>
 
-## 🎲 预设一览
+### 预设一览
 
 | id | 色系 | 氛围 |
 |------|-------|------|
@@ -71,6 +99,18 @@
 | `ivory` | 📜 light | 象牙暖 · 纸感 |
 | `mist` | 🌫️ light | 晨雾蓝 · 冷调 |
 | `rose` | 🌸 light | 蔷薇粉 |
+
+## ⚡ 快速开始（3 步）
+
+```sh
+# 1. 安装
+dsh plugin --profile web add -w dsh-dream-skin
+# 2. 重启
+dsh web
+# 3. 打开 设置 → 常规 → 皮肤，挑一套 → 完。
+```
+
+> 传入 `-w`（workspace）是因为每个 profile 自带 `pnpm-workspace.yaml`，pnpm 需要知道这是 workspace 安装。
 
 ## 📦 安装
 

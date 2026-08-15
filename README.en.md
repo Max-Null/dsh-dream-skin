@@ -6,9 +6,11 @@
 
 # dsh-dream-skin 🔮
 
-**Give DeepSeek Harness a face that breathes.**
+**Make DeepSeek Harness breathe, feel, and belong to you.**
 
-Third-party skin / wallpaper plugin · native integration with DSH's `--dsw-*` token theming · no patches to the official installer
+Native skinning + wallpaper + theme packs — a romance-engineered project built entirely on DSH's official `--dsw-*` token system.
+
+> 3-line install · 8 original themes · 2 visual layers · 1-click share
 
 [中文](./README.md) · [Changelog](./CHANGELOG.md) · [Project Notes](./docs/PROJECT.md) · [Publishing Guide](./docs/publishing-to-npm.md)
 
@@ -16,6 +18,8 @@ Third-party skin / wallpaper plugin · native integration with DSH's `--dsw-*` t
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
 ![node](https://img.shields.io/badge/node-%3E%3D18-6d9af6)
 ![dsh](https://img.shields.io/badge/dsh-0.1.0--rc.6-blueviolet)
+![ci](https://img.shields.io/github/actions/workflow/status/RevolutionLA/dsh-dream-skin/ci.yml?branch=main&label=CI&color=34d399)
+![code size](https://img.shields.io/github/languages/code-size/RevolutionLA/dsh-dream-skin?color=orange)
 
 </div>
 
@@ -27,6 +31,19 @@ Third-party skin / wallpaper plugin · native integration with DSH's `--dsw-*` t
 > **Not an official product.** Just a way to dress up your DeepSeek Harness workspace.
 
 ---
+
+## 🏆 Why it earns a star (vs alternatives)
+
+| Capability | Ours | Other DSH skinning | Codex-Dream-Skin (desktop) |
+|------|:---:|:---:|:---:|
+| Native token themes — no injection, no installer patches | ✅ | ✅ | ❌ (CDP injection) |
+| Custom wallpaper + opacity/blur | ✅ | partial | ✅ |
+| **Theme-pack import/export + share links** | ✅ | ❌ | ✅ (zip packs) |
+| **Per-user Accent override** | ✅ | ❌ | partial |
+| **Wallpaper 2.0 (URL / gradient / per-skin suggestion / auto-dim)** | ✅ | ❌ | ✅ |
+| Local pack library + favorites + surprise-me | ✅ | ❌ | partial |
+| Validation + rollback | ✅ | partial | ✅ |
+| **Browser Web GUI, cross-platform natively** | ✅ | ✅ | ❌ (needs desktop App) |
 
 ## ✨ Features
 
@@ -52,13 +69,36 @@ Differentiation inspired by existing DSH skin projects plus Codex's skin UX:
 | ⭐ **Favorites** | Star your favorite skins and switch between them fast |
 | ✅ **Validation + rollback** | Pack import validates format / required tokens / color legality; failures or removals fall back safely |
 
-## 🖼️ Preview
+## ⚡ Quick start (3 steps)
 
-> Screenshot / animation placeholder: drop a real DSH screenshot with a skin + wallpaper applied, or a theme-switch GIF.
+```sh
+# 1. install
+dsh plugin --profile web add -w dsh-dream-skin
+# 2. restart
+dsh web
+# 3. open Settings → General → Skins and pick one → done.
+```
 
-| Dark · abyss | Light · ivory |
-|--------------|---------------|
-| ![abyss preview](https://via.placeholder.com/420x240/060a14/4f83f2?text=abyss) | ![ivory preview](https://via.placeholder.com/420x240/f7f4ee/a16207?text=ivory) |
+> `-w` (workspace) is required because every profile ships a `pnpm-workspace.yaml`.
+
+## 🖼️ Preview — the Mirage series
+
+> Previews below are generated from each skin's **real tokens** — what you see is what you get.
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b></td>
+    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b></td>
+    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b></td>
+    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b></td>
+    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b></td>
+    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b></td>
+    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b></td>
+  </tr>
+</table>
 
 ## 🎲 The presets
 
@@ -74,6 +114,7 @@ Differentiation inspired by existing DSH skin projects plus Codex's skin UX:
 | `rose` | 🌸 light | rose pink / blush |
 
 ## 📦 Install
+
 
 ### Option A: From source / a local directory
 

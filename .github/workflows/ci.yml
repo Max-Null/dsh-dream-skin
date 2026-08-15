@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 20, 22]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      # No dependencies to install — the client bundle is hand-written and the
+      # smoke tests run in a plain Node VM. Just run them.
+      - name: Run tests
+        run: npm test
+      - name: Syntax check the host + client bundles
+        run: node --check lib/index.js && node --check lib/client.js
