@@ -2,6 +2,18 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.2.2] - 2026-08-15
+
+### 修复
+- **强调色的「随机 / 恢复主题色」无响应**：`accentInjected` 每次 `sync` 传固定 `revision=0`，而 store 的 revision 防抖
+  （`revision <= d.revision`）会在第一次更新后（`d.revision=0`）拒绝后续更新 → 点第二次之后没反应。改为维护递增的
+  `accentRevision`。
+- **高级壁纸的渐变预设小框显示灰色**：渐变按钮只设置了 `presetswatches`（尺寸/边框）而**没有背景**，导致按钮显示
+  默认灰/白。改为 `background: g`（直接使用渐变值）。
+- **皮肤设置标题去掉括号系列名**：`皮肤（Mirage 幻梦）` → `皮肤`（中英同步），避免观感怪异。
+- 说明：皮肤/强调色等设置在**旧版崩溃（递归栈溢出）后的 session** 里会被 DSH 标记为「崩溃剔除」（abdicated）导致
+  点选无响应/选择框不移动；0.2.1 已修复递归，**升级后请完整重启 DSH 并强刷**，使被剔除的入口重新加载。
+
 ## [0.2.1] - 2026-08-15
 
 ### 修复（重要）
