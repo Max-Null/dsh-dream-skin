@@ -2,6 +2,13 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.2.5] - 2026-08-15
+
+### 🎉 里程碑
+- **已被 [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) 收录**（PR #354 merged）。
+- README 顶部新增 **"Awesome DSH Plugin"** 徽章。
+- 插件会**自动出现在 dsh-market 的主题 Tab**（数据源 `awesome-dsh-plugin.com/plugins.json` 已含 `dsh-dream-skin`）。
+
 ## [0.2.4] - 2026-08-15
 
 ### 变更

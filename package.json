@@ -1,6 +1,6 @@
 {
   "name": "dsh-dream-skin",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "DeepSeek Harness 换肤插件 (Dream Skin for DeepSeek Harness): curated --dsw-alias-* theme presets, a custom translucent wallpaper with opacity/blur controls, theme-pack import/export + share links, per-user accent, favorites & surprise-me, and durable per-browser persistence — in the spirit of the Codex Dream Skin project.",
   "license": "MIT",
   "type": "module",
