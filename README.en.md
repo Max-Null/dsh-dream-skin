@@ -132,7 +132,7 @@ Then **restart** the web server:
 dsh web
 ```
 
-Open **Settings → General** to see the **Skins** and **Wallpaper** rows.
+Open **Settings → General** to see the **Skins**, **Accent**, **Wallpaper** / **Advanced Wallpaper**, and **Theme Packs** rows.
 
 ### Option B: From npm (after publishing)
 
