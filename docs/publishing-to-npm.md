@@ -85,7 +85,11 @@ DeepSeek Harness「一切皆插件」，社区通过 [awesome-dsh-plugin](https:
    - [RevolutionLA/dsh-dream-skin](https://github.com/RevolutionLA/dsh-dream-skin) — 一句话中文/英文描述
    ```
    收录后会自动出现在 dsh-market 的 **主题 Tab**，用户可一键安装、切换（无需重启）。
-3. 主题类插件保持**安装即生效、切换即时、选择跨重启保留**——我们已经是这种体验。
+3. **合入后挂「awesome 已收录」徽章**（README 顶部徽章区加上）：
+   ```markdown
+   [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+   ```
+4. 主题类插件保持**安装即生效、切换即时、选择跨重启保留**——我们已经是这种体验。
 
 ## 七、（可选）manifest 契约自检
 
