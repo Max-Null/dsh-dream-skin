@@ -6,11 +6,16 @@
 
 # dsh-dream-skin 🔮
 
-**让 DeepSeek Harness 也会呼吸、有情绪、属于你。**
+**让 DeepSeek Harness 换一张会呼吸、有情绪、属于你的脸。**
 
-原生换肤 + 壁纸 + 主题包，一套完全用官方 `--dsw-*` token 系统实现的浪漫工程。
+原生换肤 · 背景壁纸 · 主题包分享 —— 完全用官方 `--dsw-*` token 系统实现的浪漫工程。装一次，终身可换。
 
-> 3 行安装 · 8 套原创主题 · 2 层视觉叠加 · 1 键分享
+> **一句话：写代码，也要有氛围感。** ✨
+
+| 🎨 8 套原创主题 | 🖼️ 壁纸 + 透明度/模糊 | 🌈 强调色点一下 | 📦 主题包可分享 |
+|---|---|---|---|
+
+> 3 行安装 · 纯原生（无注入/不改安装包）· 不因 DSH 更新失效
 
 [English](./README.en.md) · [变更日志](./CHANGELOG.md) · [项目说明](./docs/PROJECT.md) · [发布指引](./docs/publishing-to-npm.md)
 
@@ -34,6 +39,18 @@
 > **纯原生接入**，无注入、不改二进制、不因客户端更新失效。
 >
 > **不是官方产品。** 仅供美化你的 DeepSeek Harness 工作区。
+
+---
+
+## 📸 实机截图
+
+> 真机效果，非概念图。左：应用某套皮肤后的 DSH 界面；右：设置里的「外观 / Theme」分节。
+
+<p align="center">
+  <img src="docs/screenshots/preview.png" alt="DSH 皮肤实机预览" width="46%"/>
+  &nbsp;&nbsp;
+  <img src="docs/screenshots/settings.png" alt="设置中的外观分节" width="46%"/>
+</p>
 
 ---
 
@@ -166,6 +183,25 @@ dsh web
 dsh plugin --profile web add -w /path/to/dsh-dream-skin
 ```
 
+## 🔄 更新 / 卸载
+
+**更新到最新版**（装的是 npm 正式包时）：
+
+```sh
+dsh plugin --profile web update dsh-dream-skin
+dsh web   # 重启生效
+```
+
+> 若更新后仍显示旧版本，可能是 pnpm 的最小发布年龄（supply-chain）策略挡住了刚发布的新版本：
+> 在 profile 目录执行 `pnpm add dsh-dream-skin@latest --config.minimumReleaseAge=0` 即可绕过。
+
+**卸载**：
+
+```sh
+dsh plugin --profile web remove dsh-dream-skin
+dsh web   # 重启后恢复官方外观
+```
+
 ## 🧩 兼容性
 
 | 项 | 值 |
@@ -247,6 +283,11 @@ bundle（`@deepseek-ai/dsh-client-runtime/client`、…）。
 ## 🤝 贡献
 
 欢迎提交 Issue 与 PR！请先阅读 [贡献指南](./CONTRIBUTING.md)，并遵循 [Code of Conduct](./CODE_OF_CONDUCT.md)。
+
+## ⭐ 支持这个项目
+
+喜欢的话，给仓库点个 **Star ⭐**、在 npm 上点个 **👍**，或把它转发给你的 DSH 朋友——这会让更多人发现它，
+也能激励持续维护。想一起做主题库 / 在线 Studio / 更多主题？欢迎来贡献。
 
 ## 🔒 安全
 

@@ -6,11 +6,16 @@
 
 # dsh-dream-skin 🔮
 
-**Make DeepSeek Harness breathe, feel, and belong to you.**
+**Give DeepSeek Harness a face that breathes, feels, and belongs to you.**
 
-Native skinning + wallpaper + theme packs — a romance-engineered project built entirely on DSH's official `--dsw-*` token system.
+Native skinning · wallpaper · shareable theme packs — a romance-engineered project built entirely on DSH's official `--dsw-*` token system.
 
-> 3-line install · 8 original themes · 2 visual layers · 1-click share
+> **TL;DR: code with atmosphere.** ✨
+
+| 🎨 8 original themes | 🖼️ wallpaper + opacity/blur | 🌈 one-click accent | 📦 shareable theme packs |
+|---|---|---|---|
+
+> 3-line install · purely native (no injection, no installer patches) · survives DSH updates
 
 [中文](./README.md) · [Changelog](./CHANGELOG.md) · [Project Notes](./docs/PROJECT.md) · [Publishing Guide](./docs/publishing-to-npm.md)
 
@@ -35,6 +40,18 @@ Native skinning + wallpaper + theme packs — a romance-engineered project built
 > patches, and it won't break on client updates.
 >
 > **Not an official product.** Just a way to dress up your DeepSeek Harness workspace.
+
+---
+
+## 📸 Screenshots
+
+> Real screenshots, not mockups. Left: DSH after applying a skin; right: the dedicated **Theme / Appearance** section in Settings.
+
+<p align="center">
+  <img src="docs/screenshots/preview.png" alt="DSH skin preview" width="46%"/>
+  &nbsp;&nbsp;
+  <img src="docs/screenshots/settings.png" alt="Theme section in settings" width="46%"/>
+</p>
 
 ---
 
@@ -170,6 +187,26 @@ Open **Settings → Theme / Appearance** to see the **Skins**, **Accent**, **Wal
 dsh plugin --profile web add -w /path/to/dsh-dream-skin
 ```
 
+## 🔄 Update / Uninstall
+
+**Update to the latest** (when installed from the npm release):
+
+```sh
+dsh plugin --profile web update dsh-dream-skin
+dsh web   # restart to pick it up
+```
+
+> Stuck on an old version after an update? pnpm's minimum-release-age (supply-chain) policy can hold back a
+> freshly published release. In the profile dir run:
+> `pnpm add dsh-dream-skin@latest --config.minimumReleaseAge=0` to force it.
+
+**Uninstall:**
+
+```sh
+dsh plugin --profile web remove dsh-dream-skin
+dsh web   # restores the official appearance
+```
+
 ## 🧩 Compatibility
 
 | Item | Value |
@@ -253,6 +290,11 @@ seeds (`react`, `react/jsx-runtime`, …) and registered client bundles (`@deeps
 
 Issues and PRs welcome! Please read the [Contributing Guide](./CONTRIBUTING.md) and follow the
 [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+## ⭐ Support the project
+
+If you like it: star **⭐** the repo, thumbs-up **👍** on npm, or share it with DSH friends — it helps the project
+get discovered and keeps it maintained. Want to contribute themes / an online Studio / more skins? Join in.
 
 ## 🔒 Security
 
