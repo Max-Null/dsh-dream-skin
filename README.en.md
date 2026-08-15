@@ -55,7 +55,7 @@ Native skinning + wallpaper + theme packs — a romance-engineered project built
 
 | Capability | Description |
 |------------|-------------|
-| 🎨 **8 bundled presets (Mirage)** | Switch instantly under **Settings → General → Skins**, light & dark |
+| 🎨 **8 bundled presets (Mirage)** | Switch instantly under **Settings → Theme / Appearance**, light & dark |
 | 🖼️ **Custom wallpaper** | Pick a local image (auto-compressed ≤2MB), tune **opacity / blur** |
 | 🔤 **Opaque inner surfaces** | Cards, inputs, message bubbles stay readable — never washed out |
 | ↩️ **Default restore** | Back to DSH's built-in appearance (follow system) in one click |
@@ -83,7 +83,7 @@ Differentiation inspired by existing DSH skin projects plus Codex's skin UX:
 dsh plugin --profile web add dsh-dream-skin
 # 2. restart
 dsh web
-# 3. open Settings → General → Skins and pick one → done.
+# 3. open Settings → Theme / Appearance → pick a skin → done.
 ```
 
 > Installs the published npm package — no cloning. If `dsh plugin add` reports a workspace error, append `-w`.
@@ -105,7 +105,7 @@ packages**:
 
 - **Install command = the official one**: `dsh plugin --profile web add dsh-dream-skin`
 - **Uses official extension points**: `ctx.theme` (register themes), `ctx.theme.overrideTokens` (override layers),
-  `ctx.slots` (mount UI into **Settings → General**).
+  `ctx.slots` (mount UI into a dedicated **Settings → Theme / Appearance** section).
 - **Manifest contract matches official packages**: `dsh.bundle` + `dsh.client` + `exports["./client"]`.
 
 In other words: you are not installing a fringe script — this is a standard skin plugin inside DSH's official plugin
@@ -158,7 +158,7 @@ Then **restart** the web server:
 dsh web
 ```
 
-Open **Settings → General** to see the **Skins**, **Accent**, **Wallpaper** / **Advanced Wallpaper**, and **Theme Packs** rows.
+Open **Settings → Theme / Appearance** to see the **Skins**, **Accent**, **Wallpaper** / **Advanced Wallpaper**, and **Theme Packs** rows.
 
 > The `-w` (workspace) flag is needed on a bare `add` because every profile ships a `pnpm-workspace.yaml`; pnpm treats
 > the profile directory as a workspace root, so a bare add fails with `ERR_PNPM_ADDING_TO_ROOT`. If your profile already

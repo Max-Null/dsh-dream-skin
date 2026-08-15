@@ -54,7 +54,7 @@
 
 | 能力 | 说明 |
 |------|------|
-| 🎨 **8 套主题预设（Mirage 幻梦）** | 在 **设置 → 常规 → 皮肤** 一键切换，浅色 / 深色兼顾 |
+| 🎨 **8 套主题预设（Mirage 幻梦）** | 在 **设置 → 外观（Theme）** 一键切换，浅色 / 深色兼顾 |
 | 🖼️ **自定义壁纸** | 上传本地图（自动压缩 ≤2MB），调节**透明度 / 模糊** |
 | 🔤 **内层不透明** | 卡片、输入框、消息气泡不被壁纸盖住，可读性优先 |
 | ↩️ **默认还原** | 一键回到 DSH 内置外观（跟随系统） |
@@ -91,7 +91,7 @@ DeepSeek Harness 的口号是「一切皆插件」：模型、工具、沙箱、
 
 - **安装命令 = 官方唯一安装命令**：`dsh plugin --profile web add dsh-dream-skin`
 - **调用的是官方扩展点**：`ctx.theme`（注册主题）、`ctx.theme.overrideTokens`（叠加层）、
-  `ctx.slots`（把 UI 挂进 **设置 → 常规**）。
+  `ctx.slots`（把 UI 挂进独立的 **设置 → 外观 / Theme** 分节）。
 - **manifest 契约与官方一致**：`dsh.bundle` + `dsh.client` + `exports["./client"]`。
 
 也就是说：**你装的不是一个旁门左道的脚本，而是 DSH 官方插件体系里的标准皮肤插件。**
@@ -135,7 +135,7 @@ DeepSeek Harness 的口号是「一切皆插件」：模型、工具、沙箱、
 dsh plugin --profile web add dsh-dream-skin
 # 2. 重启
 dsh web
-# 3. 打开 设置 → 常规 → 皮肤，挑一套 → 完。
+# 3. 打开 设置 → 外观（Theme）→ 皮肤，挑一套 → 完。
 ```
 
 > 装的是 npm 已完成发布的正式包，无需 clone。若 `dsh plugin add` 报 workspace 相关错误，补一个 `-w` 即可。
@@ -155,7 +155,7 @@ dsh plugin --profile web add dsh-dream-skin
 dsh web
 ```
 
-打开 **设置 → 常规**，即可看到「皮肤」「强调色」「背景图片 / 高级壁纸」与「主题包」等行。
+打开 **设置 → 外观（Theme）**，即可看到「皮肤」「强调色」「背景图片 / 高级壁纸」与「主题包」等行。
 
 > `-w` 标志在裸 `add` 时必需：每个 profile 自带 `pnpm-workspace.yaml`，pnpm 会把它当作 workspace 根，裸加报错
 > `ERR_PNPM_ADDING_TO_ROOT`。若已加过 `-w`，后续用现有 workspace 即无需重复。
