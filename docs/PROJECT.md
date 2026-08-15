@@ -23,7 +23,7 @@ GitHub 上 [Fei-Away/Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-S
 - 8 套主题预设（Mirage 幻梦），浅/深色兼顾，品牌锚点用 DeepSeek 蓝。
 - 自选背景壁纸，含透明度和模糊调节。
 - `localStorage` 持久化。
-- 在 `Settings → General` 出现「皮肤 / 背景图片」行。
+- 设置里出现「皮肤 / 背景图片」入口。
 
 **v0.2 - P0 差异化（已完成）**
 - **主题包格式 + 导入 / 导出 / 分享链接**（JSON + manifest + 校验）。
