@@ -11,9 +11,11 @@
 1. 包名全局唯一。scope 名更安全（如 `@你的账号/dsh-dream-skin`）——如需改 scope，改 `package.json` 里的
    `name` 即可。
 2. 填好 `author`、`repository`、`description`、`keywords`（均已预留）。
-3. 确认 `files` 里带上了这些文件（当前已配置）：
+3. 确认 `files` 里带上了这些文件（当前已配置，含 8 语言 README）：
    ```json
-   "files": ["lib/index.js", "lib/client.js", "lib/types", "cordis.patch.yml"]
+   "files": ["lib/index.js", "lib/client.js", "lib/types", "cordis.patch.yml",
+             "README.md", "README.en.md", "README.ja.md", "README.ko.md",
+             "README.es.md", "README.fr.md", "README.de.md", "README.ru.md"]
    ```
    这样 npm 只会上传这些，不会带源码里不需要的东西。
 

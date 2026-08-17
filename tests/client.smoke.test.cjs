@@ -314,3 +314,43 @@ test('setWallpaper resets kind to image so a picked photo beats a stale gradient
 	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-kind'), 'image', 'kind reset to image');
 	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper'), 'data:image/jpeg;base64,AAAA');
 });
+
+test('all locale dictionaries are complete and keep placeholders', () => {
+	// Every shipped dictionary must have exactly the zh key set (no missing /
+	// extra keys) and must keep the {name} / {error} / {errors} placeholders.
+	const src = fs.readFileSync(path.join(__dirname, '..', 'lib', 'client.js'), 'utf8');
+	const langs = ['zh', 'en', 'ja', 'ko', 'es', 'fr', 'de', 'ru'];
+	const dicts = {};
+	for (const lang of langs) {
+		const start = src.indexOf(`const ${lang} = {`);
+		assert.ok(start !== -1, `dictionary ${lang} defined`);
+		const end = src.indexOf('};', start);
+		const body = src.slice(start, end);
+		const keys = [...body.matchAll(/"([a-zA-Z0-9.]+)":\s*"/g)].map((m) => m[1]);
+		dicts[lang] = new Set(keys);
+		assert.equal(keys.length, 42, `${lang} has ${keys.length} keys (expected 42)`);
+	}
+	const zhKeys = dicts.zh;
+	for (const lang of langs.slice(1)) {
+		const missing = [...zhKeys].filter((k) => !dicts[lang].has(k));
+		const extra = [...dicts[lang]].filter((k) => !zhKeys.has(k));
+		assert.deepEqual(missing, [], `${lang} missing keys`);
+		assert.deepEqual(extra, [], `${lang} has extra keys`);
+	}
+	// Placeholder integrity: every value containing {name}/{error}/{errors}
+	// must keep those placeholders (no accidental translation of braces).
+	for (const lang of langs) {
+		const start = src.indexOf(`const ${lang} = {`);
+		const end = src.indexOf('};', start);
+		const body = src.slice(start, end);
+		const m = body.matchAll(/"([a-zA-Z0-9.]+)":\s*"((?:[^"\\]|\\.)*)"/g);
+		for (const match of m) {
+			const value = match[2].replace(/\\n/g, '\n');
+			const required = ['{name}', '{error}', '{errors}'];
+			const used = required.filter((p) => value.includes(p));
+			for (const p of used) {
+				assert.ok(value.includes(p), `${lang}.${match[1]} dropped placeholder ${p}`);
+			}
+		}
+	}
+});

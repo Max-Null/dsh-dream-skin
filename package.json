@@ -1,6 +1,6 @@
 {
   "name": "dsh-dream-skin",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "DeepSeek Harness 换肤插件 (Dream Skin for DeepSeek Harness): curated --dsw-alias-* theme presets, a custom translucent wallpaper with opacity/blur controls, theme-pack import/export + share links, per-user accent, favorites & surprise-me, and durable per-browser persistence — in the spirit of the Codex Dream Skin project.",
   "license": "MIT",
   "type": "module",
@@ -21,7 +21,15 @@
     "lib/index.js",
     "lib/client.js",
     "lib/types",
-    "cordis.patch.yml"
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "README.ja.md",
+    "README.ko.md",
+    "README.es.md",
+    "README.fr.md",
+    "README.de.md",
+    "README.ru.md"
   ],
   "author": "dsh-dream-skin contributors",
   "repository": {

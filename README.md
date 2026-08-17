@@ -1,5 +1,5 @@
 <p align="center">
-  <strong>中文</strong> · <a href="./README.en.md">English</a>
+  <strong>中文</strong> · <a href="./README.en.md">English</a> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <a href="./README.de.md">Deutsch</a> · <a href="./README.ru.md">Русский</a>
 </p>
 
 <div align="center">
@@ -15,7 +15,7 @@
 | 🎨 8 套原创主题 | 🖼️ 壁纸 + 透明度/模糊 | 🌈 强调色点一下 | 📦 主题包可分享 |
 |---|---|---|---|
 
-> 3 行安装 · 纯原生（无注入/不改安装包）· 不因 DSH 更新失效
+> 1 行安装 · 纯原生（无注入/不改安装包）· 不因 DSH 更新失效
 
 [English](./README.en.md) · [变更日志](./CHANGELOG.md) · [项目说明](./docs/PROJECT.md) · [发布指引](./docs/publishing-to-npm.md)
 
@@ -30,10 +30,19 @@
 
 </div>
 
-> 🚀 **现已发布到 npm！** 装好 DSH 后，一条命令即可安装，无需 clone：
-> ```sh
-> dsh plugin --profile web add dsh-dream-skin
-> ```
+## ⚡ 一句话安装
+
+**复制下面这句话给你的 DSH，它自己会装好一切：**
+
+> 请帮我安装 dsh-dream-skin 换肤插件（https://github.com/RevolutionLA/dsh-dream-skin 或 npm 的 dsh-dream-skin），装完告诉我如何重启 DSH Web。
+
+不想麻烦 Agent？命令行一条：
+
+```sh
+dsh plugin --profile web add dsh-dream-skin && dsh web
+```
+
+> 🚀 **现已发布到 npm！** 装好 DSH 后，一条命令即可安装，无需 clone。
 
 > **致敬 [Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-Skin)。** 但实现路径不同：Codex 是往桌面客户端渲染进程
 > 注入 CSS（CDP），而 DSH 本身是 **token 驱动的 Web GUI**，官方就提供了「第三方插件注册主题」的能力——所以本插件是
@@ -160,29 +169,51 @@ dsh web
 
 ## 📦 安装
 
-### 方式一：npm（已发布，**推荐**）
+四种方式任选其一，装完**重启 DSH Web** 即生效（当前会话会中断，但 DSH 会话有磁盘持久化，重启后可以恢复）。
+
+### 方式一：npm 正式包（**推荐**，最简单）
 
 ```sh
 dsh plugin --profile web add dsh-dream-skin
 ```
 
-然后**重启** web 服务：
+### 方式二：从 GitHub 安装（固定到已验证的提交）
 
 ```sh
-# 先停掉正在运行的实例，再：
+dsh plugin --profile web add 'github:RevolutionLA/dsh-dream-skin#<40位commit>'
+```
+
+> 固定到 release 对应的 commit，之后 `main` 的新改动不会静默改变已安装代码。
+
+### 方式三：从 Release tarball 安装（离线 / 不便走 git 的环境）
+
+从本仓库 [Releases](https://github.com/RevolutionLA/dsh-dream-skin/releases) 下载 `dsh-dream-skin-<版本>.tgz`（内含构建好的 `lib/client.js`，安装时无需执行任何 prepare 脚本），然后：
+
+```sh
+dsh plugin --profile web add ./dsh-dream-skin-<版本>.tgz
+```
+
+### 方式四：克隆后从本地路径安装（开发迭代）
+
+```sh
+git clone https://github.com/RevolutionLA/dsh-dream-skin.git
+cd dsh-dream-skin
+dsh plugin --profile web add .
+```
+
+> `dsh plugin` 会把相对路径锚定到你**运行命令的目录**，装的是指向克隆目录的 link 依赖：改完源码保存，重启 DSH 即生效，无需重新安装。
+
+**重启并验证**：
+
+```sh
 dsh web
+dsh --profile web --dump-config | grep -A2 dream-skin   # 应出现 dream-skin loader 条目
 ```
 
 打开 **设置 → 外观（Theme）**，即可看到「皮肤」「强调色」「背景图片 / 高级壁纸」与「主题包」等行。
 
 > `-w` 标志在裸 `add` 时必需：每个 profile 自带 `pnpm-workspace.yaml`，pnpm 会把它当作 workspace 根，裸加报错
 > `ERR_PNPM_ADDING_TO_ROOT`。若已加过 `-w`，后续用现有 workspace 即无需重复。
-
-### 方式二：从源码 / 本地目录（开发者）
-
-```sh
-dsh plugin --profile web add -w /path/to/dsh-dream-skin
-```
 
 ## 🔄 更新 / 卸载
 
@@ -231,7 +262,7 @@ DSH 的主题系统是 token 化的：web 外壳内置 `--dsw-*` 设计令牌，
                                                          │
         ┌────────────────────────────────┬────────────────┐
         │                                │                │
-   ctx.theme.register(8套皮肤)      ctx.theme.overrideTokens(壁纸半透明)   ctx.slots.inject('settings.general.item')
+   ctx.theme.register(8套皮肤)      ctx.theme.overrideTokens(壁纸半透明)   ctx.slots.inject('settings.section' + 'settings.dreamSkin.item')
 ```
 
 - **Host 半边**（`lib/index.js`）：`dsh.bundle` patch 层，插入 `dream-skin` loader 入口；`apply` 为空操作，
@@ -242,7 +273,8 @@ DSH 的主题系统是 token 化的：web 外壳内置 `--dsw-*` 设计令牌，
   3. 壁纸渲染为 `z-index:-1` 固定背景层，叠加 `ctx.theme.overrideTokens(...)` 让主画布
      （`--dsw-alias-bg-base`）与侧边栏（`--dsw-specific-sidebar-fill`）半透明；
   4. 监听 `theme/change`，切皮肤 / 深浅色时自动重新着色壁纸洗色层；
-  5. 把两行 UI 挂进 `settings.general.item` 插槽。
+  5. 注册独立的 **设置 → 外观 / Theme** 分节（`settings.section`），5 个功能行挂在
+     `settings.dreamSkin.item` 插槽下。
 
 每套皮肤携带自己的 `colorScheme`（`light`/`dark`），驱动 `body[data-ds-dark-theme]`；别名 token 覆盖作为
 `<body>` 内联自定义属性由 ui-layout 的 ThemePresenter 应用。
@@ -276,9 +308,9 @@ bundle（`@deepseek-ai/dsh-client-runtime/client`、…）。
 - [x] 每用户强调色 Accent + 随机
 - [x] 壁纸 2.0（URL / 渐变 / 每皮肤建议 / 自动弱化）
 - [x] 本地主题包库 + 一键应用 / 收藏 /「换一个试试」
+- [x] 多语言文案与文档（中 / 英 / 日 / 韩 / 西 / 法 / 德 / 俄）
 - [ ] 在线色板 / 主题预览 Studio（纯前端，浏览器内校验 + 对比度检查）
 - [ ] 社区主题库（把主题包投稿到仓库 / 在线 Gallery）
-- [ ] 中 / 英 / 更多语言的完整文案与文档
 - [ ] 首帧无闪烁（FOUC）改进
 
 ## 🤝 贡献

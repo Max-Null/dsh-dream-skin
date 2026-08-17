@@ -2,6 +2,28 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.3.0] - 2026-08-17
+
+### 新增
+- **多语言（i18n）**：设置 UI 词典新增 **日本語 / 한국어 / Español / Français / Deutsch / Русский** 六种语言
+  （与既有中/英共 8 种），跟随浏览器语言自动生效；README 同步提供 8 种语言版本，顶部含语言切换导航。
+  新增测试强制所有语言词典 key 与占位符完整性。
+- **自带安装技能**：`.agents/skills/dsh-skin-install/`（SKILL.md）——dsh 在仓库目录内运行时自动发现，
+  用户说「安装一下这个皮肤包」即可由 agent 完成定位、确认、安装与验证全流程（借鉴 dsh-deep-whale 的
+  `dsh-skin-install` 模式）。
+- **README 全面重构**：顶部新增「⚡ 一句话安装」区块（复制一句话给 DSH 或一条 CLI 命令即可安装）；
+  安装章节扩展为 **npm / GitHub 固定 commit / Release tarball / 本地克隆** 四种方式，附验证命令。
+- **皮肤市场收录准备**：按 dsh-skin-market 的收录规范（`registry/skins/*.yaml` + 固定 commit 安装目标）
+  准备收录数据，见 `research/market-entry.dsh-dream-skin.json`。
+
+### 文档
+- README 多语言：`README.ja.md` / `README.ko.md` / `README.es.md` / `README.fr.md` / `README.de.md` /
+  `README.ru.md`（社区翻译）。
+- README / README.en 同步修正过时的插槽名：`settings.general.item` → `settings.section` +
+  `settings.dreamSkin.item`（与 0.2.4 独立「外观 / Theme」分节的实现一致）。
+- CONTRIBUTING.md：修正「`npm version` 会自动同步 README 徽章」的错误说法（徽章是动态的，无需同步）；
+  新增「自带技能」章节说明维护规范。
+
 ## [0.2.6] - 2026-08-17
 
 ### 修复

@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="./README.md">中文</a> · <strong>English</strong>
+  <a href="./README.md">中文</a> · <strong>English</strong> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <a href="./README.de.md">Deutsch</a> · <a href="./README.ru.md">Русский</a>
 </p>
 
 <div align="center">
@@ -15,7 +15,7 @@ Native skinning · wallpaper · shareable theme packs — a romance-engineered p
 | 🎨 8 original themes | 🖼️ wallpaper + opacity/blur | 🌈 one-click accent | 📦 shareable theme packs |
 |---|---|---|---|
 
-> 3-line install · purely native (no injection, no installer patches) · survives DSH updates
+> 1-line install · purely native (no injection, no installer patches) · survives DSH updates
 
 [中文](./README.md) · [Changelog](./CHANGELOG.md) · [Project Notes](./docs/PROJECT.md) · [Publishing Guide](./docs/publishing-to-npm.md)
 
@@ -30,10 +30,19 @@ Native skinning · wallpaper · shareable theme packs — a romance-engineered p
 
 </div>
 
-> 🚀 **Now on npm!** With DSH installed, add it in one command — no cloning needed:
-> ```sh
-> dsh plugin --profile web add dsh-dream-skin
-> ```
+## ⚡ One-line install
+
+**Copy this sentence to your DSH and it installs everything for you:**
+
+> Please install the dsh-dream-skin skin plugin (https://github.com/RevolutionLA/dsh-dream-skin, or the npm package `dsh-dream-skin`), then tell me how to restart DSH Web.
+
+Prefer the CLI? One command:
+
+```sh
+dsh plugin --profile web add dsh-dream-skin && dsh web
+```
+
+> 🚀 **Now on npm!** With DSH installed, add it in one command — no cloning needed.
 
 > **Homage to [Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-Skin).** But the approach is different:
 > Codex injects CSS into the desktop client's renderer via CDP, whereas DSH is a **token-driven Web GUI** that ships
@@ -163,17 +172,48 @@ system.
 
 ## 📦 Install
 
+Pick any of the four options, then **restart DSH Web** (the current session will be interrupted, but DSH sessions are
+persisted to disk and recover after restart).
+
 ### Option A: From npm (published, **recommended**)
 
 ```sh
 dsh plugin --profile web add dsh-dream-skin
 ```
 
-Then **restart** the web server:
+### Option B: From GitHub (pinned to a verified commit)
 
 ```sh
-# stop the running instance, then:
+dsh plugin --profile web add 'github:RevolutionLA/dsh-dream-skin#<40-char-commit>'
+```
+
+> Pinning to the commit of a release means new `main` changes never silently alter your installed copy.
+
+### Option C: From a Release tarball (offline / no git)
+
+Download `dsh-dream-skin-<version>.tgz` from the [Releases](https://github.com/RevolutionLA/dsh-dream-skin/releases)
+page (it ships the built `lib/client.js`, so no prepare script runs on install), then:
+
+```sh
+dsh plugin --profile web add ./dsh-dream-skin-<version>.tgz
+```
+
+### Option D: Clone and install from the local path (development)
+
+```sh
+git clone https://github.com/RevolutionLA/dsh-dream-skin.git
+cd dsh-dream-skin
+dsh plugin --profile web add .
+```
+
+> `dsh plugin` anchors relative paths to the directory **you run the command in**, installing a link dependency
+> pointing at your clone: edit the source, save, restart DSH — no reinstall needed.
+
+**Restart and verify:**
+
+```sh
 dsh web
+dsh --profile web --dump-config | grep -A2 dream-skin   # a dream-skin loader entry should appear
 ```
 
 Open **Settings → Theme / Appearance** to see the **Skins**, **Accent**, **Wallpaper** / **Advanced Wallpaper**, and **Theme Packs** rows.
@@ -181,12 +221,6 @@ Open **Settings → Theme / Appearance** to see the **Skins**, **Accent**, **Wal
 > The `-w` (workspace) flag is needed on a bare `add` because every profile ships a `pnpm-workspace.yaml`; pnpm treats
 > the profile directory as a workspace root, so a bare add fails with `ERR_PNPM_ADDING_TO_ROOT`. If your profile already
 > uses the workspace, you won't need to repeat it.
-
-### Option B: From source / a local directory (developers)
-
-```sh
-dsh plugin --profile web add -w /path/to/dsh-dream-skin
-```
 
 ## 🔄 Update / Uninstall
 
@@ -236,7 +270,7 @@ plugins register themes that override the alias layer (`--dsw-alias-*`). This pa
                                                          │
         ┌────────────────────────────────┬────────────────┐
         │                                │                │
-   ctx.theme.register(8 skins)     ctx.theme.overrideTokens(wallpaper)   ctx.slots.inject('settings.general.item')
+   ctx.theme.register(8 skins)     ctx.theme.overrideTokens(wallpaper)   ctx.slots.inject('settings.section' + 'settings.dreamSkin.item')
 ```
 
 - **Host half** (`lib/index.js`) — a `dsh.bundle` patch layer inserting the `dream-skin` loader entry; `apply` is a
@@ -247,7 +281,8 @@ plugins register themes that override the alias layer (`--dsw-alias-*`). This pa
   3. renders the wallpaper as a `z-index:-1` fixed backdrop and stacks `ctx.theme.overrideTokens(...)` making the
      main canvas (`--dsw-alias-bg-base`) and sidebar (`--dsw-specific-sidebar-fill`) translucent;
   4. listens for `theme/change` and re-shades the wallpaper wash on skin / scheme switch;
-  5. mounts both rows into the `settings.general.item` slot.
+  5. registers a dedicated **Settings → Theme / Appearance** section (`settings.section`) and mounts the five
+     feature rows under the `settings.dreamSkin.item` slot.
 
 Each skin carries its `colorScheme` (`light`/`dark`), driving `body[data-ds-dark-theme]`; the alias-token overrides
 are applied as inline custom properties on `<body>` by ui-layout's ThemePresenter.
@@ -282,9 +317,9 @@ seeds (`react`, `react/jsx-runtime`, …) and registered client bundles (`@deeps
 - [x] Per-user Accent + randomize
 - [x] Wallpaper 2.0 (URL / gradient / per-skin suggestion / auto-dim)
 - [x] Local pack library + one-click apply / favorites / surprise-me
+- [x] Full i18n copy & docs (zh / en / ja / ko / es / fr / de / ru)
 - [ ] Online palette / theme-preview Studio (pure frontend, contrast checker)
 - [ ] Community theme gallery (submit packs to the repo / online gallery)
-- [ ] Full i18n copy & docs (zh / en / more)
 - [ ] First-paint (FOUC) improvement
 
 ## 🤝 Contributing

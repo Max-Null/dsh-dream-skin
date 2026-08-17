@@ -39,7 +39,8 @@ dsh plugin --profile web add -w /path/to/dsh-dream-skin
 
 - `lib/client.js` 只允许 `require` **模块表实体**（平台种子 + 已注册客户端 bundle），不要引入其它 npm 包。
 - 新增 UI 组件的样式用内联 `style` 对象（与现有 `styles` 保持一致），不引组件库 / Tailwind。
-- 新增 `skin.<id>` 时，**中英文文案要成对**写在 `zh` / `en` 词典里。
+- 新增 `skin.<id>` 时，**所有语言词典都要成对**补上 `skin.<id>` 文案（zh / en / ja / ko / es / fr / de / ru）；
+  新增 / 修改 UI 文案 key 时同样 8 种语言同步，`npm test` 会校验词典完整性。
 - 用 `window.localStorage` 做持久化，键名前缀 `dsh-dream-skin:`。
 
 ## 新增 / 修改主题
@@ -63,7 +64,13 @@ dsh plugin --profile web add -w /path/to/dsh-dream-skin
 
 发新版本时：
 1. 更新 `CHANGELOG.md`；
-2. `npm version <major|minor|patch>`（会自动同步 README 徽章版本视角）；
+2. `npm version <major|minor|patch>`（只更新 `package.json` 版本并打 git tag；README 的版本徽章是
+   shields.io 动态徽章，发布后自动显示新版本，无需手动同步）；
 3. 用官方源发布：`npm publish --registry https://registry.npmjs.org`。
 
 详见 [docs/publishing-to-npm.md](./docs/publishing-to-npm.md)。
+
+## 自带技能
+
+仓库自带的 `.agents/skills/dsh-skin-install/` 是给 DSH agent 用的安装/切换技能（dsh 在仓库目录内运行时自动
+发现）。改动它时保持 frontmatter 的 `name`/`description` 与流程步骤同步，勿在技能里写死版本号（以现场读取为准）。
