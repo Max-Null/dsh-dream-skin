@@ -5,6 +5,20 @@
 ## [0.2.6] - 2026-08-17
 
 ### 修复
+- **高级壁纸 / 清除壁纸操作抛 `ReferenceError`（严重）**：`removeWallpaper` 与 `setWallpaperKind` 是模块级
+  函数，却调用定义在 `apply()` 内部的 `syncWallpaper` 局部变量——每次点「应用链接 / 渐变」或「清除壁纸」
+  都会抛错，设置页 store 不刷新、UI 停在旧状态。已将壁纸 store 的 bookkeeping（`syncWallpaper` 与其
+  revision/绑定）提升到模块作用域，未绑定时安全空操作。
+- **先设渐变/URL 后再选本地图片无效**：`setWallpaper` 现在会先把 kind 重置为 `image`，否则
+  `wallpaperBackgroundCss()` 仍返回旧的渐变/URL，背景不变而预览显示新图。
+- **本地图片不进入「最近使用」**：`setWallpaper` 现在会 `pushWallpaperHistory("image", …)`，与 URL/渐变一致。
+- **URL 历史缩略图空白**：URL 项缩略图现在也包 `url("…")`（裸 URL 不是合法 CSS background 值）。
+- **分享链接冲突覆盖 / 失败消费链接**：`tryImportFromHash` 对已存在于库中的包 id 不再静默覆盖注册
+  （避免库显示旧 manifest 而运行时用新 tokens）；注册失败时保留 hash，下次加载可重试。
+- **Accent 行的基准色不随换肤刷新**：`theme/change` 现在同步 accent store 的 `base`（品牌色），
+  无自定义强调色时不再显示上一个皮肤的颜色。
+- **`ctx.locale.bind` 无兜底**：`localeT` 现在在 locale 服务缺 `bind` 时回退为恒等翻译，alert 不再可能
+  拖垮整个设置分节。
 - **刷新后强调色 UI 不恢复**：`accentInjected` 首次同步写死 `revision: -1`，被 store 守卫
   （`revision <= d.revision`）永远拒绝，导致已保存的强调色在重载后不在设置页显示。改为与用户操作
   同款递增计数器，首次同步即可通过守卫。

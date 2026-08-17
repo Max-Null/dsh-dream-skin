@@ -24,7 +24,8 @@ function makeEl() {
 		style: {}, dataset: {}, children: [],
 		setAttribute() {}, removeAttribute() {},
 		appendChild(c) { this.children.push(c); },
-		prepend() {}, click() {}, remove() { this.removed = true; }
+		prepend() {}, click() {}, remove() { this.removed = true; },
+		contains(el) { return el && this === el; }
 	};
 }
 
@@ -62,7 +63,7 @@ function buildSandbox(overrides = {}) {
 	return { factory, loc, localStorage, registered: [], slots: { count: 0 } };
 }
 
-function makeApplyContext(harness) {
+function makeApplyContext(harness, { captureActions = false } = {}) {
 	const theme = {
 		register(def) {
 			const id = def.id;
@@ -78,7 +79,28 @@ function makeApplyContext(harness) {
 	};
 	return {
 		theme,
-		slots: { inject(n, f) { harness.slots.count++; f(); }, register() { return {}; } },
+		slots: {
+			inject(n, f) { harness.slots.count++; f(); },
+			register(desc, _Component) {
+				// The real slot machinery calls desc.inject(actions) with the store's
+				// bound action bag (which the plugin binds to wallpaperBound etc.) and
+				// exposes the RETURNED bag to the row component. Capture the return so
+				// tests can drive the row actions.
+				if (captureActions && typeof desc.inject === 'function') {
+					const storeSpec = desc.store && desc.store.spec;
+					const storeActions = {};
+					if (storeSpec && typeof storeSpec.actions.sync === 'function') {
+						const state = storeSpec.init();
+						storeActions.sync = (...args) => storeSpec.actions.sync(state, ...args);
+					}
+					const rowActions = desc.inject(storeActions);
+					if (rowActions && typeof rowActions === 'object') {
+						(harness.actionBags || (harness.actionBags = {}))[desc.id] = rowActions;
+					}
+				}
+				return {};
+			}
+		},
 		locale: {
 			register() {},
 			bind() { return (key) => key; } // identity translator for alerts in tests
@@ -245,4 +267,50 @@ test('wallpaper apply does not recurse into a stack overflow when overrideTokens
 	assert.doesNotThrow(() => e.apply(ctx), 'apply with wallpaper set must not overflow the stack');
 	assert.ok(overrideCount >= 1, 'overrideTokens was applied');
 	assert.ok(overrideCount < 10, `re-entrancy guard kept overrideTokens finite (got ${overrideCount})`);
+});
+
+test('setWallpaperKind/removeWallpaper do not throw (module-level syncWallpaper regression)', () => {
+	// Regression: removeWallpaper and setWallpaperKind (module scope) used to call
+	// `syncWallpaper()`, which was a const declared INSIDE apply() — the closure
+	// could not see it, so every URL/gradient apply or "clear wallpaper" click
+	// threw `ReferenceError: syncWallpaper is not defined` and the row stores
+	// never refreshed.
+	const h = buildSandbox();
+	const e = h.factory(makeRequire(makeRuntime().RT));
+	const ctx = makeApplyContext(h, { captureActions: true });
+	assert.doesNotThrow(() => e.apply(ctx));
+
+	const bags = h.actionBags;
+	assert.ok(bags['dream-skin-wallpaper'], 'wallpaper row action bag captured');
+	assert.ok(bags['dream-skin-wallpaper-advanced'], 'advanced wallpaper row action bag captured');
+
+	// URL wallpaper: must not throw, must persist kind=url and the URL value.
+	assert.doesNotThrow(() => bags['dream-skin-wallpaper-advanced'].setUrl('https://example.com/w.jpg'));
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-kind'), 'url');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-url'), 'https://example.com/w.jpg');
+
+	// Gradient: same path, no throw.
+	assert.doesNotThrow(() => bags['dream-skin-wallpaper-advanced'].setGradient('linear-gradient(135deg, #000 0%, #fff 100%)'));
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-kind'), 'gradient');
+
+	// Clear-all (removeWallpaper path): no throw, kind cleared.
+	assert.doesNotThrow(() => bags['dream-skin-wallpaper-advanced'].clearAll());
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-kind'), null);
+});
+
+test('setWallpaper resets kind to image so a picked photo beats a stale gradient/URL', () => {
+	// Regression: setWallpaper only wrote the data-URL key; if a gradient or URL
+	// had been set before, wallpaperBackgroundCss() kept returning the gradient/
+	// URL and the chosen local image never showed (preview lied).
+	const h = buildSandbox({
+		seed: { 'dsh-dream-skin:wallpaper-kind': 'gradient', 'dsh-dream-skin:wallpaper-gradient': 'linear-gradient(135deg, #000 0%, #fff 100%)' }
+	});
+	const e = h.factory(makeRequire(makeRuntime().RT));
+	const ctx = makeApplyContext(h, { captureActions: true });
+	assert.doesNotThrow(() => e.apply(ctx));
+
+	const bags = h.actionBags;
+	assert.doesNotThrow(() => bags['dream-skin-wallpaper'].setWallpaper('data:image/jpeg;base64,AAAA'));
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-kind'), 'image', 'kind reset to image');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper'), 'data:image/jpeg;base64,AAAA');
 });
