@@ -88,7 +88,7 @@ Differentiation inspired by existing DSH skin projects plus Codex's skin UX:
 | 📦 **Theme-pack format + import/export** | A `*.dsh-theme.json` pack = format marker + version + manifest (id/name/author/scheme/accent/tokens). Import a file, one-click apply, and copy a **share link** (encoded in the URL hash) |
 | 🌈 **Per-user Accent** | Stack a custom brand-accent over the active skin (`overrideTokens` layer, the skin untouched): **12 one-click preset swatches**, a color picker, **randomize**, and clear |
 | 🖼️ **Wallpaper 2.0** | Local image / **image URL** / **gradient presets**, with a **per-skin suggested gradient** and **auto-dim**; **Recent** (up to 5) to switch back in one click |
-| 🧩 **Local pack library** | All built-in skins + imported packs in one place; **apply / favorite** in a click |
+| 🧩 **Local pack library** | Your imported theme packs in one place; **apply / favorite / remove** in a click (the 8 built-in skins live in the Skins row) |
 | ✅ **Clear selection feedback** | Switching skins updates the checked/bordered highlight **instantly** — no stale white highlight box |
 | 🎲 **Surprise me** | Randomly switch to a theme different from the current one |
 | ⭐ **Favorites** | Star your favorite skins and switch between them fast |

@@ -2,6 +2,28 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.2.6] - 2026-08-17
+
+### 修复
+- **刷新后强调色 UI 不恢复**：`accentInjected` 首次同步写死 `revision: -1`，被 store 守卫
+  （`revision <= d.revision`）永远拒绝，导致已保存的强调色在重载后不在设置页显示。改为与用户操作
+  同款递增计数器，首次同步即可通过守卫。
+- **分享链接重复导入**：`tryImportFromHash` 在 `importedPacks` 未查重，同一链接反复打开可能重复
+  注册同一主题包；现在与 `importPack` 一致去重。
+- **主题包卡片显示技术 id**：包库卡片改显示 `manifest.name`（包名），不再裸露 `dream-pack:` 前缀 id。
+- **本地化补齐**：「移除」按钮与导入/移除提示（alert）从硬编码中/英文改为走 `t()` 词典，
+  跟随当前界面语言（`ctx.locale.bind`）。
+
+### 清理
+- 删除无调用者的旧版 `applyWallpaper` / `shadeTokens` 与专属常量（合并后已由 `applyWallpaper2` /
+  `shadeTokens2` 取代），消除死代码。
+- `shadeTokens2` 移除已不再使用的 `sidebarAlpha` 参数（侧边栏透明度统一读 `readSidebarOpacity()`）。
+- `syncAdvWallpaper` 的 revision 改为前置 `++`，与其它 store 风格一致。
+
+### 文档
+- README / README.en / PROJECT.md 与 `packs.empty` 文案同步：主题包库只展示**导入的包**，
+  内置 8 套皮肤在「皮肤」行选择。
+
 ## [0.2.5] - 2026-08-15
 
 ### 🎉 里程碑

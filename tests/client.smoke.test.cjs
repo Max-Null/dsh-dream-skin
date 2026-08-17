@@ -79,15 +79,43 @@ function makeApplyContext(harness) {
 	return {
 		theme,
 		slots: { inject(n, f) { harness.slots.count++; f(); }, register() { return {}; } },
-		locale: { register() {} },
+		locale: {
+			register() {},
+			bind() { return (key) => key; } // identity translator for alerts in tests
+		},
 		on() { return () => {}; },
 		effect(t) { const d = t(); if (typeof d === 'function') d(); }
 	};
 }
 
 const REACT = { useRef: () => ({ current: {} }), useMemo: (f) => (typeof f === 'function' ? f() : f), useState: (init) => [init, () => {}] };
-const RT = { defineStore: (d) => ({ spec: d, create() {} }) };
-function makeRequire() {
+
+/**
+ * defineStore mock: records every store spec (so tests can exercise the
+ * `sync` guard directly) and exposes a `syncLog` array where injected
+ * action bags' `sync` calls are captured (keyed by store id when the slot
+ * registration declares one).
+ */
+function makeRuntime() {
+	const specs = [];
+	const syncLog = []; // { storeId, args }
+	const RT = {
+		defineStore(d) {
+			specs.push(d);
+			return { spec: d, create() {} };
+		}
+	};
+	return {
+		RT,
+		specs,
+		syncLog,
+		findSpec(initKey) {
+			return specs.find((s) => Object.prototype.hasOwnProperty.call(s.init(), initKey));
+		}
+	};
+}
+
+function makeRequire(RT) {
 	return (s) => {
 		if (s === 'react/jsx-runtime') return { jsx: () => 0, jsxs: () => 0 };
 		if (s === 'react') return REACT;
@@ -98,7 +126,7 @@ function makeRequire() {
 
 test('bundle factory evaluates and exports the expected surface', () => {
 	const h = buildSandbox();
-	const e = h.factory(makeRequire());
+	const e = h.factory(makeRequire(makeRuntime().RT));
 	assert.equal(typeof e.apply, 'function');
 	assert.ok(Array.isArray(e.inject));
 	assert.ok(Array.isArray(e.SKINS));
@@ -108,11 +136,49 @@ test('bundle factory evaluates and exports the expected surface', () => {
 
 test('apply() mounts slot rows and registers built-in skins without throwing', () => {
 	const h = buildSandbox();
-	const e = h.factory(makeRequire());
+	const e = h.factory(makeRequire(makeRuntime().RT));
 	const ctx = makeApplyContext(h);
 	assert.doesNotThrow(() => e.apply(ctx));
 	assert.equal(h.registered.length, e.SKINS.length, 'all built-in skins registered');
 	assert.ok(h.slots.count >= 4, 'accent + wallpaper + advanced wallpaper + packs should mount');
+});
+
+test('accent store first sync passes the revision guard so a saved accent restores', () => {
+	// Regression: accentInjected used to sync with a fixed revision -1, which the
+	// store guard (`revision <= d.revision`, init revision -1) always rejected —
+	// a saved accent never reached the row UI after reload.
+	const h = buildSandbox({ seed: { 'dsh-dream-skin:accent': '#12ab34' } });
+	const rt = makeRuntime();
+	const e = h.factory(makeRequire(rt.RT));
+	const ctx = makeApplyContext(h);
+	assert.doesNotThrow(() => e.apply(ctx));
+
+	const accentSpec = rt.findSpec('accent');
+	assert.ok(accentSpec, 'accent store spec defined');
+
+	// Guard semantics: a revision equal to or below init (-1) is rejected;
+	// a monotonic increment (> -1) — as the fixed plugin now sends — passes.
+	const sync = accentSpec.actions.sync;
+	const state = accentSpec.init();
+	sync(state, '#12ab34', '#4f83f2', -1);
+	assert.equal(state.accent, 'system', 'revision -1 must be rejected (the old bug)');
+	sync(state, '#12ab34', '#4f83f2', 1);
+	assert.equal(state.accent, '#12ab34', 'accent restored into the store');
+	assert.equal(state.revision, 1, 'accepted revision recorded');
+});
+
+test('packs row store receives manifest names so cards show pack names', () => {
+	const h = buildSandbox();
+	const rt = makeRuntime();
+	const e = h.factory(makeRequire(rt.RT));
+	const ctx = makeApplyContext(h);
+	e.apply(ctx);
+	// The pack store spec must exist and its sync must accept a names map.
+	const packSpec = rt.findSpec('ids');
+	assert.ok(packSpec, 'pack store spec defined');
+	const d = packSpec.init();
+	packSpec.actions.sync(d, ['dream-pack:x'], { 'dream-pack:x': 'Nice Pack' }, [], 'system', null, 1);
+	assert.equal(d.names['dream-pack:x'], 'Nice Pack', 'names map carried into the pack store');
 });
 
 test('share-link theme pack import registers and persists', () => {
@@ -135,7 +201,7 @@ test('share-link theme pack import registers and persists', () => {
 	const json = JSON.stringify(pack);
 	const b64 = Buffer.from(unescape(encodeURIComponent(json)), 'binary').toString('base64');
 	const h = buildSandbox({ hash: '#dream-skin-pack=' + b64 });
-	const e = h.factory(makeRequire());
+	const e = h.factory(makeRequire(makeRuntime().RT));
 	const ctx = makeApplyContext(h);
 	e.apply(ctx);
 	assert.ok(h.registered.includes('dream-pack:test-skin'), 'pack imported via share link');
@@ -151,7 +217,7 @@ test('wallpaper apply does not recurse into a stack overflow when overrideTokens
 	// slot boundaries then report as a crashed/abdicated entry). A re-entrancy guard
 	// must keep this to a single overrideTokens call.
 	const h = buildSandbox({ seed: { 'dsh-dream-skin:wallpaper': 'data:image/png;base64,AAAA' } });
-	const e = h.factory(makeRequire());
+	const e = h.factory(makeRequire(makeRuntime().RT));
 
 	let themeChangeHandler = null;
 	let overrideCount = 0;
@@ -171,7 +237,7 @@ test('wallpaper apply does not recurse into a stack overflow when overrideTokens
 	const ctx = {
 		theme,
 		slots: { inject() {}, register() { return {}; } },
-		locale: { register() {} },
+		locale: { register() {}, bind() { return (key) => key; } },
 		on(ev, fn) { if (ev === 'theme/change') themeChangeHandler = fn; return () => {}; },
 		effect(t) { const d = t(); if (typeof d === 'function') d(); }
 	};
