@@ -255,8 +255,7 @@ dsh web   # restores the official appearance
 ## ⚙️ Cómo funciona
 
 El sistema de temas de DSH se basa en tokens: la web shell incluye tokens de diseño `--dsw-*`, y `ThemeRuntime` permite
-a plugins de terceros registrar temas que sobrescriben la capa de alias (`--dsw-alias-*`). Este paquete es un plugin
-estándar de doble cara:
+a plugins de terceros registrar temas que sobrescriben la capa de alias (`--dsw-alias-*`). Este paquete es un plugin estándar de doble cara:
 
 ```text
                 ┌─────────────────────────────────────────────┐
@@ -299,9 +298,8 @@ de alias se aplican como propiedades personalizadas en línea en `<body>` median
 ## 🛠️ Desarrollo / ampliar temas
 
 El bundle del cliente está escrito directamente en el formato `__ModuleLoader__` (la misma forma que tsdown genera para
-los paquetes `ui-*` incluidos), por lo que **no se necesita ningún paso de build**. `lib/client.js` solo puede
-`require` entidades de la tabla de módulos: semillas de plataforma (`react`, `react/jsx-runtime`, …) y bundles de
-cliente registrados (`@deepseek-ai/dsh-client-runtime/client`, …).
+los paquetes `ui-*` incluidos), por lo que **no se necesita ningún paso de build**. `lib/client.js` solo puede `require`
+entidades de la tabla de módulos: semillas de plataforma (`react`, `react/jsx-runtime`, …) y bundles de cliente registrados (`@deepseek-ai/dsh-client-runtime/client`, …).
 
 - **Añadir un skin integrado**: añade un objeto (`id` + `colorScheme` + `tokens`) al array `SKINS` en `lib/client.js`;
   aparecerá automáticamente en Ajustes. Añade una clave `skin.<id>` a los diccionarios `zh` y `en`.
@@ -309,8 +307,7 @@ cliente registrados (`@deepseek-ai/dsh-client-runtime/client`, …).
   un único `*.dsh-theme.json` es importable en Ajustes y compartible mediante un enlace, sin necesidad de cambios de código.
 - **Añadir tus propios wallpapers**: coloca las imágenes en [`wallpapers/`](./wallpapers/) (distribuye solo aquello sobre
   lo que tengas derechos) e impórtalas desde la fila «Wallpaper» de DSH.
-- **Validar**: `npm test` (pruebas de humo en VM que cubren la evaluación de la factory, `apply()` y la
-  importación/persistencia de paquetes).
+- **Validar**: `npm test` (pruebas de humo en VM que cubren la evaluación de la factory, `apply()` y la importación/persistencia de paquetes).
 - **Repintar**: consulta los tokens `--dsw-alias-*` (contrato completo en [`docs/themes-spec.md`](./docs/themes-spec.md)).
 
 ## 📌 Hoja de ruta
