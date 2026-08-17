@@ -2,6 +2,21 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [Unreleased]
+
+### 修复
+- **DSH Desktop 重启后主题 / 壁纸 / 设置全部丢失（严重）**：桌面端每次启动把 webserver 绑到
+  OS 随机端口（`profile.js` 强制 `port: 0`），GUI 的 origin（scheme + host + port）因此每次重启都变，
+  而浏览器 localStorage 按 origin 隔离——旧数据其实还在 leveldb 里，只是散落在上次端口对应的 origin
+  下，于是「看起来全丢了」。官方 Web 的 origin 固定，不受影响；只有随机端口的环境（DSH Desktop）会触发。
+  现为浏览器半身新增宿主持久化通道：
+  - host 半身挂载 fenced JSON API `/dream-skin/api`（POST `get` / `set`），把状态原子写入
+    `$DSH_HOME/dream-skin.json`（默认 `~/.dsh/`，跟随 `DSH_HOME` 环境变量），独立于 origin；
+  - 浏览器半身改为三层持久化：内存缓存（同步读写面）→ localStorage（同 origin 兜底、首帧渲染）
+    → host 文件（跨重启权威源），写入防抖 200ms 全量推送，启动时拉取并重放；host 通道不可用时
+    静默降级回纯 localStorage，固定 origin 环境（官方 Web 等）行为与原版完全一致；
+  - 首次启用时若 host 文件为空，自动把本地 localStorage 已有值迁移过去，升级不丢老设置。
+
 ## [0.3.0] - 2026-08-17
 
 ### 新增
