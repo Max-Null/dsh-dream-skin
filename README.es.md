@@ -302,7 +302,7 @@ los paquetes `ui-*` incluidos), por lo que **no se necesita ningún paso de buil
 entidades de la tabla de módulos: semillas de plataforma (`react`, `react/jsx-runtime`, …) y bundles de cliente registrados (`@deepseek-ai/dsh-client-runtime/client`, …).
 
 - **Añadir un skin integrado**: añade un objeto (`id` + `colorScheme` + `tokens`) al array `SKINS` en `lib/client.js`;
-  aparecerá automáticamente en Ajustes. Añade una clave `skin.<id>` a los diccionarios `zh` y `en`.
+  aparecerá automáticamente en Ajustes. Añade una clave `skin.<id>` a **los 8 diccionarios de idioma** (`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`).
 - **Publicar un paquete de temas (recomendado)**: sigue [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json):
   un único `*.dsh-theme.json` es importable en Ajustes y compartible mediante un enlace, sin necesidad de cambios de código.
 - **Añadir tus propios wallpapers**: coloca las imágenes en [`wallpapers/`](./wallpapers/) (distribuye solo aquello sobre

@@ -302,7 +302,7 @@ ui-layout の ThemePresenter によって `<body>` へのインラインカス�
 （`react`、`react/jsx-runtime`、…）と登録済みのクライアントバンドル（`@deepseek-ai/dsh-client-runtime/client`、…）です。
 
 - **内蔵スキンを追加する**: `lib/client.js` の `SKINS` 配列にオブジェクト（`id` + `colorScheme` + `tokens`）を追加するだけ。
-  Settings には自動的に表示されます。`zh` と `en` の両方の辞書にも `skin.<id>` キーを追加してください。
+  Settings には自動的に表示されます。**全 8 言語の辞書**（`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`）に `skin.<id>` キーを追加してください。
 - **テーマパックを配布する（推奨）**: [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json) に従って —
   `*.dsh-theme.json` を1つ用意すれば Settings からインポートでき、リンクで共有も可能。コードの変更は不要です。
 - **自分で壁紙を追加する**: [`wallpapers/`](./wallpapers/) に画像を配置し（配布権のあるものだけを）、

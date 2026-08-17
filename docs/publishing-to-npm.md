@@ -55,18 +55,21 @@ npm config get registry
 ## 四、用户安装
 
 ```sh
-dsh plugin --profile web add -w dsh-dream-skin
+dsh plugin --profile web add dsh-dream-skin
 # 重启 dsh web
 ```
 
-> 本地测试同理：`dsh plugin --profile web add -w /path/to/dsh-dream-skin`。
+> 若裸 `add` 报 `ERR_PNPM_ADDING_TO_ROOT`，补 `-w`：`dsh plugin --profile web add -w dsh-dream-skin`。
+> 本地开发测试同理：`dsh plugin --profile web add -w /path/to/dsh-dream-skin`。
 
 ## 五、常见注意事项
 
 - **镜像源**：发布必须 `--registry https://registry.npmjs.org`。
-- **版本号**：遵循语义化版本；首发 `0.2.0`。
+- **版本号**：遵循语义化版本；当前最新为 `0.3.0`（CHANGELOG 有 0.1.0 历史条目但未发布到 npm，npm 首发为 0.2.0）。
 - **peerDependencies**：以 `^0.1.0-rc.6` 对齐 DSH 当前版本；DSH 升级到正式版后记得跟进。
 - **LICENSE / README**：npm 页会展示仓库提交的内容，建议发布前同步。
+- **files 白名单**：已含 8 语言 README 与 `docs/previews`、`docs/screenshots`、`docs/examples`、`docs/themes-spec.md`，
+  保证 npm 包页的 README 截图 / 预览色卡 / 示例链接不 404。
 
 ## 六、让社区发现你（.dsh-plugin topic / awesome / dsh-market）
 
@@ -86,7 +89,7 @@ DeepSeek Harness「一切皆插件」，社区通过 [awesome-dsh-plugin](https:
    ```markdown
    - [RevolutionLA/dsh-dream-skin](https://github.com/RevolutionLA/dsh-dream-skin) — 一句话中文/英文描述
    ```
-   收录后会自动出现在 dsh-market 的 **主题 Tab**，用户可一键安装、切换（无需重启）。
+   收录后会自动出现在 dsh-market 的 **主题 Tab**；主题类插件保持**安装即生效、切换即时、选择跨重启保留**。
 3. **合入后挂「awesome 已收录」徽章**（README 顶部徽章区加上）：
    ```markdown
    [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)

@@ -337,20 +337,24 @@ test('all locale dictionaries are complete and keep placeholders', () => {
 		assert.deepEqual(missing, [], `${lang} missing keys`);
 		assert.deepEqual(extra, [], `${lang} has extra keys`);
 	}
-	// Placeholder integrity: every value containing {name}/{error}/{errors}
-	// must keep those placeholders (no accidental translation of braces).
+	// Placeholder integrity: for every key, each language must keep exactly the
+	// same placeholder set as zh ({name}/{error}/{errors}) — a dropped or added
+	// placeholder is a broken translation.
+	const placeholders = (v) => [...v.matchAll(/\{(\w+)\}/g)].map((m) => m[1]).sort();
+	const values = {};
 	for (const lang of langs) {
 		const start = src.indexOf(`const ${lang} = {`);
 		const end = src.indexOf('};', start);
 		const body = src.slice(start, end);
+		values[lang] = {};
 		const m = body.matchAll(/"([a-zA-Z0-9.]+)":\s*"((?:[^"\\]|\\.)*)"/g);
-		for (const match of m) {
-			const value = match[2].replace(/\\n/g, '\n');
-			const required = ['{name}', '{error}', '{errors}'];
-			const used = required.filter((p) => value.includes(p));
-			for (const p of used) {
-				assert.ok(value.includes(p), `${lang}.${match[1]} dropped placeholder ${p}`);
-			}
+		for (const match of m) values[lang][match[1]] = match[2].replace(/\\n/g, '\n');
+	}
+	for (const key of zhKeys) {
+		const expected = placeholders(values.zh[key]);
+		for (const lang of langs.slice(1)) {
+			assert.deepEqual(placeholders(values[lang][key]), expected,
+				`${lang}.${key} placeholder mismatch vs zh (expected [${expected}])`);
 		}
 	}
 });

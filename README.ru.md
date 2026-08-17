@@ -34,7 +34,7 @@
 
 **Скопируйте это предложение в свой DSH — и он установит всё за вас:**
 
-> Please install the dsh-dream-skin skin plugin (https://github.com/RevolutionLA/dsh-dream-skin, or the npm package `dsh-dream-skin`), then tell me how to restart DSH Web.
+> Установите, пожалуйста, плагин скинов dsh-dream-skin (https://github.com/RevolutionLA/dsh-dream-skin или npm-пакет `dsh-dream-skin`) и подскажите, как перезапустить DSH Web.
 
 Предпочитаете CLI? Одна команда:
 
@@ -301,7 +301,7 @@ dsh web   # restores the official appearance
 (`react`, `react/jsx-runtime`, …) и зарегистрированные клиентские бандлы (`@deepseek-ai/dsh-client-runtime/client`, …).
 
 - **Добавить встроенную тему**: добавьте объект (`id` + `colorScheme` + `tokens`) в массив `SKINS` в `lib/client.js`;
-  она появится в Настройках автоматически. Добавьте ключ `skin.<id>` в словари `zh` и `en`.
+  она появится в Настройках автоматически. Добавьте ключ `skin.<id>` во **все 8 словарей языков** (`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`).
 - **Поставлять набор тем (рекомендуется)**: следуйте [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json) —
   любой `*.dsh-theme.json` импортируется в Настройках и распространяется по ссылке, без изменений кода.
 - **Добавить свои обои**: положите изображения в [`wallpapers/`](./wallpapers/) (распространяйте только то, на что у вас

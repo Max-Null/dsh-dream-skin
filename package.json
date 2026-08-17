@@ -29,7 +29,11 @@
     "README.es.md",
     "README.fr.md",
     "README.de.md",
-    "README.ru.md"
+    "README.ru.md",
+    "docs/previews",
+    "docs/screenshots",
+    "docs/examples",
+    "docs/themes-spec.md"
   ],
   "author": "dsh-dream-skin contributors",
   "repository": {

@@ -293,7 +293,7 @@ DSH 的主题系统是 token 化的：web 外壳内置 `--dsw-*` 设计令牌，
 bundle（`@deepseek-ai/dsh-client-runtime/client`、…）。
 
 - **新增一套内置皮肤**：在 `lib/client.js` 的 `SKINS` 数组加一个对象（`id` + `colorScheme` + `tokens`），
-  它即自动出现在设置里；记得在 `zh` / `en` 词典补 `skin.<id>` 文案。
+  它即自动出现在设置里；记得在**全部 8 种语言词典**（`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`）补 `skin.<id>` 文案。
 - **做一个主题包（推荐分发方式）**：参考 [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json)，
   一个 `*.dsh-theme.json` 即可在设置里导入或通过分享链接分发给别人，无需改代码。
 - **放你自己的壁纸**：把图片丢进 [`wallpapers/`](./wallpapers/)（注意只在你有权限的前提下分发），再在

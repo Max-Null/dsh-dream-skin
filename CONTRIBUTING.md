@@ -58,7 +58,8 @@ dsh plugin --profile web add -w /path/to/dsh-dream-skin
 },
 ```
 
-然后补 `zh` / `en` 里的 `"skin.my-skin": "名称"`。
+然后在**全部 8 种语言词典**（`zh` / `en` / `ja` / `ko` / `es` / `fr` / `de` / `ru`）里补 `"skin.my-skin": "名称"`，
+`npm test` 会校验所有词典 key 与占位符完整性。
 
 ## 发布
 

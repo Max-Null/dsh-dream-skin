@@ -34,7 +34,7 @@
 
 **이 문장을 DSH에 붙여넣으면 모든 것이 자동으로 설치됩니다:**
 
-> Please install the dsh-dream-skin skin plugin (https://github.com/RevolutionLA/dsh-dream-skin, or the npm package `dsh-dream-skin`), then tell me how to restart DSH Web.
+> dsh-dream-skin 스킨 플러그인을 설치해 주세요 (https://github.com/RevolutionLA/dsh-dream-skin 또는 npm 패키지 `dsh-dream-skin`), 그리고 DSH Web을 재시작하는 방법을 알려주세요.
 
 CLI가 더 편하신가요? 명령어 하나면 됩니다:
 
@@ -301,7 +301,7 @@ ui-layout의 ThemePresenter가 `<body>`에 인라인 커스텀 프로퍼티로 �
 시드(`react`, `react/jsx-runtime`, …)와 등록된 클라이언트 번들(`@deepseek-ai/dsh-client-runtime/client`, …).
 
 - **기본 스킨 추가**: `lib/client.js`의 `SKINS` 배열에 객체(`id` + `colorScheme` + `tokens`)를 추가하면
-  설정(Settings)에 자동으로 나타납니다. `zh`와 `en` 사전 양쪽에 `skin.<id>` 키를 추가하세요.
+  설정(Settings)에 자동으로 나타납니다. **8개 언어 사전 전체**(`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`)에 `skin.<id>` 키를 추가하세요.
 - **테마 팩 배포 (권장)**: [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json)을 따르세요 —
   `*.dsh-theme.json` 하나로 설정(Settings)에서 가져오기 가능하고 링크로 공유할 수 있으며, 코드 변경이 필요 없습니다.
 - **자체 월페이퍼 추가**: [`wallpapers/`](./wallpapers/)에 이미지를 넣으세요 (권리 보유 이미지만 배포), 그런 다음

@@ -302,7 +302,7 @@ Le bundle client est écrit directement au format `__ModuleLoader__` (la même f
 seeds de plateforme (`react`, `react/jsx-runtime`, …) et les bundles client enregistrés (`@deepseek-ai/dsh-client-runtime/client`, …).
 
 - **Ajouter un skin intégré** : ajoutez un objet (`id` + `colorScheme` + `tokens`) au tableau `SKINS` dans `lib/client.js` ;
-  il apparaîtra alors automatiquement dans les Paramètres. Ajoutez une clé `skin.<id>` aux dictionnaires `zh` et `en`.
+  il apparaîtra alors automatiquement dans les Paramètres. Ajoutez une clé `skin.<id>` aux **8 dictionnaires de langue** (`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`).
 - **Publier un pack de thèmes (recommandé)** : suivez [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json) —
   un `*.dsh-theme.json` est importable dans les Paramètres et partageable via un lien, sans aucune modification de code.
 - **Ajouter vos propres fonds d'écran** : déposez des images dans [`wallpapers/`](./wallpapers/) (ne distribuez que ce dont vous avez

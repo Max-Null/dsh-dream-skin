@@ -13,8 +13,8 @@
   `dsh-skin-install` 模式）。
 - **README 全面重构**：顶部新增「⚡ 一句话安装」区块（复制一句话给 DSH 或一条 CLI 命令即可安装）；
   安装章节扩展为 **npm / GitHub 固定 commit / Release tarball / 本地克隆** 四种方式，附验证命令。
-- **皮肤市场收录准备**：按 dsh-skin-market 的收录规范（`registry/skins/*.yaml` + 固定 commit 安装目标）
-  准备收录数据，见 `research/market-entry.dsh-dream-skin.json`。
+- **皮肤市场收录**：dsh-skin-market 的 `registry/skins/RevolutionLA__dsh-dream-skin.yml` 条目已更新到
+  0.3.0（固定 commit 安装目标 + 新描述），收录 PR 见 dsh-skin-market #2。
 
 ### 文档
 - README 多语言：`README.ja.md` / `README.ko.md` / `README.es.md` / `README.fr.md` / `README.de.md` /

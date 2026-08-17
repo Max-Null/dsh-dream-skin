@@ -304,8 +304,8 @@ Das Client-Bundle ist direkt im `__ModuleLoader__`-Format geschrieben (dieselbe 
 (`@deepseek-ai/dsh-client-runtime/client`, …).
 
 - **Einen integrierten Skin hinzufügen**: Füge dem `SKINS`-Array in `lib/client.js` ein Objekt (`id` + `colorScheme` +
-  `tokens`) hinzu; es erscheint dann automatisch in den Einstellungen. Füge einen Schlüssel `skin.<id>` sowohl zum `zh`- als
-  auch zum `en`-Wörterbuch hinzu.
+  `tokens`) hinzu; es erscheint dann automatisch in den Einstellungen. Füge einen Schlüssel `skin.<id>` in **allen 8 Sprachwörterbüchern** (`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`) hinzu.
+
 - **Ein Theme-Paket ausliefern (empfohlen)**: Folge [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json) —
   eine `*.dsh-theme.json` ist in den Einstellungen importierbar und über einen Link teilbar, ohne Codeänderungen.
 - **Eigene Wallpaper hinzufügen**: Lege Bilder in [`wallpapers/`](./wallpapers/) ab (verbreite nur, wofür du die Rechte
