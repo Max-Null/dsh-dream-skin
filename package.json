@@ -59,7 +59,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "test": "node --test tests/client.smoke.test.cjs"
+    "test": "node --test tests/*.test.cjs"
   },
   "dsh": {
     "bundle": {
