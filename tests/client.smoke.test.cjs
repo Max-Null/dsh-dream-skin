@@ -358,3 +358,81 @@ test('all locale dictionaries are complete and keep placeholders', () => {
 		}
 	}
 });
+
+test('saved third-party skin survives repeated delayed host adoption (sticky restore)', async () => {
+	// Regression: ThemeRuntime only persists system/light/dark to the host
+	// settings scope, so an async/retried host adoption resets a saved
+	// third-party skin like "midnight" to "system". A once-only reassert can
+	// miss adoptions arriving later or a repeated re-adoption. The sticky
+	// restore re-applies the saved skin on every fallback to a built-in
+	// preference, but never after an explicit Default selection.
+	const h = buildSandbox({ seed: { 'dsh-dream-skin:skin': 'midnight' } });
+	const e = h.factory(makeRequire(makeRuntime().RT));
+
+	const themeHandlers = [];
+	let pref = 'system';
+	const setCalls = [];
+	const theme = {
+		register() { return () => {}; },
+		setTheme(id) { pref = id; setCalls.push(id); },
+		getTheme() { return { preference: pref, active: { id: 'dark', colorScheme: 'dark', tokens: {} }, themes: [], revision: 1 }; },
+		overrideTokens() { return () => {}; }
+	};
+	const skinActions = {};
+	const ctx = {
+		theme,
+		slots: {
+			inject(name, registerFn) { if (typeof registerFn === 'function') registerFn(); },
+			// capture the skin row's returned action bag so the test can clear the
+			// saved skin through the real writeSavedSkin->writeStorage path (which
+			// clears the in-memory cache), not by deleting localStorage directly.
+			register(desc, _Component) {
+				if (desc && desc.id === 'dream-skin' && typeof desc.inject === 'function') {
+					const storeSpec = desc.store && desc.store.spec;
+					const bag = {};
+					if (storeSpec && typeof storeSpec.actions.sync === 'function') {
+						const state = storeSpec.init();
+						bag.sync = (...args) => storeSpec.actions.sync(state, ...args);
+					}
+					const ra = desc.inject(bag);
+					if (ra && typeof ra === 'object') Object.assign(skinActions, ra);
+				}
+				return {};
+			}
+		},
+		locale: { register() {}, bind() { return (key) => key; } },
+		on(ev, fn) { if (ev === 'theme/change') themeHandlers.push(fn); return () => {}; },
+		// Keep deferrals alive (do NOT nuke timers) so the setTimeout(0) restore runs.
+		effect(t) { const d = t(); if (typeof d !== 'function') return; }
+	};
+	const emitAdopt = (p) => {
+		pref = p;
+		for (const fn of themeHandlers) fn({ preference: p, active: { id: 'dark', colorScheme: 'dark', tokens: {} }, revision: 2 });
+	};
+	const tick = () => new Promise((resolve) => setTimeout(resolve, 10));
+
+	assert.doesNotThrow(() => e.apply(ctx));
+	await tick();
+	const midnightCalls = () => setCalls.filter((id) => id === 'midnight').length;
+	assert.ok(midnightCalls() >= 1, 'saved midnight skin restored at boot');
+	const bootCount = midnightCalls();
+
+	// First host adoption falls back to system — saved skin must be re-applied.
+	emitAdopt('system');
+	await tick();
+	assert.equal(midnightCalls(), bootCount + 1, 'skin re-applied after first adoption');
+
+	// A second re-adoption must be corrected too (once-only reassert regressed here).
+	emitAdopt('system');
+	await tick();
+	assert.equal(midnightCalls(), bootCount + 2, 'skin re-applied after repeated adoption');
+
+	// A deliberate Default selection clears the saved id via the real storage path
+	// (writeSavedSkin -> writeStorage removes from cache + localStorage), so nothing
+	// may be restored afterward. Drive it through the captured skin row's setSkin.
+	assert.equal(typeof skinActions.setSkin, 'function', 'skin row setSkin captured');
+	skinActions.setSkin('system');
+	emitAdopt('system');
+	await tick();
+	assert.equal(midnightCalls(), bootCount + 2, 'no restore after the user cleared the skin');
+});
