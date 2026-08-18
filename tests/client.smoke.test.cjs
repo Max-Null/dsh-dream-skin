@@ -328,7 +328,7 @@ test('all locale dictionaries are complete and keep placeholders', () => {
 		const body = src.slice(start, end);
 		const keys = [...body.matchAll(/"([a-zA-Z0-9.]+)":\s*"/g)].map((m) => m[1]);
 		dicts[lang] = new Set(keys);
-		assert.equal(keys.length, 42, `${lang} has ${keys.length} keys (expected 42)`);
+		assert.equal(keys.length, 43, `${lang} has ${keys.length} keys (expected 43)`);
 	}
 	const zhKeys = dicts.zh;
 	for (const lang of langs.slice(1)) {
