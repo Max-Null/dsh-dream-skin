@@ -145,31 +145,31 @@ DeepSeek Harness의 모토는 *everything is a plugin*입니다: 모델, 도구,
 
 <table>
   <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b></td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b></td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b></td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b></td>
+    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · 딥 블루</td>
+    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · 오로라 그린</td>
+    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · 성운 퍼플</td>
+    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · 잔불 앰버</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b></td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b></td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b></td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b></td>
+    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · 미드나잇 OLED</td>
+    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS 플랫</td>
+    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · 리퀴드 글래스</td>
+    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · 머티리얼 핑크</td>
   </tr>
 </table>
 
 ## 🎲 프리셋
 
-| id | scheme | 분위기 |
+| id | 스타일 | 특징 |
 |------|--------|------|
-| `abyss` | 🕶️ dark | DeepSeek 딥블루 심연 (앵커) |
-| `aurora` | 🌌 dark | 오로라 틸-그린 |
-| `nebula` | 🪐 dark | 코스믹 퍼플 |
-| `ember` | 🔥 dark | 따뜻한 잔불 오렌지 |
-| `midnight` | 🌚 dark | 순수 블랙 OLED |
-| `ivory` | 📜 light | 따뜻한 아이보리 / 종이 |
-| `mist` | 🌫️ light | 차가운 블루 포그 |
-| `rose` | 🌸 light | 로즈 핑크 / 블러셔 |
+| `abyss` | 🕶️ 딥 블루 | 차분한 딥 인디고, 절제되고 조용한 |
+| `aurora` | 🌌 오로라 그린 | 맑고 투명한 차가운 청록, 자연스러운 쿨톤 |
+| `nebula` | 🪐 성운 퍼플 | 깊고 확산되는 보라-청, 몽환적이고 신비로운 |
+| `ember` | 🔥 잔불 앰버 | 따뜻하고 절제된 앰버 오렌지 |
+| `midnight` | 🌚 미드나잇 OLED | 미니멀한 순수 블랙, OLED 몰입감 |
+| `ivory` | 📐 iOS 플랫 | 미니멀 플랫 화이트, iOS 시스템 그레이 + 절제된 블루 |
+| `mist` | 🧊 리퀴드 글래스 | 맑은 프로스트 글래스, 반투명 + 블러 |
+| `rose` | 🌸 머티리얼 핑크 | 밝고 선명한 핑크, 구글 Material 플랫 컬러 |
 
 ## 📦 설치
 

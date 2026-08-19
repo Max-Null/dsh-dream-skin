@@ -146,31 +146,31 @@ de plugins de DSH.
 
 <table>
   <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b></td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b></td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b></td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b></td>
+    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · Azul profundo</td>
+    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · Aurora verde</td>
+    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · Nebulosa púrpura</td>
+    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · Ámbar</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b></td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b></td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b></td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b></td>
+    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · OLED medianoche</td>
+    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS Flat</td>
+    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · Vidrio líquido</td>
+    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material rosa</td>
   </tr>
 </table>
 
 ## 🎲 Los ajustes predefinidos
 
-| id | esquema | vibra |
+| id | estilo | rasgo |
 |------|--------|------|
-| `abyss` | 🕶️ dark | abismo azul profundo de DeepSeek (ancla) |
-| `aurora` | 🌌 dark | verde azulado tipo aurora |
-| `nebula` | 🪐 dark | púrpura cósmico |
-| `ember` | 🔥 dark | naranja brasa cálido |
-| `midnight` | 🌚 dark | OLED negro puro |
-| `ivory` | 📜 light | marfil cálido / papel |
-| `mist` | 🌫️ light | niebla azul fría |
-| `rose` | 🌸 light | rosa / rubor |
+| `abyss` | 🕶️ Azul profundo | índigo profundo y sereno, contenido y silencioso |
+| `aurora` | 🌌 Aurora verde | verde azulado frío, nítido y translúcido, tono frío natural |
+| `nebula` | 🪐 Nebulosa púrpura | azul violáceo profundo y difuso, brumoso y misterioso |
+| `ember` | 🔥 Ámbar | naranja ámbar cálido y contenido |
+| `midnight` | 🌚 OLED medianoche | negro puro minimalista, OLED inmersivo |
+| `ivory` | 📐 iOS Flat | blanco plano minimalista, gris del sistema iOS + azul contenido |
+| `mist` | 🧊 Vidrio líquido | vidrio esmerilado claro, semitransparente + difuminado |
+| `rose` | 🌸 Material rosa | rosa vivo y brillante, colores planos de Google Material |
 
 ## 📦 Instalación
 

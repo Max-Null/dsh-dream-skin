@@ -146,31 +146,31 @@ von DSH.
 
 <table>
   <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b></td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b></td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b></td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b></td>
+    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · Tiefes Blau</td>
+    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · Aurora Grün</td>
+    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · Nebel Lila</td>
+    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · Bernstein</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b></td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b></td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b></td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b></td>
+    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · OLED Mitternacht</td>
+    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS Flat</td>
+    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · Flüssiges Glas</td>
+    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material Pink</td>
   </tr>
 </table>
 
 ## 🎲 Die Presets
 
-| id | scheme | vibe |
+| id | Stil | Charakter |
 |------|--------|------|
-| `abyss` | 🕶️ dunkel | DeepSeek tiefblauer Abgrund (Anker) |
-| `aurora` | 🌌 dunkel | Aurora-Türkisgrün |
-| `nebula` | 🪐 dunkel | kosmisches Lila |
-| `ember` | 🔥 dunkel | warmes Glut-Orange |
-| `midnight` | 🌚 dunkel | reines Schwarz (OLED) |
-| `ivory` | 📜 hell | warmes Elfenbein / Papier |
-| `mist` | 🌫️ hell | kühler Blauer Nebel |
-| `rose` | 🌸 hell | Rosarot / Blush |
+| `abyss` | 🕶️ Tiefes Blau | ruhiges tiefes Indigo, zurückhaltend und leise |
+| `aurora` | 🌌 Aurora Grün | kühles, klares, transluzentes Türkis, natürlicher Kaltton |
+| `nebula` | 🪐 Nebel Lila | tiefes, diffuses Violett-Blau, neblig und geheimnisvoll |
+| `ember` | 🔥 Bernstein | warmes, zurückhaltendes Amber-Orange |
+| `midnight` | 🌚 OLED Mitternacht | minimalistisches reines Schwarz, immersives OLED |
+| `ivory` | 📐 iOS Flat | minimalistisches flaches Weiß, iOS-Systemgrau + zurückhaltendes Blau |
+| `mist` | 🧊 Flüssiges Glas | klares Milchglas, halbtransparent + unscharf |
+| `rose` | 🌸 Material Pink | helles kräftiges Pink, flache Google-Material-Farben |
 
 ## 📦 Installation
 

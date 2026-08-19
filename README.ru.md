@@ -145,31 +145,31 @@ dsh web
 
 <table>
   <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b></td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b></td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b></td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b></td>
+    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · Глубокий синий</td>
+    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · Аврора зелёный</td>
+    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · Туманность фиолетовый</td>
+    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · Янтарь</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b></td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b></td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b></td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b></td>
+    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · OLED полночь</td>
+    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS Flat</td>
+    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · Жидкое стекло</td>
+    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material розовый</td>
   </tr>
 </table>
 
 ## 🎲 Пресеты
 
-| id | scheme | атмосфера |
+| id | Стиль | Характер |
 |------|--------|------|
-| `abyss` | 🕶️ тёмная | глубоко-синяя бездна DeepSeek (якорная) |
-| `aurora` | 🌌 тёмная | бирюзово-зелёное северное сияние |
-| `nebula` | 🪐 тёмная | космический фиолетовый |
-| `ember` | 🔥 тёмная | тёплый оранжевый уголёк |
-| `midnight` | 🌚 тёмная | чисто-чёрный OLED |
-| `ivory` | 📜 светлая | тёплый айвори / бумага |
-| `mist` | 🌫️ светлая | прохладная голубая дымка |
-| `rose` | 🌸 светлая | розовый / румянец |
+| `abyss` | 🕶️ Глубокий синий | спокойный глубокий индиго, сдержанный и тихий |
+| `aurora` | 🌌 Аврора зелёный | прозрачный холодный сине-зелёный, естественный холодный оттенок |
+| `nebula` | 🪐 Туманность фиолетовый | глубокий рассеянный фиолетово-синий, туманный и загадочный |
+| `ember` | 🔥 Янтарь | тёплый сдержанный янтарно-оранжевый |
+| `midnight` | 🌚 OLED полночь | минималистичный чистый чёрный, погружение в OLED |
+| `ivory` | 📐 iOS Flat | минималистичный плоский белый, системный серый iOS + сдержанный синий |
+| `mist` | 🧊 Жидкое стекло | прозрачное матовое стекло, полупрозрачность + размытие |
+| `rose` | 🌸 Material розовый | яркий сочный розовый, плоские цвета Google Material |
 
 ## 📦 Установка
 

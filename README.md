@@ -136,31 +136,31 @@ DeepSeek Harness 的口号是「一切皆插件」：模型、工具、沙箱、
 
 <table>
   <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · 深海渊</td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · 极光</td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · 星云</td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · 余烬</td>
+    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · 沉静蓝</td>
+    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · 极光青</td>
+    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · 星云紫</td>
+    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · 余烬橙</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · 午夜</td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · 象牙暖</td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · 晨雾蓝</td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · 蔷薇粉</td>
+    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · 午夜黑</td>
+    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS 扁平</td>
+    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · 液态玻璃</td>
+    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material 粉</td>
   </tr>
 </table>
 
 ### 预设一览
 
-| id | 色系 | 氛围 |
+| id | 风格 | 特质 |
 |------|-------|------|
-| `abyss` | 🕶️ dark | DeepSeek 深蓝深渊（品牌锚点） |
-| `aurora` | 🌌 dark | 极光 · 青绿 |
-| `nebula` | 🪐 dark | 星云 · 紫 |
-| `ember` | 🔥 dark | 余烬 · 暖橙 |
-| `midnight` | 🌚 dark | 纯黑 OLED |
-| `ivory` | 📜 light | 象牙暖 · 纸感 |
-| `mist` | 🌫️ light | 晨雾蓝 · 冷调 |
-| `rose` | 🌸 light | 蔷薇粉 |
+| `abyss` | 🕶️ 沉静蓝 | 冷静深沉的靛蓝，克制不喧哗 |
+| `aurora` | 🌌 极光青 | 清冽通透的冷青，自然冷调 |
+| `nebula` | 🪐 星云紫 | 深邃漫射的紫青，朦胧神秘 |
+| `ember` | 🔥 余烬橙 | 温暖克制的琥珀橙 |
+| `midnight` | 🌚 午夜黑 | 极简纯黑，OLED 沉浸 |
+| `ivory` | 📐 iOS 扁平 | 极简平白，iOS 系统灰 + 克制的蓝 |
+| `mist` | 🧊 液态玻璃 | 清透毛玻璃，半透明 + 模糊 |
+| `rose` | 🌸 Material 粉 | 明快彩粉，谷歌 Material 扁平彩色 |
 
 ## ⚡ 快速开始（3 步）
 

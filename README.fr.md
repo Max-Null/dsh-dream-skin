@@ -146,31 +146,31 @@ officiel de DSH.
 
 <table>
   <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b></td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b></td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b></td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b></td>
+    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · Bleu profond</td>
+    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · Aurora vert</td>
+    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · Nébuleuse violette</td>
+    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · Ambre</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b></td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b></td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b></td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b></td>
+    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · OLED minuit</td>
+    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS Flat</td>
+    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · Verre liquide</td>
+    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material rose</td>
   </tr>
 </table>
 
 ## 🎲 Les préréglages
 
-| id | schéma | ambiance |
+| id | style | trait |
 |------|--------|------|
-| `abyss` | 🕶️ sombre | abîme bleu profond DeepSeek (ancrage) |
-| `aurora` | 🌌 sombre | aurore vert sarcelle |
-| `nebula` | 🪐 sombre | pourpre cosmique |
-| `ember` | 🔥 sombre | orange braise chaleureux |
-| `midnight` | 🌚 sombre | noir pur OLED |
-| `ivory` | 📜 clair | ivoire chaleureux / papier |
-| `mist` | 🌫️ clair | brume bleue froide |
-| `rose` | 🌸 clair | rose / blush |
+| `abyss` | 🕶️ Bleu profond | indigo profond et calme, sobre et discret |
+| `aurora` | 🌌 Aurora vert | vert sarcelle froid, limpide et translucide, ton froid naturel |
+| `nebula` | 🪐 Nébuleuse violette | violet-bleu profond et diffus, brumeux et mystérieux |
+| `ember` | 🔥 Ambre | orange ambre chaleureux et sobre |
+| `midnight` | 🌚 OLED minuit | noir pur minimaliste, OLED immersif |
+| `ivory` | 📐 iOS Flat | blanc plat minimaliste, gris système iOS + bleu sobre |
+| `mist` | 🧊 Verre liquide | verre dépoli limpide, translucide + flou |
+| `rose` | 🌸 Material rose | rose vif et éclatant, couleurs plates Google Material |
 
 ## 📦 Installation
 

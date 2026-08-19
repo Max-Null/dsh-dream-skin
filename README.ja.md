@@ -146,31 +146,31 @@ DeepSeek Harness のモットーは「*すべてはプラグイン*」: モデ�
 
 <table>
   <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b></td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b></td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b></td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b></td>
+    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · ディープブルー</td>
+    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · オーロラグリーン</td>
+    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · 星雲パープル</td>
+    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · 残り火アンバー</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b></td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b></td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b></td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b></td>
+    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · ミッドナイトOLED</td>
+    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOSフラット</td>
+    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · リキッドグラス</td>
+    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · マテリアルピンク</td>
   </tr>
 </table>
 
 ## 🎲 プリセット
 
-| id | scheme | 雰囲気 |
+| id | スタイル | 特徴 |
 |------|--------|------|
-| `abyss` | 🕶️ dark | DeepSeek の深い青の深淵（アンカー） |
-| `aurora` | 🌌 dark | オーロラのティールグリーン |
-| `nebula` | 🪐 dark | 宇宙のパープル |
-| `ember` | 🔥 dark | 温かい残り火のオレンジ |
-| `midnight` | 🌚 dark | 純黒の OLED |
-| `ivory` | 📜 light | 温かいアイボリー / 紙 |
-| `mist` | 🌫️ light | 涼しげな青い霧 |
-| `rose` | 🌸 light | ローズピンク / ほんのり赤み |
+| `abyss` | 🕶️ ディープブルー | 落ち着いた深い藍、抑えめで静か |
+| `aurora` | 🌌 オーロラグリーン | 清冽で透き通る冷たい青緑、自然な冷色 |
+| `nebula` | 🪐 星雲パープル | 深く拡散する紫青、ぼんやりと神秘的 |
+| `ember` | 🔥 残り火アンバー | 温かく抑えめの琥珀オレンジ |
+| `midnight` | 🌚 ミッドナイトOLED | ミニマルな純黒、OLED 没入感 |
+| `ivory` | 📐 iOSフラット | ミニマルなフラットホワイト、iOS システムグレー + 抑えめの青 |
+| `mist` | 🧊 リキッドグラス | 澄んだすりガラス、半透明 + ぼかし |
+| `rose` | 🌸 マテリアルピンク | 明るく鮮やかなピンク、Google Material のフラットカラー |
 
 ## 📦 インストール
 

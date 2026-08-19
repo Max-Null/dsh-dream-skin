@@ -146,31 +146,31 @@ system.
 
 <table>
   <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b></td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b></td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b></td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b></td>
+    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · Deep Blue</td>
+    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · Aurora Green</td>
+    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · Nebula Purple</td>
+    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · Ember Amber</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b></td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b></td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b></td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b></td>
+    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · Midnight OLED</td>
+    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS Flat</td>
+    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · Liquid Glass</td>
+    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material Pink</td>
   </tr>
 </table>
 
 ## 🎲 The presets
 
-| id | scheme | vibe |
+| id | style | trait |
 |------|--------|------|
-| `abyss` | 🕶️ dark | DeepSeek deep-blue abyss (anchor) |
-| `aurora` | 🌌 dark | aurora teal-green |
-| `nebula` | 🪐 dark | cosmic purple |
-| `ember` | 🔥 dark | warm ember orange |
-| `midnight` | 🌚 dark | pure-black OLED |
-| `ivory` | 📜 light | warm ivory / paper |
-| `mist` | 🌫️ light | cool blue fog |
-| `rose` | 🌸 light | rose pink / blush |
+| `abyss` | 🕶️ Deep Blue | calm deep indigo, restrained and quiet |
+| `aurora` | 🌌 Aurora Green | crisp translucent cool teal, natural cold tone |
+| `nebula` | 🪐 Nebula Purple | deep diffused violet-blue, hazy and mysterious |
+| `ember` | 🔥 Ember Amber | warm restrained amber orange |
+| `midnight` | 🌚 Midnight OLED | minimal pure black, immersive OLED |
+| `ivory` | 📐 iOS Flat | minimal flat white, iOS system gray + restrained blue |
+| `mist` | 🧊 Liquid Glass | clear frosted glass, translucent + blurred |
+| `rose` | 🌸 Material Pink | bright vivid pink, Google Material flat colors |
 
 ## 📦 Install
 

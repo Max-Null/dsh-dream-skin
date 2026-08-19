@@ -465,11 +465,91 @@ test('setSkin auto-attaches the skin diffused-glow gradient when no user wallpap
 	const gradient = h.localStorage.getItem('dsh-dream-skin:wallpaper-gradient');
 	assert.ok(gradient && gradient.indexOf('radial-gradient') !== -1, 'auto-applied a diffused-glow gradient');
 
-	// Now the user picks a custom wallpaper (image). A later skin switch must not
-	// clobber it.
-	h.localStorage.setItem('dsh-dream-skin:wallpaper-kind', 'image');
-	h.localStorage.setItem('dsh-dream-skin:wallpaper', 'data:image/png;base64,AAAA');
+	// Now the user picks a custom wallpaper (image) via the real wallpaper entry
+	// (it resets kind to image AND marks the wallpaper as user-set, so a later
+	// skin switch must not swap it back to a built-in gradient).
+	const wpBags = h.actionBags['dream-skin-wallpaper'];
+	assert.ok(wpBags && typeof wpBags.setWallpaper === 'function', 'wallpaper entry captured');
+	wpBags.setWallpaper('data:image/png;base64,AAAA');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-follows-skin'), '0', 'user wallpaper marked as not-following');
 	skinBags.setSkin('ember');
 	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper'), 'data:image/png;base64,AAAA', 'user wallpaper untouched');
 	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-kind'), 'image', 'user image wallpaper kept');
+});
+
+test('setSkin swaps the built-in diffused-glow background when switching skins', () => {
+	// Regression: switching from one skin to another must swap the wallpaper to
+	// the NEW skin's gradient when the current one is the (built-in) skin glow —
+	// otherwise the previous skin's background lingers ("switching to nebula kept
+	// the liquid-glass background").
+	const h = buildSandbox();
+	const rt = makeRuntime();
+	const e = h.factory(makeRequire(rt.RT));
+	let pref = 'system';
+	const theme = {
+		register() { return () => {}; },
+		setTheme(id) { pref = id; },
+		getTheme() { return { preference: pref, active: { id: pref, colorScheme: 'dark', tokens: {} }, themes: [], revision: 1 }; },
+		overrideTokens() { return () => {}; }
+	};
+	const baseCtx = makeApplyContext(h, { captureActions: true });
+	const ctx = { ...baseCtx, theme };
+	assert.doesNotThrow(() => e.apply(ctx));
+	const skinBags = h.actionBags['dream-skin'];
+
+	// Pick mist → its gradient attaches and is marked as following the skin.
+	skinBags.setSkin('mist');
+	const mistGrad = h.localStorage.getItem('dsh-dream-skin:wallpaper-gradient');
+	assert.ok(mistGrad && mistGrad.indexOf('159, 190, 245') !== -1, 'mist diffused-glow attached');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-follows-skin'), '1', 'mist background marked as following');
+
+	// Switch to nebula → background must swap to nebula's gradient.
+	skinBags.setSkin('nebula');
+	const g2 = h.localStorage.getItem('dsh-dream-skin:wallpaper-gradient');
+	assert.ok(g2 && g2.indexOf('139, 124, 246') !== -1, 'nebula purple glow applied (swapped from mist)');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-follows-skin'), '1', 'still following after switch');
+});
+
+test('liquid-glass material CSS is injected on leaf cards only (no fixed-modal ancestor)', () => {
+	// Regression guard for the settings-modal-trapping bug: the premium material
+	// injector must add backdrop-filter only to LEAF cards (composer, warning,
+	// popover) and NEVER to large columns/sidebar that could be ancestors of a
+	// position:fixed modal. apply() must not throw, and the injected stylesheet
+	// must contain the safe leaf selectors and not the unsafe container one.
+	let appended = null;
+	const headChildren = [];
+	const documentMock = {
+		body: { contains: () => false },
+		head: {
+			children: headChildren,
+			contains(el) { return headChildren.includes(el); },
+			appendChild(el) { headChildren.push(el); appended = el; }
+		},
+		createElement() { return { style: {}, dataset: {}, textContent: '', remove() {} }; },
+		createTextNode: () => ({}),
+		querySelector: () => null
+	};
+	const h = buildSandbox({ document: documentMock });
+	const e = h.factory(makeRequire(makeRuntime().RT));
+	const ctx = makeApplyContext(h);
+	assert.doesNotThrow(() => e.apply(ctx), 'apply injects liquid-glass CSS without throwing');
+
+	assert.ok(appended && appended.textContent, 'a material <style> node was appended');
+	const css = appended.textContent;
+	assert.ok(css.includes('.uV2eYG_card'), 'composer card is a (safe) blur target');
+	assert.ok(css.includes('backdrop-filter'), 'uses backdrop-filter');
+	// The unsafe big containers MUST NOT be blurred (regression): those host the
+	// settings modal, and blurring them broke fixed positioning.
+	assert.ok(!/centerCol/.test(css), 'must NOT blur the main center column');
+	assert.ok(!/sidebarCol/.test(css), 'must NOT blur the sidebar column');
+	assert.ok(!/hHd-Xa_root/.test(css), 'must NOT blur the sidebar root');
+	// The composer root scrim must be present so a scrolled message / "turn N"
+	// monitor row never shows through under the input.
+	assert.ok(css.includes('.uV2eYG_root'), 'composer root scrim present');
+	assert.ok(css.includes('linear-gradient(to bottom'), 'uses a bottom scrim gradient');
+	// The user-questions option card must get a high-opacity readable fill (it
+	// shares input-major with the translucent composer, so it needs its own
+	// solid background or option text becomes illegible).
+	assert.ok(css.includes('.Mbwy4a_card'), 'user-questions card overridden');
+	assert.ok(css.includes('color-mix('), 'option card uses a base-color mix for a solid fill');
 });
