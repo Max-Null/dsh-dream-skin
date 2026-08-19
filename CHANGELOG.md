@@ -2,7 +2,9 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
-## [Unreleased]
+## [0.4.0] - 2026-08-18
+
+> **本次升级的主题：让换肤有「高级感」。** 8 套皮肤全面重构为 iOS / Linear 式清透冷调，配套弥散光渐变、毛玻璃材质与品牌设计哲学——做「换肤界的 iOS」。
 
 ### 新增
 - **8 套内置皮肤全面升级为 iOS / Linear 清透冷调高级感**（差异化壁垒）：重绘全部 Mirage 皮肤 token——

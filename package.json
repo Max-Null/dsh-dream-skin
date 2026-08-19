@@ -1,7 +1,7 @@
 {
   "name": "dsh-dream-skin",
-  "version": "0.3.0",
-  "description": "DeepSeek Harness 换肤插件 (Dream Skin for DeepSeek Harness): curated --dsw-alias-* theme presets, a custom translucent wallpaper with opacity/blur controls, theme-pack import/export + share links, per-user accent, favorites & surprise-me, and durable per-browser persistence — in the spirit of the Codex Dream Skin project.",
+  "version": "0.4.0",
+  "description": "DeepSeek Harness 换肤插件（Dream Skin for DSH）：8 套 iOS / Linear 式清透冷调的高质感主题 + 弥散光壁纸 + 每皮肤智能背景 + 强调色 + 主题包分享，把换肤做成材质与配色克制的高级感工艺，而非贴图 — in the spirit of Codex Dream Skin, elevated.",
   "license": "MIT",
   "type": "module",
   "main": "lib/index.js",
