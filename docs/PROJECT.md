@@ -17,6 +17,8 @@ GitHub 上 [Fei-Away/Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-S
 
 把「换肤 + 自定义壁纸」作为一套**独立开源、可分发（npm）的 dsh 插件**发布出去，让 DSH 用户一条命令装完就能换皮肤。
 
+**品牌基调：优雅 · 设计感 · 高级感。** 与强调"题材 / 二次元萌系"的同类方案不同，本项目的差异化建立在**材质与配色的精细化**上——以 iOS / Linear 式的清透冷调、克制的用色、弥散光与毛玻璃质感为视觉语言，做「换肤界的 iOS」。这一基调贯穿 8 套内置皮肤、预览资产与全部对外文案。
+
 ## 能力范围
 
 **v0.1（已完成）**
@@ -24,6 +26,11 @@ GitHub 上 [Fei-Away/Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-S
 - 自选背景壁纸，含透明度和模糊调节。
 - `localStorage` 持久化。
 - 设置里出现「皮肤 / 背景图片」入口。
+
+**v0.4 - 高级感材质升级（进行中）**
+- 8 套内置皮肤 token 全面重构为 iOS / Linear 式清透冷调（克制用色 + 玻璃面板 + 弥散光）。
+- 每皮肤内置弥散光渐变，选皮肤自动配背景。
+- 设计哲学文档 [`docs/design-philosophy.md`](./design-philosophy.md)，作为品牌差异化宣言。
 
 **v0.2 - P0 差异化（已完成）**
 - **主题包格式 + 导入 / 导出 / 分享链接**（JSON + manifest + 校验）。
@@ -61,6 +68,7 @@ dsh-dream-skin/
 │  └─ client.smoke.test.cjs# VM 冒烟测试（npm test）
 ├─ docs/
 │  ├─ PROJECT.md           # 本文（项目说明）
+│  ├─ design-philosophy.md # 设计哲学（品牌差异化宣言）
 │  ├─ themes-spec.md       # 主题包 / 令牌契约
 │  ├─ publishing-to-npm.md # npm / GitHub 发布指引
 │  └─ examples/            # 示例主题包

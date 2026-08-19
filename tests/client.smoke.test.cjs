@@ -436,3 +436,40 @@ test('saved third-party skin survives repeated delayed host adoption (sticky res
 	await tick();
 	assert.equal(midnightCalls(), bootCount + 2, 'no restore after the user cleared the skin');
 });
+
+test('setSkin auto-attaches the skin diffused-glow gradient when no user wallpaper is set', () => {
+	// Premium material look: picking a built-in skin should attach that skin's
+	// recommended iOS diffused-glow gradient automatically — but ONLY when the
+	// user has not set a wallpaper of their own (never clobber a user choice).
+	const h = buildSandbox(); // no wallpaper seeded
+	const rt = makeRuntime();
+	const e = h.factory(makeRequire(rt.RT));
+	// Make theme.setTheme actually record + reflect the id so getTheme follows.
+	let pref = 'system';
+	const theme = {
+		register() { return () => {}; },
+		setTheme(id) { pref = id; },
+		getTheme() { return { preference: pref, active: { id: pref, colorScheme: pref === 'system' ? 'dark' : 'dark', tokens: {} }, themes: [], revision: 1 }; },
+		overrideTokens() { return () => {}; }
+	};
+	const baseCtx = makeApplyContext(h, { captureActions: true });
+	const ctx = { ...baseCtx, theme };
+	assert.doesNotThrow(() => e.apply(ctx));
+
+	const skinBags = h.actionBags['dream-skin'];
+	assert.ok(skinBags && typeof skinBags.setSkin === 'function', 'skin row setSkin captured');
+
+	// No user wallpaper: picking abyss must auto-apply its diffused-glow gradient.
+	skinBags.setSkin('abyss');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-kind'), 'gradient', 'auto-set kind to gradient');
+	const gradient = h.localStorage.getItem('dsh-dream-skin:wallpaper-gradient');
+	assert.ok(gradient && gradient.indexOf('radial-gradient') !== -1, 'auto-applied a diffused-glow gradient');
+
+	// Now the user picks a custom wallpaper (image). A later skin switch must not
+	// clobber it.
+	h.localStorage.setItem('dsh-dream-skin:wallpaper-kind', 'image');
+	h.localStorage.setItem('dsh-dream-skin:wallpaper', 'data:image/png;base64,AAAA');
+	skinBags.setSkin('ember');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper'), 'data:image/png;base64,AAAA', 'user wallpaper untouched');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-kind'), 'image', 'user image wallpaper kept');
+});

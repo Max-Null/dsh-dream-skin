@@ -6,18 +6,20 @@
 
 # dsh-dream-skin 🔮
 
-**让 DeepSeek Harness 换一张会呼吸、有情绪、属于你的脸。**
+**为 DeepSeek Harness 换上一张克制、清透、有质感的「脸」。**
 
-原生换肤 · 背景壁纸 · 主题包分享 —— 完全用官方 `--dsw-*` token 系统实现的浪漫工程。装一次，终身可换。
+原生换肤 · 背景壁纸 · 主题包分享 —— 一条 `--dsw-*` token 生态内的优雅实现。装一次，用很久。
 
-> **一句话：写代码，也要有氛围感。** ✨
+> **写代码的地方，可以很安静。**
 
-| 🎨 8 套原创主题 | 🖼️ 壁纸 + 透明度/模糊 | 🌈 强调色点一下 | 📦 主题包可分享 |
+| 🎨 8 套原创主题 | 🖼️ 壁纸 + 弥散光 | 🎯 克制的强调色 | 📦 主题包可分享 |
 |---|---|---|---|
 
 > 1 行安装 · 纯原生（无注入/不改安装包）· 不因 DSH 更新失效
 
-[English](./README.en.md) · [变更日志](./CHANGELOG.md) · [项目说明](./docs/PROJECT.md) · [发布指引](./docs/publishing-to-npm.md)
+✨ **Design Philosophy — [一份关于「什么算高级」的设计声明](./docs/design-philosophy.md)** · 以 iOS / Linear 的审美为基准，把「高级感」建立在材质的准确与配色的克制上。
+
+[English](./README.en.md) · [变更日志](./CHANGELOG.md) · [项目说明](./docs/PROJECT.md) · [设计哲学](./docs/design-philosophy.md) · [发布指引](./docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
@@ -66,9 +68,14 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 
 ## 🏆 为什么值得用（vs 同类）
 
-| 能力 | 本插件 | 其它 DSH 换肤方案 | Codex-Dream-Skin (桌面) |
+> 换个赛道看：全家桶把换肤做成一堆二次元题材的「贴图墙」；我们把换肤做成**材质与配色的精细化工艺**——
+> 追求的不是「更花」，而是「更准、更克制、更耐看」，像一块反复推敲的玻璃。**审美是我们的护城河。**
+
+| 能力 | 本插件 | 全家桶换肤方案 | Codex-Dream-Skin (桌面) |
 |------|:---:|:---:|:---:|
 | 原生 token 主题，不注入、不改安装包 | ✅ | ✅ | ❌ (CDP 注入) |
+| **iOS/Linear 式清透冷调材质与配色** | ✅ | ❌ (偏二次元题材) | ❌ |
+| **每皮肤克制的高级感弥散光背景** | ✅ | 部分 | ❌ |
 | 自定义壁纸 + 透明度/模糊 | ✅ | 部分 | ✅ |
 | **主题包导入/导出 + 分享链接** | ✅ | ❌ | ✅ (zip 主题) |
 | **每用户强调色 Accent** | ✅ | ❌ | 部分 |

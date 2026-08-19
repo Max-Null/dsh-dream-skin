@@ -33,7 +33,8 @@
     "docs/previews",
     "docs/screenshots",
     "docs/examples",
-    "docs/themes-spec.md"
+    "docs/themes-spec.md",
+    "docs/design-philosophy.md"
   ],
   "author": "dsh-dream-skin contributors",
   "repository": {

@@ -6,18 +6,20 @@
 
 # dsh-dream-skin 🔮
 
-**Give DeepSeek Harness a face that breathes, feels, and belongs to you.**
+**Give DeepSeek Harness a face that's restrained, clear and textured.**
 
-Native skinning · wallpaper · shareable theme packs — a romance-engineered project built entirely on DSH's official `--dsw-*` token system.
+Native skinning · wallpaper · shareable theme packs — an elegant implementation built entirely on DSH's official `--dsw-*` token system.
 
-> **TL;DR: code with atmosphere.** ✨
+> **TL;DR: your coding space can be quiet.**
 
-| 🎨 8 original themes | 🖼️ wallpaper + opacity/blur | 🌈 one-click accent | 📦 shareable theme packs |
+| 🎨 8 original themes | 🖼️ wallpaper + diffused glow | 🎯 restrained accent | 📦 shareable theme packs |
 |---|---|---|---|
 
 > 1-line install · purely native (no injection, no installer patches) · survives DSH updates
 
-[中文](./README.md) · [Changelog](./CHANGELOG.md) · [Project Notes](./docs/PROJECT.md) · [Publishing Guide](./docs/publishing-to-npm.md)
+✨ **Design Philosophy — [a statement on what "premium" means](./docs/design-philosophy.md)** · grounded in iOS / Linear aesthetics, premium comes from material precision and restrained color.
+
+[中文](./README.md) · [Changelog](./CHANGELOG.md) · [Project Notes](./docs/PROJECT.md) · [Design Philosophy](./docs/design-philosophy.md) · [Publishing Guide](./docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
