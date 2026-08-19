@@ -6,18 +6,20 @@
 
 # dsh-dream-skin 🔮
 
-**DeepSeek Harness에 숨 쉬고, 느끼고, 당신의 것이 되는 얼굴을 선물하세요.**
+**DeepSeek Harness에 절제되고 맑으며 질감 있는 '얼굴'을 선물하세요.**
 
-네이티브 스키닝 · 월페이퍼 · 공유 가능한 테마 팩 — 전적으로 DSH 공식 `--dsw-*` 토큰 시스템 위에 만들어진, "로맨스 공학" 프로젝트입니다.
+네이티브 스키닝 · 월페이퍼 · 공유 가능한 테마 팩 — 전적으로 DSH 공식 `--dsw-*` 토큰 시스템 위에 만들어진, 우아한 구현입니다.
 
-> **TL;DR: 분위기 있게 코딩하세요.** ✨
+> **TL;DR: 코드를 쓰는 곳은 조용해도 좋다.**
 
-| 🎨 오리지널 테마 8종 | 🖼️ 월페이퍼 + 투명도/블러 | 🌈 원클릭 엑센트 | 📦 공유 가능한 테마 팩 |
+| 🎨 오리지널 테마 8종 | 🖼️ 월페이퍼 + 확산광 | 🎯 절제된 엑센트 | 📦 공유 가능한 테마 팩 |
 |---|---|---|---|
 
 > 1줄 설치 · 순수 네이티브 (주입 없음, 설치 프로그램 패치 없음) · DSH 업데이트에도 안전
 
-[中文](./README.md) · [변경 내역](./CHANGELOG.md) · [프로젝트 노트](./docs/PROJECT.md) · [배포 가이드](./docs/publishing-to-npm.md)
+✨ **Design Philosophy — ["고급"이란 무엇인가에 대한 디자인 선언](./docs/design-philosophy.md)** · iOS / Linear 미학을 기준으로, 고급감을 소재의 정확성과 절제된 배색에 둡니다.
+
+[中文](./README.md) · [변경 내역](./CHANGELOG.md) · [프로젝트 노트](./docs/PROJECT.md) · [Design Philosophy](./docs/design-philosophy.md) · [배포 가이드](./docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)

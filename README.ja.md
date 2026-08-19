@@ -6,18 +6,20 @@
 
 # dsh-dream-skin 🔮
 
-**DeepSeek Harness に、呼吸し、感情を持ち、あなたのものになる顔を与えましょう。**
+**DeepSeek Harness に、克制され澄んで質感のある「顔」を。**
 
-ネイティブなスキン · 壁紙 · 共有可能なテーマパック — DSH 公式の `--dsw-*` トークンシステムだけで構築した、ロマンあふれるエンジニアリングプロジェクト。
+ネイティブなスキン · 壁紙 · 共有可能なテーマパック — DSH 公式の `--dsw-*` トークンシステムだけで構築した、エレガントな実装。
 
-> **要約：雰囲気のあるコードを書こう。** ✨
+> **要約：コードを書く場所は、静かでいい。**
 
-| 🎨 オリジナルテーマ 8種 | 🖼️ 壁紙 + 不透明度/ぼかし | 🌈 ワンクリックのアクセント | 📦 共有可能なテーマパック |
+| 🎨 オリジナルテーマ 8種 | 🖼️ 壁紙 + 拡散光 | 🎯 克制されたアクセント | 📦 共有可能なテーマパック |
 |---|---|---|---|
 
 > 1行インストール · 完全ネイティブ（注入なし・インストーラへのパッチなし）· DSH のアップデート後もそのまま動作
 
-[中文](./README.md) · [変更履歴](./CHANGELOG.md) · [プロジェクトメモ](./docs/PROJECT.md) · [公開ガイド](./docs/publishing-to-npm.md)
+✨ **Design Philosophy — [「高級とは何か」についてのデザイン宣言](./docs/design-philosophy.md)** · iOS / Linear の美学を基準に、高級感を素材の正確さと克制された配色に置く。
+
+[中文](./README.md) · [変更履歴](./CHANGELOG.md) · [プロジェクトメモ](./docs/PROJECT.md) · [Design Philosophy](./docs/design-philosophy.md) · [公開ガイド](./docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)

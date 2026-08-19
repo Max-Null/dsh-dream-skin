@@ -6,18 +6,20 @@
 
 # dsh-dream-skin 🔮
 
-**Donnez à DeepSeek Harness un visage qui respire, qui ressent et qui vous ressemble.**
+**Donnez à DeepSeek Harness un visage sobre, net et au rendu soigné.**
 
-Habillage natif · fond d'écran · packs de thèmes partageables — un projet conçu avec passion, entièrement bâti sur le système officiel de tokens `--dsw-*` de DSH.
+Habillage natif · fond d'écran · packs de thèmes partageables — une implémentation élégante, entièrement bâtie sur le système officiel de tokens `--dsw-*` de DSH.
 
-> **En bref : codez dans l'ambiance.** ✨
+> **En bref : votre espace de code peut être silencieux.**
 
-| 🎨 8 thèmes originaux | 🖼️ fond d'écran + opacité/flou | 🌈 accent en un clic | 📦 packs de thèmes partageables |
+| 🎨 8 thèmes originaux | 🖼️ fond d'écran + lumière diffuse | 🎯 accent restreint | 📦 packs de thèmes partageables |
 |---|---|---|---|
 
 > Installation en 1 ligne · 100 % natif (aucune injection, aucun patch d'installation) · résiste aux mises à jour de DSH
 
-[中文](./README.md) · [Historique](./CHANGELOG.md) · [Notes du projet](./docs/PROJECT.md) · [Guide de publication](./docs/publishing-to-npm.md)
+✨ **Design Philosophy — [une déclaration sur ce que « premium » signifie](./docs/design-philosophy.md)** · avec l'esthétique iOS / Linear comme base, le premium naît de la précision du matériau et de la retenue des couleurs.
+
+[中文](./README.md) · [Historique](./CHANGELOG.md) · [Notes du projet](./docs/PROJECT.md) · [Design Philosophy](./docs/design-philosophy.md) · [Guide de publication](./docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
