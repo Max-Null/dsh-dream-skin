@@ -15,10 +15,6 @@
 - **每皮肤内置 iOS 弥散光渐变**：8 套皮肤各配一套与配色呼应的多层 radial-gradient 高级光斑背景
   （柔和冷光 / 暖光弥散 + 同色系暗部分层），替代旧的生硬 3 段线性渐变；在「高级壁纸」推荐与
   「主题包」建议中即时可用。
-- **毛玻璃材质注入**（premium material）：向 `<head>` 注入一段自包含 `<style>`，为 DSH 主布局列
-  （主聊天列 / 侧边栏）叠加 `backdrop-filter: blur()` + `saturate()`，把弥散光「雾化透入」形成真·玻璃
-  质感。用 `@supports` 兜底无 backdrop-filter 的浏览器；若 DSH 的 hashed 类名未来变化则选择器静默失配、
-  绝不破坏布局（只停止加模糊），并随 fiber 卸载移除。
 - **选皮肤智能配背景**（premium material 联动）：用户尚未设置任何壁纸时，点选一套皮肤会自动挂载该皮肤
   的推荐弥散光渐变，让「材质高级感」一选即现；用户已自定义壁纸则完全不受影响。新增对应单测。
 - **设计哲学文档**（`docs/design-philosophy.md`）：一份关于「什么算高级」的品牌差异化声明——六条准则
@@ -26,6 +22,10 @@
   顶部品牌区重构为这套定位语，突出与「二次元题材全家桶」的差异。
 
 ### 修复
+- **设置面板被「挤」进左侧边栏（回归）**：0.4.0 曾引入毛玻璃材质注入（给 DSH 侧边栏/主列容器叠加
+  `backdrop-filter`），但 `backdrop-filter` 会创建新的包含块（containing block），导致 DSH 内
+  `position: fixed` 的设置模态弹窗定位失效、被「困」在侧边栏容器里。已**整体移除**毛玻璃注入，
+  保留纯 token + 弥散光核心方案（零布局风险，高级感依然成立）。设计哲学文档同步说明了这一点。
 - **DSH Desktop 重启后主题 / 壁纸 / 设置全部丢失（严重）**：桌面端每次启动把 webserver 绑到
   OS 随机端口（`profile.js` 强制 `port: 0`），GUI 的 origin（scheme + host + port）因此每次重启都变，
   而浏览器 localStorage 按 origin 隔离——旧数据其实还在 leveldb 里，只是散落在上次端口对应的 origin
