@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="./README.md">中文</a> · <a href="./README.en.md">English</a> · <strong>日本語</strong> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <a href="./README.de.md">Deutsch</a> · <a href="./README.ru.md">Русский</a>
+  <a href="../../README.md">中文</a> · <a href="./README.en.md">English</a> · <strong>日本語</strong> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <a href="./README.de.md">Deutsch</a> · <a href="./README.ru.md">Русский</a>
 </p>
 
 <div align="center">
@@ -17,9 +17,9 @@
 
 > 1行インストール · 完全ネイティブ（注入なし・インストーラへのパッチなし）· DSH のアップデート後もそのまま動作
 
-✨ **Design Philosophy — [「高級とは何か」についてのデザイン宣言](./docs/design-philosophy.md)** · iOS / Linear の美学を基準に、高級感を素材の正確さと克制された配色に置く。
+✨ **Design Philosophy — [「高級とは何か」についてのデザイン宣言](../../docs/design-philosophy.md)** · iOS / Linear の美学を基準に、高級感を素材の正確さと克制された配色に置く。
 
-[中文](./README.md) · [変更履歴](./CHANGELOG.md) · [プロジェクトメモ](./docs/PROJECT.md) · [Design Philosophy](./docs/design-philosophy.md) · [公開ガイド](./docs/publishing-to-npm.md)
+[中文](../../README.md) · [変更履歴](../../CHANGELOG.md) · [プロジェクトメモ](../../docs/PROJECT.md) · [Design Philosophy](../../docs/design-philosophy.md) · [公開ガイド](../../docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
@@ -305,12 +305,12 @@ ui-layout の ThemePresenter によって `<body>` へのインラインカス�
 
 - **内蔵スキンを追加する**: `lib/client.js` の `SKINS` 配列にオブジェクト（`id` + `colorScheme` + `tokens`）を追加するだけ。
   Settings には自動的に表示されます。**全 8 言語の辞書**（`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`）に `skin.<id>` キーを追加してください。
-- **テーマパックを配布する（推奨）**: [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json) に従って —
+- **テーマパックを配布する（推奨）**: [`docs/examples/sample-theme-pack.json`](../../docs/examples/sample-theme-pack.json) に従って —
   `*.dsh-theme.json` を1つ用意すれば Settings からインポートでき、リンクで共有も可能。コードの変更は不要です。
-- **自分で壁紙を追加する**: [`wallpapers/`](./wallpapers/) に画像を配置し（配布権のあるものだけを）、
+- **自分で壁紙を追加する**: [`wallpapers/`](../../wallpapers/) に画像を配置し（配布権のあるものだけを）、
   DSH の「Wallpaper」行からインポートします。
 - **検証する**: `npm test`（ファクトリの評価、`apply()`、パックのインポート/永続化をカバーする VM スモークテスト）。
-- **塗り直す**: `--dsw-alias-*` トークンを参照（完全な仕様は [`docs/themes-spec.md`](./docs/themes-spec.md)）。
+- **塗り直す**: `--dsw-alias-*` トークンを参照（完全な仕様は [`docs/themes-spec.md`](../../docs/themes-spec.md)）。
 
 ## 📌 ロードマップ
 
@@ -326,8 +326,8 @@ ui-layout の ThemePresenter によって `<body>` へのインラインカス�
 
 ## 🤝 コントリビューション
 
-Issue や PR を歓迎します！[コントリビューションガイド](./CONTRIBUTING.md) をお読みの上、
-[行動規範](./CODE_OF_CONDUCT.md) に従ってください。
+Issue や PR を歓迎します！[コントリビューションガイド](../../CONTRIBUTING.md) をお読みの上、
+[行動規範](../../CODE_OF_CONDUCT.md) に従ってください。
 
 ## ⭐ プロジェクトを支援する
 
@@ -336,11 +336,11 @@ Issue や PR を歓迎します！[コントリビューションガイド](./CO
 
 ## 🔒 セキュリティ
 
-セキュリティ上の問題を発見しましたか？公開の Issue は開かず、[セキュリティポリシー](./SECURITY.md) を確認してください。
+セキュリティ上の問題を発見しましたか？公開の Issue は開かず、[セキュリティポリシー](../../SECURITY.md) を確認してください。
 
 ## 📄 ライセンス
 
-[MIT](./LICENSE)
+[MIT](../../LICENSE)
 
 ## 🙏 謝辞
 

@@ -71,10 +71,12 @@ dsh-dream-skin/
 │  ├─ design-philosophy.md # 设计哲学（品牌差异化宣言）
 │  ├─ themes-spec.md       # 主题包 / 令牌契约
 │  ├─ publishing-to-npm.md # npm / GitHub 发布指引
+│  ├─ i18n/                # 多语言 README（en/ja/ko/es/fr/de/ru，主 README 只读中文版）
+│  │  └─ README.*.md
 │  └─ examples/            # 示例主题包
 │     └─ sample-theme-pack.json
 ├─ .github/                # Issue / PR 模板
-├─ README.md / README.en.md
+├─ README.md               # 主 README（中文）；英文/英译见 docs/i18n/
 ├─ CONTRIBUTING.md         # 贡献指南
 ├─ CODE_OF_CONDUCT.md      # 行为准则
 ├─ SECURITY.md             # 安全策略

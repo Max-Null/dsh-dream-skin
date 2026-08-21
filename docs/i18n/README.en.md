@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="./README.md">中文</a> · <strong>English</strong> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <a href="./README.de.md">Deutsch</a> · <a href="./README.ru.md">Русский</a>
+  <a href="../../README.md">中文</a> · <strong>English</strong> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <a href="./README.de.md">Deutsch</a> · <a href="./README.ru.md">Русский</a>
 </p>
 
 <div align="center">
@@ -17,9 +17,9 @@ Native skinning · wallpaper · shareable theme packs — an elegant implementat
 
 > 1-line install · purely native (no injection, no installer patches) · survives DSH updates
 
-✨ **Design Philosophy — [a statement on what "premium" means](./docs/design-philosophy.md)** · grounded in iOS / Linear aesthetics, premium comes from material precision and restrained color.
+✨ **Design Philosophy — [a statement on what "premium" means](../../docs/design-philosophy.md)** · grounded in iOS / Linear aesthetics, premium comes from material precision and restrained color.
 
-[中文](./README.md) · [Changelog](./CHANGELOG.md) · [Project Notes](./docs/PROJECT.md) · [Design Philosophy](./docs/design-philosophy.md) · [Publishing Guide](./docs/publishing-to-npm.md)
+[中文](../../README.md) · [Changelog](../../CHANGELOG.md) · [Project Notes](../../docs/PROJECT.md) · [Design Philosophy](../../docs/design-philosophy.md) · [Publishing Guide](../../docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
@@ -306,12 +306,12 @@ seeds (`react`, `react/jsx-runtime`, …) and registered client bundles (`@deeps
 - **Add a built-in skin**: append an object (`id` + `colorScheme` + `tokens`) to the `SKINS` array in `lib/client.js`;
   it then appears in Settings automatically. Add a `skin.<id>` key to **all 8 locale dictionaries**
   (`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`).
-- **Ship a theme pack (recommended)**: follow [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json) —
+- **Ship a theme pack (recommended)**: follow [`docs/examples/sample-theme-pack.json`](../../docs/examples/sample-theme-pack.json) —
   one `*.dsh-theme.json` is importable in Settings and shareable via a link, no code changes needed.
-- **Add your own wallpapers**: drop images into [`wallpapers/`](./wallpapers/) (distribute only what you have rights
+- **Add your own wallpapers**: drop images into [`wallpapers/`](../../wallpapers/) (distribute only what you have rights
   to), then import them via DSH's "Wallpaper" row.
 - **Validate**: `npm test` (VM smoke tests covering factory eval, `apply()`, and pack import/persistence).
-- **Repaint**: reference the `--dsw-alias-*` tokens (full contract in [`docs/themes-spec.md`](./docs/themes-spec.md)).
+- **Repaint**: reference the `--dsw-alias-*` tokens (full contract in [`docs/themes-spec.md`](../../docs/themes-spec.md)).
 
 ## 📌 Roadmap
 
@@ -327,8 +327,8 @@ seeds (`react`, `react/jsx-runtime`, …) and registered client bundles (`@deeps
 
 ## 🤝 Contributing
 
-Issues and PRs welcome! Please read the [Contributing Guide](./CONTRIBUTING.md) and follow the
-[Code of Conduct](./CODE_OF_CONDUCT.md).
+Issues and PRs welcome! Please read the [Contributing Guide](../../CONTRIBUTING.md) and follow the
+[Code of Conduct](../../CODE_OF_CONDUCT.md).
 
 ## ⭐ Support the project
 
@@ -337,11 +337,11 @@ get discovered and keeps it maintained. Want to contribute themes / an online St
 
 ## 🔒 Security
 
-Found a security issue? Don't open a public issue — see the [Security Policy](./SECURITY.md).
+Found a security issue? Don't open a public issue — see the [Security Policy](../../SECURITY.md).
 
 ## 📄 License
 
-[MIT](./LICENSE)
+[MIT](../../LICENSE)
 
 ## 🙏 Acknowledgments
 

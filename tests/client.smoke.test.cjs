@@ -595,11 +595,27 @@ test('liquid-glass material CSS is injected on leaf cards only (no fixed-modal a
 	// settings modal, and blurring them broke fixed positioning.
 	assert.ok(!/centerCol/.test(css), 'must NOT blur the main center column');
 	assert.ok(!/sidebarCol/.test(css), 'must NOT blur the sidebar column');
-	assert.ok(!/hHd-Xa_root/.test(css), 'must NOT blur the sidebar root');
-	// The composer root scrim must be present so a scrolled message / "turn N"
-	// monitor row never shows through under the input.
-	assert.ok(css.includes('.uV2eYG_root'), 'composer root scrim present');
-	assert.ok(css.includes('linear-gradient(to bottom'), 'uses a bottom scrim gradient');
+	// The sidebar root may never be a blur target (regression guard). It may still
+	// appear as a scoping PREFIX in alignment rules (e.g. `.hHd-Xa_root .hHd-Xa_footArea`)
+	// that only adjust margins — those never set backdrop-filter. So the guard is: any
+	// rule that mentions the sidebar root must NOT carry a backdrop-filter.
+	assert.ok(!/hHd-Xa_root[^A-Za-z0-9_-]*\{[^}]*backdrop-filter/.test(css) && !/hHd-Xa_root[^A-Za-z0-9_-]*\{[^}]*filter:/.test(css), 'must NOT blur the sidebar root');
+	// The composer root must stay a leaf-only surface with NO sharp outer frame.
+	// The old full-width "bottom scrim" gradient painted a wide rectangular band
+	// behind the (narrower, rounded) composer card, which read as an ugly
+	// right-angle frame around the input when a wallpaper was active. The root is
+	// now transparent so only the rounded card renders (issue: 外层尖角框).
+	assert.ok(css.includes('.uV2eYG_root'), 'composer root styled');
+	assert.ok(css.includes('.uV2eYG_root {'), 'composer root rule present');
+	assert.ok(css.includes("background: transparent"), 'composer root has no sharp frame (transparent)');
+	assert.ok(!css.includes('linear-gradient(to bottom'), 'no full-width scrim gradient around the rounded card');
+	// Cross-panel consistency: the right file panel must use the same sidebar fill
+	// as the left rail (the halves previously rendered with different tints), and
+	// the sidebar footer/settings must be one uniform plane with the list.
+	assert.ok(css.includes('.nArs4W_panel'), 'right file panel themed to sidebar fill');
+	assert.ok(css.includes('var(--dsw-specific-sidebar-fill)'), 'right panel uses the shared sidebar fill');
+	assert.ok(css.includes('.hHd-Xa_settingsArea, .hHd-Xa_footerActions'), 'sidebar footer/settings pinned to one plane');
+	assert.ok(css.includes('.qDHVXG_fade'), 'list-end fade removed for a uniform left column');
 	// The user-questions option card must get a high-opacity readable fill (it
 	// shares input-major with the translucent composer, so it needs its own
 	// solid background or option text becomes illegible).

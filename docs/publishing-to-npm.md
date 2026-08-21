@@ -11,13 +11,14 @@
 1. 包名全局唯一。scope 名更安全（如 `@你的账号/dsh-dream-skin`）——如需改 scope，改 `package.json` 里的
    `name` 即可。
 2. 填好 `author`、`repository`、`description`、`keywords`（均已预留）。
-3. 确认 `files` 里带上了这些文件（当前已配置，含 8 语言 README）：
+3. 确认 `files` 里带上了这些文件（当前已配置：主 README + `docs/i18n/` 多语言 README）：
    ```json
    "files": ["lib/index.js", "lib/client.js", "lib/types", "cordis.patch.yml",
-             "README.md", "README.en.md", "README.ja.md", "README.ko.md",
-             "README.es.md", "README.fr.md", "README.de.md", "README.ru.md"]
+             "README.md", "docs/i18n", "docs/previews", "docs/screenshots",
+             "docs/examples", "docs/themes-spec.md", "docs/design-philosophy.md"]
    ```
-   这样 npm 只会上传这些，不会带源码里不需要的东西。
+   这样 npm 只会上传这些，不会带源码里不需要的东西。多语言 README（en/ja/ko/es/fr/de/ru）放在
+   `docs/i18n/` 下（根目录只保留中文 `README.md`），同样会随包发布。
 
 ## 二、GitHub 发布（开源）
 
@@ -65,10 +66,10 @@ dsh plugin --profile web add dsh-dream-skin
 ## 五、常见注意事项
 
 - **镜像源**：发布必须 `--registry https://registry.npmjs.org`。
-- **版本号**：遵循语义化版本；当前最新为 `0.3.0`（CHANGELOG 有 0.1.0 历史条目但未发布到 npm，npm 首发为 0.2.0）。
+- **版本号**：遵循语义化版本；当前最新为 `0.4.2`（npm 首发为 0.2.0）。
 - **peerDependencies**：以 `^0.1.0-rc.6` 对齐 DSH 当前版本；DSH 升级到正式版后记得跟进。
 - **LICENSE / README**：npm 页会展示仓库提交的内容，建议发布前同步。
-- **files 白名单**：已含 8 语言 README 与 `docs/previews`、`docs/screenshots`、`docs/examples`、`docs/themes-spec.md`，
+- **files 白名单**：已含主 README、`docs/i18n/` 多语言 README 与 `docs/previews`、`docs/screenshots`、`docs/examples`、`docs/themes-spec.md`，
   保证 npm 包页的 README 截图 / 预览色卡 / 示例链接不 404。
 
 ## 六、让社区发现你（.dsh-plugin topic / awesome / dsh-market）

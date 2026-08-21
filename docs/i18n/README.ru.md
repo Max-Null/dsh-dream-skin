@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="./README.md">中文</a> · <a href="./README.en.md">English</a> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <a href="./README.de.md">Deutsch</a> · <strong>Русский</strong>
+  <a href="../../README.md">中文</a> · <a href="./README.en.md">English</a> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <a href="./README.de.md">Deutsch</a> · <strong>Русский</strong>
 </p>
 
 <div align="center">
@@ -17,9 +17,9 @@
 
 > Установка в одну строку · полностью нативно (без инъекций, без патчей установщика) · переживает обновления DSH
 
-✨ **Design Philosophy — [заявление о том, что значит «премиум»](./docs/design-philosophy.md)** · с эстетикой iOS / Linear за основу премиум рождается из точности материала и сдержанности цвета.
+✨ **Design Philosophy — [заявление о том, что значит «премиум»](../../docs/design-philosophy.md)** · с эстетикой iOS / Linear за основу премиум рождается из точности материала и сдержанности цвета.
 
-[中文](./README.md) · [История изменений](./CHANGELOG.md) · [Заметки о проекте](./docs/PROJECT.md) · [Design Philosophy](./docs/design-philosophy.md) · [Руководство по публикации](./docs/publishing-to-npm.md)
+[中文](../../README.md) · [История изменений](../../CHANGELOG.md) · [Заметки о проекте](../../docs/PROJECT.md) · [Design Philosophy](../../docs/design-philosophy.md) · [Руководство по публикации](../../docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
@@ -304,12 +304,12 @@ dsh web   # restores the official appearance
 
 - **Добавить встроенную тему**: добавьте объект (`id` + `colorScheme` + `tokens`) в массив `SKINS` в `lib/client.js`;
   она появится в Настройках автоматически. Добавьте ключ `skin.<id>` во **все 8 словарей языков** (`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`).
-- **Поставлять набор тем (рекомендуется)**: следуйте [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json) —
+- **Поставлять набор тем (рекомендуется)**: следуйте [`docs/examples/sample-theme-pack.json`](../../docs/examples/sample-theme-pack.json) —
   любой `*.dsh-theme.json` импортируется в Настройках и распространяется по ссылке, без изменений кода.
-- **Добавить свои обои**: положите изображения в [`wallpapers/`](./wallpapers/) (распространяйте только то, на что у вас
+- **Добавить свои обои**: положите изображения в [`wallpapers/`](../../wallpapers/) (распространяйте только то, на что у вас
   есть права), затем импортируйте их через ряд «Обои» в DSH.
 - **Проверка**: `npm test` (VM-смоук-тесты: factory eval, `apply()`, импорт набора и сохранение).
-- **Перекраска**: используйте токены `--dsw-alias-*` (полный контракт в [`docs/themes-spec.md`](./docs/themes-spec.md)).
+- **Перекраска**: используйте токены `--dsw-alias-*` (полный контракт в [`docs/themes-spec.md`](../../docs/themes-spec.md)).
 
 ## 📌 Дорожная карта
 
@@ -325,8 +325,8 @@ dsh web   # restores the official appearance
 
 ## 🤝 Вклад
 
-Приветствуются issue и PR! Пожалуйста, прочитайте [Руководство по вкладу](./CONTRIBUTING.md) и соблюдайте
-[Кодекс поведения](./CODE_OF_CONDUCT.md).
+Приветствуются issue и PR! Пожалуйста, прочитайте [Руководство по вкладу](../../CONTRIBUTING.md) и соблюдайте
+[Кодекс поведения](../../CODE_OF_CONDUCT.md).
 
 ## ⭐ Поддержите проект
 
@@ -336,11 +336,11 @@ dsh web   # restores the official appearance
 
 ## 🔒 Безопасность
 
-Нашли проблему с безопасностью? Не открывайте публичный issue — см. [Политику безопасности](./SECURITY.md).
+Нашли проблему с безопасностью? Не открывайте публичный issue — см. [Политику безопасности](../../SECURITY.md).
 
 ## 📄 Лицензия
 
-[MIT](./LICENSE)
+[MIT](../../LICENSE)
 
 ## 🙏 Благодарности
 
