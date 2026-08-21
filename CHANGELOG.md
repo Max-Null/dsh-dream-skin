@@ -2,7 +2,17 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
-## [Unreleased]
+## [0.4.5] - 2026-08-21
+
+> **「弹窗不透明度」真正生效。** 修复 slider 只作用于个别选项卡卡片、对真实下拉 / 浮层 / 弹窗无效的问题。
+
+### 修复
+- **弹窗不透明度对菜单 / 浮层不生效（issue #9 复述）**：此前的设置只覆盖 `.Mbwy4a_card` 单一规则，对 DSH 实际的
+  下拉菜单（模型选择器、输入触发、选项列表等）与浮层 / 对话框毫无影响，导致 0 与 100 看起来一样。现改为通过
+  `ctx.theme.overrideTokens` 叠加一层覆盖，把滑块权重施加到 DSH 的语义 token `--dsw-specific-menu` 与
+  `--dsw-alias-bg-overlay`（"overlay and popover background"）——0%＝全透、100%＝纯色，真实可见。同步更新 8 语言提示文案。
+
+## [0.4.4] - 2026-08-21
 
 > **下拉 / 弹层菜单可读性。** 修正部分皮肤下菜单（模型选择器、输入触发、选项列表等）近乎透明、文字难读的问题。
 
