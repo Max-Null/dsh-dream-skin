@@ -437,6 +437,81 @@ test('saved third-party skin survives repeated delayed host adoption (sticky res
 	assert.equal(midnightCalls(), bootCount + 2, 'no restore after the user cleared the skin');
 });
 
+test('issue #11: saved skin survives an agent-preset change that re-adopts the host theme', async () => {
+	// Regression for issue #11: switching the agent preset in Settings → General
+	// makes DSH reload/re-adopt the host `ui-theme.preference` scope (which only
+	// holds system/light/dark), so a saved third-party skin like "rose" (Material粉)
+	// is clobbered back to a built-in preference. The sticky restore must re-apply
+	// the saved skin on every such built-in fallback, while an explicit Default
+	// never restores. Model the two failure windows an agent-preset change opens:
+	//   1. an immediate re-adoption right after the skin row is mounted;
+	//   2. a repeated re-adoption (connection reset) at a later tick.
+	const h = buildSandbox({ seed: { 'dsh-dream-skin:skin': 'rose' } });
+	const e = h.factory(makeRequire(makeRuntime().RT));
+
+	const themeHandlers = [];
+	let pref = 'system';
+	const setCalls = [];
+	const theme = {
+		register() { return () => {}; },
+		setTheme(id) { pref = id; setCalls.push(id); },
+		getTheme() { return { preference: pref, active: { id: 'dark', colorScheme: 'dark', tokens: {} }, themes: [], revision: 1 }; },
+		overrideTokens() { return () => {}; }
+	};
+	const skinActions = {};
+	const ctx = {
+		theme,
+		slots: {
+			inject(n, f) { if (typeof f === 'function') f(); },
+			register(desc, _Component) {
+				if (desc && desc.id === 'dream-skin' && typeof desc.inject === 'function') {
+					const bag = {};
+					if (desc.store && desc.store.spec && typeof desc.store.spec.actions.sync === 'function') {
+						const state = desc.store.spec.init();
+						bag.sync = (...args) => desc.store.spec.actions.sync(state, ...args);
+					}
+					const ra = desc.inject(bag);
+					if (ra && typeof ra === 'object') Object.assign(skinActions, ra);
+				}
+				return {};
+			}
+		},
+		locale: { register() {}, bind() { return (key) => key; } },
+		on(ev, fn) { if (ev === 'theme/change') themeHandlers.push(fn); return () => {}; },
+		// Keep setTimeout(0) deferrals alive so the sticky restore actually runs.
+		effect(t) { const d = t(); if (typeof d !== 'function') return; }
+	};
+	// Simulate DSH re-adopting the built-in theme after an agent-preset change.
+	const adoptBuiltIn = (p) => {
+		pref = p;
+		for (const fn of themeHandlers) fn({ preference: p, active: { id: 'dark', colorScheme: 'dark', tokens: {} }, revision: 2 });
+	};
+	const tick = () => new Promise((resolve) => setTimeout(resolve, 10));
+
+	assert.doesNotThrow(() => e.apply(ctx));
+	await tick();
+	const roseCalls = () => setCalls.filter((id) => id === 'rose').length;
+	assert.ok(roseCalls() >= 1, 'saved rose skin restored at boot');
+	const bootCount = roseCalls();
+
+	// Agent-preset change #1: immediate host re-adoption to system.
+	adoptBuiltIn('system');
+	await tick();
+	assert.equal(roseCalls(), bootCount + 1, 'rose re-applied after first agent-preset re-adoption');
+
+	// Agent-preset change triggers a connection reset → repeated re-adoption.
+	adoptBuiltIn('light');
+	await tick();
+	assert.equal(roseCalls(), bootCount + 2, 'rose re-applied after repeated re-adoption to light');
+
+	// An explicit Default selection must clear the saved skin so nothing restores.
+	assert.equal(typeof skinActions.setSkin, 'function', 'skin row setSkin captured');
+	skinActions.setSkin('system');
+	adoptBuiltIn('system');
+	await tick();
+	assert.equal(roseCalls(), bootCount + 2, 'no restore after the user cleared the skin');
+});
+
 test('setSkin auto-attaches the skin diffused-glow gradient when no user wallpaper is set', () => {
 	// Premium material look: picking a built-in skin should attach that skin's
 	// recommended iOS diffused-glow gradient automatically — but ONLY when the
