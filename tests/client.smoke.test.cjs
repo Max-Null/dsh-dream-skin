@@ -682,10 +682,12 @@ test('saved skin survives a page refresh (fresh apply re-stores from localStorag
 	assert.ok(setCalls.includes('midnight'), 'theme.setTheme(midnight) invoked during refresh restore');
 });
 
-test('modal-opacity row registers, persists, and applies the CSS fill variable', () => {
+test('modal-opacity row registers, persists, applies the CSS fill, and drives popup token overrides', () => {
 	// Feature (issue #9): a user-facing popup-opacity control must (a) register as a
-	// settings row, (b) persist its value through the storage seam, and (c) re-apply
-	// the CSS variable so the popup fill actually changes without rebuilding CSS.
+	// settings row, (b) persist its value, (c) set the CSS fill variable, AND
+	// (d) stack a token override on DSH's real popup/menu surfaces (--dsw-specific-menu
+	// / --dsw-alias-bg-overlay) so the slider actually works on real popovers/dropdowns
+	// (the reporter found 0 and 100 looked identical when only .Mbwy4a_card was wired).
 	const styleProps = {};
 	const documentMock = {
 		body: { contains: () => false },
@@ -697,16 +699,36 @@ test('modal-opacity row registers, persists, and applies the CSS fill variable',
 	};
 	const h = buildSandbox({ document: documentMock });
 	const e = h.factory(makeRequire(makeRuntime().RT));
-	const ctx = makeApplyContext(h, { captureActions: true });
+
+	// Capture theme.overrideTokens calls (the popup token-override vehicle).
+	const overrideLog = [];
+	const theme = {
+		register() { return () => {}; },
+		setTheme(id) {},
+		getTheme() { return { preference: 'system', active: { id: 'dark', colorScheme: 'dark', tokens: { '--dsw-alias-bg-base': '#101014' } }, themes: [], revision: 1 }; },
+		overrideTokens(source, tokens) { overrideLog.push({ source, tokens }); return () => {}; }
+	};
+	const baseCtx = makeApplyContext(h, { captureActions: true });
+	const ctx = { ...baseCtx, theme };
 	assert.doesNotThrow(() => e.apply(ctx));
 
-	// The row's action bag exists and setOpacity persists + re-applies the variable.
+	// At boot the saved/ default popup opacity stacks the token override once.
+	assert.ok(overrideLog.some((o) => o.source === 'dsh-dream-skin:popup-opacity'), 'popup token override applied at boot');
+
 	const bags = h.actionBags;
 	assert.ok(bags['dream-skin-modal-opacity'], 'modal-opacity row action bag captured');
 	assert.doesNotThrow(() => bags['dream-skin-modal-opacity'].setOpacity(50));
 	assert.equal(h.localStorage.getItem('dsh-dream-skin:modal-opacity'), '0.5', 'modal opacity persisted');
 	// readModalOpacity → 50% → the CSS variable is set to the weight percentage.
 	assert.equal(styleProps['--dsh-dream-skin-modal-fill'], '50%', 'CSS fill variable applied (50%)');
+	// The token override is re-applied at 50% alpha (0.5) on the popup surfaces,
+	// so 50% is visibly different from 0% / 100% — the exact bug the reporter hit.
+	const last = overrideLog[overrideLog.length - 1];
+	assert.equal(last.source, 'dsh-dream-skin:popup-opacity', 'slider re-applies the popup override layer');
+	assert.ok(last.tokens['--dsw-specific-menu'], 'menu surface token overridden');
+	assert.ok(last.tokens['--dsw-alias-bg-overlay'], 'overlay/popover surface token overridden');
+	assert.equal(last.tokens['--dsw-specific-menu'].dark, 'rgba(16, 16, 20, 0.5)', 'dark menu fill scaled to 50%');
+	assert.equal(last.tokens['--dsw-specific-menu'].light, 'rgba(255, 255, 255, 0.5)', 'light menu fill scaled to 50%');
 });
 
 test('liquid-glass material CSS is injected on leaf cards only (no fixed-modal ancestor)', () => {
@@ -762,11 +784,12 @@ test('liquid-glass material CSS is injected on leaf cards only (no fixed-modal a
 	assert.ok(css.includes('var(--dsw-specific-sidebar-fill)'), 'right panel uses the shared sidebar fill');
 	assert.ok(css.includes('.hHd-Xa_settingsArea, .hHd-Xa_footerActions'), 'sidebar footer/settings pinned to one plane');
 	assert.ok(css.includes('.qDHVXG_fade'), 'list-end fade removed for a uniform left column');
-	// Dropdown / popup menu readability (issue: menus see-through): DSH maps
-	// `--dsw-specific-menu` -> `--dsw-alias-bg-layer-3`, which the skins override
-	// to near-transparent white, so every menu was illegible. The fix points menus
-	// at the readable elevated `layer-2` fill.
-	assert.ok(css.includes('--dsw-specific-menu: var(--dsw-alias-bg-layer-2) !important'), 'menus repointed to the readable elevated layer-2 fill');
+	// Dropdown / popup menu readability (issue: menus see-through): since 0.4.5 the
+	// menu / popover fill is driven by the popup-opacity token override layer
+	// (applyModalOverlay -> ctx.theme.overrideTokens on --dsw-specific-menu /
+	// --dsw-alias-bg-overlay), NOT by an injected !important rule — so the material
+	// stylesheet must not carry a hardcoded menu repoint that would fight the slider.
+	assert.ok(!css.includes('--dsw-specific-menu: var(--dsw-alias-bg-layer-2) !important'), 'menu fill is NOT hardcoded in CSS (token-driven so the slider controls it)');
 	// The user-questions option card must get a high-opacity readable fill (it
 	// shares input-major with the translucent composer, so it needs its own
 	// solid background or option text becomes illegible).
