@@ -2,6 +2,17 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.4.10] - 2026-08-21
+
+> **URL 壁纸安全加固。** 壁纸「图片链接」不再原样拼进 CSS：只放行 http/https/data:image 链接（javascript:/file:/data:text/html 等一律拒绝并提示），拼 CSS 时对引号和反斜杠转义，应用后对坏链做预载检查并提示；顺带清理三处低危项。
+
+### 修复
+- **URL 壁纸不校验不转义、坏链静默失败（issue #21）**：`readWallpaperUrl()` 此前只判断长度、`wallpaperBackgroundCss()` 把链接原样拼进 `url("...")`，链接带 `"`、`\`、换行或非法 scheme 时背景直接无效且无任何提示，设置的 javascript:/file: 等也会静默通过。现新增 scheme 白名单（仅 http/https/data:image）与 CSS 值转义，非法链接设置即拒绝并弹提示、输入框内即时红字反馈；历史遗留的非法值渲染时一律忽略，绝不上屏；应用后用 `new Image()` 预载，坏链给一次明确提示而非无声无息。
+- **500 回显内部错误信息**：持久化 API 的 500 分支把 `error.message` 原样回显给浏览器，同源页面能看到文件路径等内部信息，现改为固定文案、细节只打 log。
+- **状态文件权限过宽**：`~/.dsh/dream-skin.json` 存有壁纸 data URL（个人图片），`writeFileSync` 默认 0644 在 POSIX 共享机器上同机他人可读，现显式 `0600`（Windows 无影响）。
+- **弃用 API 替换**：主题包分享链接编解码改用 `TextEncoder`/`TextDecoder`（替换弃用的 `escape`/`unescape`），UTF-8 字节完全一致、生成的 base64 与旧版相同，旧分享链接不受影响。
+- **SECURITY.md 声明修正**：澄清 URL 壁纸是唯一会发起网络请求的功能（每次打开页面会向该地址请求图片），其余部分不主动发请求。
+
 ## [0.4.9] - 2026-08-21
 
 > **左右侧栏皮肤一致。** 修复右侧工具面板（Files / 任务管理等）在深色主题下偏浅、与左侧导航栏不一致的问题。
