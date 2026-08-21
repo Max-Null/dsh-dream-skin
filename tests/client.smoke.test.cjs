@@ -50,6 +50,7 @@ function buildSandbox(overrides = {}) {
 		window: {}, document, navigator: { clipboard: { writeText: () => Promise.resolve() } }, localStorage,
 		matchMedia: undefined, console, location: loc, history: { replaceState(n, t, url) { loc.hash = ''; loc.pathname = url; } },
 		btoa, atob, unescape: unescapeB, escape: escapeB, encodeURIComponent, decodeURIComponent,
+		TextEncoder, TextDecoder,
 		URL: { createObjectURL: () => 'blob:x', revokeObjectURL() {} },
 		Blob: class {}, FileReader: class {}, Image: function () {}, setTimeout, clearTimeout, alert: () => {},
 		...overrides,
@@ -359,6 +360,50 @@ test('setWallpaperKind/removeWallpaper do not throw (module-level syncWallpaper 
 	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-kind'), null);
 });
 
+test('url wallpaper: unsafe schemes are refused, safe ones persist, stored junk is never applied', () => {
+	// The URL wallpaper input accepts only http/https/data:image links. Unsafe
+	// schemes (javascript:, file:) must be refused before they reach storage,
+	// while legitimate links — including data:image/svg+xml with quotes inside —
+	// persist normally.
+	const h = buildSandbox();
+	const e = h.factory(makeRequire(makeRuntime().RT));
+	const ctx = makeApplyContext(h, { captureActions: true });
+	assert.doesNotThrow(() => e.apply(ctx));
+	const bags = h.actionBags;
+	const adv = bags['dream-skin-wallpaper-advanced'];
+
+	// Unsafe schemes are refused and nothing is written.
+	adv.setUrl('javascript:alert(1)');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-kind'), null, 'javascript: must not write kind');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-url'), null, 'javascript: must not be persisted');
+
+	adv.setUrl('file:///C:/pics/wall.jpg');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-url'), null, 'file: must be refused');
+
+	adv.setUrl('data:text/html,<script>alert(1)</script>');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-url'), null, 'data:text/html must be refused');
+
+	// Safe schemes persist normally.
+	adv.setUrl('https://example.com/w.jpg');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-kind'), 'url');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-url'), 'https://example.com/w.jpg');
+
+	// data:image (even an SVG with quotes inside) is allowed — quotes are
+	// escaped at CSS-build time, not rejected.
+	const svg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"%3E%3C/svg%3E';
+	adv.setUrl(svg);
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-url'), svg, 'data:image with quotes accepted');
+
+	// A value that slipped into storage without validation (old versions
+	// accepted anything) must be ignored at render time: apply() with an
+	// unsafe stored URL must not throw and must not apply it.
+	const h2 = buildSandbox({
+		seed: { 'dsh-dream-skin:wallpaper-kind': 'url', 'dsh-dream-skin:wallpaper-url': 'javascript:alert(1)' }
+	});
+	const e2 = h2.factory(makeRequire(makeRuntime().RT));
+	assert.doesNotThrow(() => e2.apply(makeApplyContext(h2)), 'stored unsafe URL must not break apply()');
+});
+
 test('setWallpaper resets kind to image so a picked photo beats a stale gradient/URL', () => {
 	// Regression: setWallpaper only wrote the data-URL key; if a gradient or URL
 	// had been set before, wallpaperBackgroundCss() kept returning the gradient/
@@ -389,7 +434,7 @@ test('all locale dictionaries are complete and keep placeholders', () => {
 		const body = src.slice(start, end);
 		const keys = [...body.matchAll(/"([a-zA-Z0-9.]+)":\s*"/g)].map((m) => m[1]);
 		dicts[lang] = new Set(keys);
-		assert.equal(keys.length, 45, `${lang} has ${keys.length} keys (expected 45)`);
+		assert.equal(keys.length, 47, `${lang} has ${keys.length} keys (expected 47)`);
 	}
 	const zhKeys = dicts.zh;
 	for (const lang of langs.slice(1)) {

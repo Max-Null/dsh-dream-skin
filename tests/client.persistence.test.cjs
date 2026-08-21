@@ -68,6 +68,7 @@ function buildSandbox({ hostValue = {}, fetchImpl = null, seed = {} } = {}) {
 		atob: (s) => Buffer.from(s, 'base64').toString('binary'),
 		unescape: (s) => s, escape: (s) => s,
 		encodeURIComponent, decodeURIComponent,
+		TextEncoder, TextDecoder,
 		URL: { createObjectURL: () => 'blob:x', revokeObjectURL() {} },
 		Blob: class {}, FileReader: class {}, Image: function () {},
 		setTimeout, clearTimeout, alert: () => {},
