@@ -60,9 +60,9 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 > De vraies captures d'écran, pas des maquettes. À gauche : DSH après application d'un skin ; à droite : la section dédiée **Thème / Apparence** dans les Paramètres.
 
 <p align="center">
-  <img src="docs/screenshots/preview.png" alt="DSH skin preview" width="46%"/>
+  <img src="../../docs/screenshots/preview.png" alt="DSH skin preview" width="46%"/>
   &nbsp;&nbsp;
-  <img src="docs/screenshots/settings.png" alt="Theme section in settings" width="46%"/>
+  <img src="../../docs/screenshots/settings.png" alt="Theme section in settings" width="46%"/>
 </p>
 
 ---
@@ -146,16 +146,16 @@ officiel de DSH.
 
 <table>
   <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · Bleu profond</td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · Aurora vert</td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · Nébuleuse violette</td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · Ambre</td>
+    <td align="center"><img src="../../docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · Bleu profond</td>
+    <td align="center"><img src="../../docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · Aurora vert</td>
+    <td align="center"><img src="../../docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · Nébuleuse violette</td>
+    <td align="center"><img src="../../docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · Ambre</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · OLED minuit</td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS Flat</td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · Verre liquide</td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material rose</td>
+    <td align="center"><img src="../../docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · OLED minuit</td>
+    <td align="center"><img src="../../docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS Flat</td>
+    <td align="center"><img src="../../docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · Verre liquide</td>
+    <td align="center"><img src="../../docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material rose</td>
   </tr>
 </table>
 

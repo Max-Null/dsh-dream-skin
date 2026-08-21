@@ -60,9 +60,9 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 > Echte Screenshots, keine Mockups. Links: DSH nach dem Anwenden eines Skins; rechts: der dedizierte Bereich **Theme / Appearance** in den Einstellungen.
 
 <p align="center">
-  <img src="docs/screenshots/preview.png" alt="DSH skin preview" width="46%"/>
+  <img src="../../docs/screenshots/preview.png" alt="DSH skin preview" width="46%"/>
   &nbsp;&nbsp;
-  <img src="docs/screenshots/settings.png" alt="Theme section in settings" width="46%"/>
+  <img src="../../docs/screenshots/settings.png" alt="Theme section in settings" width="46%"/>
 </p>
 
 ---
@@ -146,16 +146,16 @@ von DSH.
 
 <table>
   <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · Tiefes Blau</td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · Aurora Grün</td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · Nebel Lila</td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · Bernstein</td>
+    <td align="center"><img src="../../docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · Tiefes Blau</td>
+    <td align="center"><img src="../../docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · Aurora Grün</td>
+    <td align="center"><img src="../../docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · Nebel Lila</td>
+    <td align="center"><img src="../../docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · Bernstein</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · OLED Mitternacht</td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS Flat</td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · Flüssiges Glas</td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material Pink</td>
+    <td align="center"><img src="../../docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · OLED Mitternacht</td>
+    <td align="center"><img src="../../docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS Flat</td>
+    <td align="center"><img src="../../docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · Flüssiges Glas</td>
+    <td align="center"><img src="../../docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material Pink</td>
   </tr>
 </table>
 

@@ -60,9 +60,9 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 > モックアップではなく実機のスクリーンショットです。左：スキンを適用した DSH。右：設定内の専用「テーマ / 外観」セクション。
 
 <p align="center">
-  <img src="docs/screenshots/preview.png" alt="DSH skin preview" width="46%"/>
+  <img src="../../docs/screenshots/preview.png" alt="DSH skin preview" width="46%"/>
   &nbsp;&nbsp;
-  <img src="docs/screenshots/settings.png" alt="Theme section in settings" width="46%"/>
+  <img src="../../docs/screenshots/settings.png" alt="Theme section in settings" width="46%"/>
 </p>
 
 ---
@@ -146,16 +146,16 @@ DeepSeek Harness のモットーは「*すべてはプラグイン*」: モデ�
 
 <table>
   <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · ディープブルー</td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · オーロラグリーン</td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · 星雲パープル</td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · 残り火アンバー</td>
+    <td align="center"><img src="../../docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · ディープブルー</td>
+    <td align="center"><img src="../../docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · オーロラグリーン</td>
+    <td align="center"><img src="../../docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · 星雲パープル</td>
+    <td align="center"><img src="../../docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · 残り火アンバー</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · ミッドナイトOLED</td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOSフラット</td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · リキッドグラス</td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · マテリアルピンク</td>
+    <td align="center"><img src="../../docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · ミッドナイトOLED</td>
+    <td align="center"><img src="../../docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOSフラット</td>
+    <td align="center"><img src="../../docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · リキッドグラス</td>
+    <td align="center"><img src="../../docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · マテリアルピンク</td>
   </tr>
 </table>
 

@@ -60,9 +60,9 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 > 목업이 아닌 실제 스크린샷입니다. 왼쪽: 스킨 적용 후의 DSH; 오른쪽: 설정(Settings)의 전용 **테마 / 모양(Theme / Appearance)** 섹션.
 
 <p align="center">
-  <img src="docs/screenshots/preview.png" alt="DSH skin preview" width="46%"/>
+  <img src="../../docs/screenshots/preview.png" alt="DSH skin preview" width="46%"/>
   &nbsp;&nbsp;
-  <img src="docs/screenshots/settings.png" alt="Theme section in settings" width="46%"/>
+  <img src="../../docs/screenshots/settings.png" alt="Theme section in settings" width="46%"/>
 </p>
 
 ---
@@ -145,16 +145,16 @@ DeepSeek Harness의 모토는 *everything is a plugin*입니다: 모델, 도구,
 
 <table>
   <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · 딥 블루</td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · 오로라 그린</td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · 성운 퍼플</td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · 잔불 앰버</td>
+    <td align="center"><img src="../../docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · 딥 블루</td>
+    <td align="center"><img src="../../docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · 오로라 그린</td>
+    <td align="center"><img src="../../docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · 성운 퍼플</td>
+    <td align="center"><img src="../../docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · 잔불 앰버</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · 미드나잇 OLED</td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS 플랫</td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · 리퀴드 글래스</td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · 머티리얼 핑크</td>
+    <td align="center"><img src="../../docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · 미드나잇 OLED</td>
+    <td align="center"><img src="../../docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS 플랫</td>
+    <td align="center"><img src="../../docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · 리퀴드 글래스</td>
+    <td align="center"><img src="../../docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · 머티리얼 핑크</td>
   </tr>
 </table>
 

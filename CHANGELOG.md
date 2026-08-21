@@ -2,6 +2,18 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.4.8] - 2026-08-21
+
+> **文档与注释修正（无运行逻辑变更）。** 修复多语言 README 图片断链、CHANGELOG 格式、代码注释/缩进问题。
+
+### 修复
+- **多语言 README 的 70 处图片断链**：`docs/i18n/` 下的 7 个多语言 README 在迁移时漏改了 `img src`，仍写成根目录相对路径
+  `docs/screenshots/...`、`docs/previews/...`，从 `docs/i18n/` 解析会 404。已统一改为 `../../docs/...`，GitHub 与 npm 包内的
+  截图/预览色卡均可正常显示。
+- **CHANGELOG 0.2.2 标题同行拼接**：`## [0.2.2] - 2026-08-15### 修复` 中 `### 修复` 错误地拼在版本行末尾，已改独占一行。
+- **代码注释 / 缩进清理**：`lib/client.js` 中「theme-spec.md→themes-spec.md」「wallp-paper→wallpaper」两处注释笔误，以及
+  wallpaper store 两行缩进错位；纯格式修正，不影响任何运行逻辑。
+
 ## [0.4.7] - 2026-08-21
 
 > **修正 0.4.6 的 layer-3 回归。** 深色主题下设置页出现浅灰「框」、浅色文字看不清的问题。
@@ -250,7 +262,9 @@
 ### 说明
 - 若你在**旧版崩溃（递归栈溢出）后的同一浏览器会话**里看不到皮肤/强调色生效，请**完整重启 `dsh web` 并 Ctrl+Shift+R 强刷**——DSH 会把崩溃过的设置项标记为「待重载」，重启后即恢复正常。
 
-## [0.2.2] - 2026-08-15### 修复
+## [0.2.2] - 2026-08-15
+
+### 修复
 - **强调色的「随机 / 恢复主题色」无响应**：`accentInjected` 每次 `sync` 传固定 `revision=0`，而 store 的 revision 防抖
   （`revision <= d.revision`）会在第一次更新后（`d.revision=0`）拒绝后续更新 → 点第二次之后没反应。改为维护递增的
   `accentRevision`。
