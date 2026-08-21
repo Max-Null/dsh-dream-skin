@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="./README.md">中文</a> · <a href="./README.en.md">English</a> · <a href="./README.ja.md">日本語</a> · <strong>한국어</strong> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <a href="./README.de.md">Deutsch</a> · <a href="./README.ru.md">Русский</a>
+  <a href="../../README.md">中文</a> · <a href="./README.en.md">English</a> · <a href="./README.ja.md">日本語</a> · <strong>한국어</strong> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <a href="./README.de.md">Deutsch</a> · <a href="./README.ru.md">Русский</a>
 </p>
 
 <div align="center">
@@ -17,9 +17,9 @@
 
 > 1줄 설치 · 순수 네이티브 (주입 없음, 설치 프로그램 패치 없음) · DSH 업데이트에도 안전
 
-✨ **Design Philosophy — ["고급"이란 무엇인가에 대한 디자인 선언](./docs/design-philosophy.md)** · iOS / Linear 미학을 기준으로, 고급감을 소재의 정확성과 절제된 배색에 둡니다.
+✨ **Design Philosophy — ["고급"이란 무엇인가에 대한 디자인 선언](../../docs/design-philosophy.md)** · iOS / Linear 미학을 기준으로, 고급감을 소재의 정확성과 절제된 배색에 둡니다.
 
-[中文](./README.md) · [변경 내역](./CHANGELOG.md) · [프로젝트 노트](./docs/PROJECT.md) · [Design Philosophy](./docs/design-philosophy.md) · [배포 가이드](./docs/publishing-to-npm.md)
+[中文](../../README.md) · [변경 내역](../../CHANGELOG.md) · [프로젝트 노트](../../docs/PROJECT.md) · [Design Philosophy](../../docs/design-philosophy.md) · [배포 가이드](../../docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
@@ -304,12 +304,12 @@ ui-layout의 ThemePresenter가 `<body>`에 인라인 커스텀 프로퍼티로 �
 
 - **기본 스킨 추가**: `lib/client.js`의 `SKINS` 배열에 객체(`id` + `colorScheme` + `tokens`)를 추가하면
   설정(Settings)에 자동으로 나타납니다. **8개 언어 사전 전체**(`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`)에 `skin.<id>` 키를 추가하세요.
-- **테마 팩 배포 (권장)**: [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json)을 따르세요 —
+- **테마 팩 배포 (권장)**: [`docs/examples/sample-theme-pack.json`](../../docs/examples/sample-theme-pack.json)을 따르세요 —
   `*.dsh-theme.json` 하나로 설정(Settings)에서 가져오기 가능하고 링크로 공유할 수 있으며, 코드 변경이 필요 없습니다.
-- **자체 월페이퍼 추가**: [`wallpapers/`](./wallpapers/)에 이미지를 넣으세요 (권리 보유 이미지만 배포), 그런 다음
+- **자체 월페이퍼 추가**: [`wallpapers/`](../../wallpapers/)에 이미지를 넣으세요 (권리 보유 이미지만 배포), 그런 다음
   DSH의 "Wallpaper" 행에서 가져오면 됩니다.
 - **검증**: `npm test` (factory eval, `apply()`, 팩 가져오기/영속성 등을 다루는 VM 스모크 테스트).
-- **리페인트**: `--dsw-alias-*` 토큰을 참조하세요 (전체 계약은 [`docs/themes-spec.md`](./docs/themes-spec.md)에).
+- **리페인트**: `--dsw-alias-*` 토큰을 참조하세요 (전체 계약은 [`docs/themes-spec.md`](../../docs/themes-spec.md)에).
 
 ## 📌 로드맵
 
@@ -325,8 +325,8 @@ ui-layout의 ThemePresenter가 `<body>`에 인라인 커스텀 프로퍼티로 �
 
 ## 🤝 기여하기
 
-이슈와 PR 환영합니다! [기여 가이드](./CONTRIBUTING.md)를 읽고
-[행동 강령](./CODE_OF_CONDUCT.md)을 따라주세요.
+이슈와 PR 환영합니다! [기여 가이드](../../CONTRIBUTING.md)를 읽고
+[행동 강령](../../CODE_OF_CONDUCT.md)을 따라주세요.
 
 ## ⭐ 프로젝트 지원하기
 
@@ -336,11 +336,11 @@ ui-layout의 ThemePresenter가 `<body>`에 인라인 커스텀 프로퍼티로 �
 
 ## 🔒 보안
 
-보안 문제를 발견하셨나요? 공개 이슈로 열지 말고 [보안 정책](./SECURITY.md)을 참고하세요.
+보안 문제를 발견하셨나요? 공개 이슈로 열지 말고 [보안 정책](../../SECURITY.md)을 참고하세요.
 
 ## 📄 라이선스
 
-[MIT](./LICENSE)
+[MIT](../../LICENSE)
 
 ## 🙏 감사의 말
 

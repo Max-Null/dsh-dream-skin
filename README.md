@@ -1,5 +1,5 @@
 <p align="center">
-  <strong>中文</strong> · <a href="./README.en.md">English</a> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <a href="./README.de.md">Deutsch</a> · <a href="./README.ru.md">Русский</a>
+  <strong>中文</strong> · <a href="./docs/i18n/README.en.md">English</a> · <a href="./docs/i18n/README.ja.md">日本語</a> · <a href="./docs/i18n/README.ko.md">한국어</a> · <a href="./docs/i18n/README.es.md">Español</a> · <a href="./docs/i18n/README.fr.md">Français</a> · <a href="./docs/i18n/README.de.md">Deutsch</a> · <a href="./docs/i18n/README.ru.md">Русский</a>
 </p>
 
 <div align="center">
@@ -19,7 +19,7 @@
 
 ✨ **Design Philosophy — [一份关于「什么算高级」的设计声明](./docs/design-philosophy.md)** · 以 iOS / Linear 的审美为基准，把「高级感」建立在材质的准确与配色的克制上。
 
-[English](./README.en.md) · [变更日志](./CHANGELOG.md) · [项目说明](./docs/PROJECT.md) · [设计哲学](./docs/design-philosophy.md) · [发布指引](./docs/publishing-to-npm.md)
+[English](./docs/i18n/README.en.md) · [变更日志](./CHANGELOG.md) · [项目说明](./docs/PROJECT.md) · [设计哲学](./docs/design-philosophy.md) · [发布指引](./docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)

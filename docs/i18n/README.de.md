@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="./README.md">中文</a> · <a href="./README.en.md">English</a> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <strong>Deutsch</strong> · <a href="./README.ru.md">Русский</a>
+  <a href="../../README.md">中文</a> · <a href="./README.en.md">English</a> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <a href="./README.fr.md">Français</a> · <strong>Deutsch</strong> · <a href="./README.ru.md">Русский</a>
 </p>
 
 <div align="center">
@@ -17,9 +17,9 @@ Natives Skinning · Wallpaper · teilbare Theme-Pakete — eine elegante Umsetzu
 
 > 1-Zeilen-Installation · rein nativ (keine Injektion, keine Installer-Patches) · übersteht DSH-Updates
 
-✨ **Design Philosophy — [eine Aussage darüber, was „premium" bedeutet](./docs/design-philosophy.md)** · mit der iOS-/Linear-Ästhetik als Basis entsteht Premium aus der Präzision des Materials und der Zurückhaltung der Farben.
+✨ **Design Philosophy — [eine Aussage darüber, was „premium" bedeutet](../../docs/design-philosophy.md)** · mit der iOS-/Linear-Ästhetik als Basis entsteht Premium aus der Präzision des Materials und der Zurückhaltung der Farben.
 
-[中文](./README.md) · [Änderungshistorie](./CHANGELOG.md) · [Projektnotizen](./docs/PROJECT.md) · [Design Philosophy](./docs/design-philosophy.md) · [Veröffentlichungsanleitung](./docs/publishing-to-npm.md)
+[中文](../../README.md) · [Änderungshistorie](../../CHANGELOG.md) · [Projektnotizen](../../docs/PROJECT.md) · [Design Philosophy](../../docs/design-philosophy.md) · [Veröffentlichungsanleitung](../../docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
@@ -308,12 +308,12 @@ Das Client-Bundle ist direkt im `__ModuleLoader__`-Format geschrieben (dieselbe 
 - **Einen integrierten Skin hinzufügen**: Füge dem `SKINS`-Array in `lib/client.js` ein Objekt (`id` + `colorScheme` +
   `tokens`) hinzu; es erscheint dann automatisch in den Einstellungen. Füge einen Schlüssel `skin.<id>` in **allen 8 Sprachwörterbüchern** (`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`) hinzu.
 
-- **Ein Theme-Paket ausliefern (empfohlen)**: Folge [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json) —
+- **Ein Theme-Paket ausliefern (empfohlen)**: Folge [`docs/examples/sample-theme-pack.json`](../../docs/examples/sample-theme-pack.json) —
   eine `*.dsh-theme.json` ist in den Einstellungen importierbar und über einen Link teilbar, ohne Codeänderungen.
-- **Eigene Wallpaper hinzufügen**: Lege Bilder in [`wallpapers/`](./wallpapers/) ab (verbreite nur, wofür du die Rechte
+- **Eigene Wallpaper hinzufügen**: Lege Bilder in [`wallpapers/`](../../wallpapers/) ab (verbreite nur, wofür du die Rechte
   hast) und importiere sie dann über die „Wallpaper“-Reihe von DSH.
 - **Validieren**: `npm test` (VM-Smoke-Tests, die Factory-Eval, `apply()` sowie Paket-Import/-Persistenz abdecken).
-- **Neu einfärben**: Nutze die `--dsw-alias-*`-Tokens (vollständiger Vertrag in [`docs/themes-spec.md`](./docs/themes-spec.md)).
+- **Neu einfärben**: Nutze die `--dsw-alias-*`-Tokens (vollständiger Vertrag in [`docs/themes-spec.md`](../../docs/themes-spec.md)).
 
 ## 📌 Roadmap
 
@@ -329,8 +329,8 @@ Das Client-Bundle ist direkt im `__ModuleLoader__`-Format geschrieben (dieselbe 
 
 ## 🤝 Mitwirken
 
-Issues und PRs sind willkommen! Bitte lies den [Contributing Guide](./CONTRIBUTING.md) und beachte den
-[Code of Conduct](./CODE_OF_CONDUCT.md).
+Issues und PRs sind willkommen! Bitte lies den [Contributing Guide](../../CONTRIBUTING.md) und beachte den
+[Code of Conduct](../../CODE_OF_CONDUCT.md).
 
 ## ⭐ Das Projekt unterstützen
 
@@ -340,11 +340,11 @@ beisteuern? Mach mit.
 
 ## 🔒 Sicherheit
 
-Ein Sicherheitsproblem gefunden? Öffne kein öffentliches Issue — siehe die [Security Policy](./SECURITY.md).
+Ein Sicherheitsproblem gefunden? Öffne kein öffentliches Issue — siehe die [Security Policy](../../SECURITY.md).
 
 ## 📄 Lizenz
 
-[MIT](./LICENSE)
+[MIT](../../LICENSE)
 
 ## 🙏 Danksagungen
 

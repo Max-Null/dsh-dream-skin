@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="./README.md">中文</a> · <a href="./README.en.md">English</a> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <strong>Français</strong> · <a href="./README.de.md">Deutsch</a> · <a href="./README.ru.md">Русский</a>
+  <a href="../../README.md">中文</a> · <a href="./README.en.md">English</a> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.es.md">Español</a> · <strong>Français</strong> · <a href="./README.de.md">Deutsch</a> · <a href="./README.ru.md">Русский</a>
 </p>
 
 <div align="center">
@@ -17,9 +17,9 @@ Habillage natif · fond d'écran · packs de thèmes partageables — une implé
 
 > Installation en 1 ligne · 100 % natif (aucune injection, aucun patch d'installation) · résiste aux mises à jour de DSH
 
-✨ **Design Philosophy — [une déclaration sur ce que « premium » signifie](./docs/design-philosophy.md)** · avec l'esthétique iOS / Linear comme base, le premium naît de la précision du matériau et de la retenue des couleurs.
+✨ **Design Philosophy — [une déclaration sur ce que « premium » signifie](../../docs/design-philosophy.md)** · avec l'esthétique iOS / Linear comme base, le premium naît de la précision du matériau et de la retenue des couleurs.
 
-[中文](./README.md) · [Historique](./CHANGELOG.md) · [Notes du projet](./docs/PROJECT.md) · [Design Philosophy](./docs/design-philosophy.md) · [Guide de publication](./docs/publishing-to-npm.md)
+[中文](../../README.md) · [Historique](../../CHANGELOG.md) · [Notes du projet](../../docs/PROJECT.md) · [Design Philosophy](../../docs/design-philosophy.md) · [Guide de publication](../../docs/publishing-to-npm.md)
 
 ![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
 ![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
@@ -305,12 +305,12 @@ seeds de plateforme (`react`, `react/jsx-runtime`, …) et les bundles client en
 
 - **Ajouter un skin intégré** : ajoutez un objet (`id` + `colorScheme` + `tokens`) au tableau `SKINS` dans `lib/client.js` ;
   il apparaîtra alors automatiquement dans les Paramètres. Ajoutez une clé `skin.<id>` aux **8 dictionnaires de langue** (`zh`/`en`/`ja`/`ko`/`es`/`fr`/`de`/`ru`).
-- **Publier un pack de thèmes (recommandé)** : suivez [`docs/examples/sample-theme-pack.json`](./docs/examples/sample-theme-pack.json) —
+- **Publier un pack de thèmes (recommandé)** : suivez [`docs/examples/sample-theme-pack.json`](../../docs/examples/sample-theme-pack.json) —
   un `*.dsh-theme.json` est importable dans les Paramètres et partageable via un lien, sans aucune modification de code.
-- **Ajouter vos propres fonds d'écran** : déposez des images dans [`wallpapers/`](./wallpapers/) (ne distribuez que ce dont vous avez
+- **Ajouter vos propres fonds d'écran** : déposez des images dans [`wallpapers/`](../../wallpapers/) (ne distribuez que ce dont vous avez
   les droits), puis importez-les via la rangée « Fond d'écran » de DSH.
 - **Valider** : `npm test` (tests de fumée VM couvrant l'évaluation de la factory, `apply()` et l'import/la persistance des packs).
-- **Repeindre** : référez-vous aux tokens `--dsw-alias-*` (contrat complet dans [`docs/themes-spec.md`](./docs/themes-spec.md)).
+- **Repeindre** : référez-vous aux tokens `--dsw-alias-*` (contrat complet dans [`docs/themes-spec.md`](../../docs/themes-spec.md)).
 
 ## 📌 Feuille de route
 
@@ -326,8 +326,8 @@ seeds de plateforme (`react`, `react/jsx-runtime`, …) et les bundles client en
 
 ## 🤝 Contribuer
 
-Issues et PR bienvenues ! Veuillez lire le [Guide de contribution](./CONTRIBUTING.md) et respecter le
-[Code de conduite](./CODE_OF_CONDUCT.md).
+Issues et PR bienvenues ! Veuillez lire le [Guide de contribution](../../CONTRIBUTING.md) et respecter le
+[Code de conduite](../../CODE_OF_CONDUCT.md).
 
 ## ⭐ Soutenir le projet
 
@@ -336,11 +336,11 @@ Si vous l'aimez : mettez une étoile **⭐** au dépôt, un pouce **👍** sur n
 
 ## 🔒 Sécurité
 
-Vous avez trouvé un problème de sécurité ? N'ouvrez pas d'issue publique — consultez la [Politique de sécurité](./SECURITY.md).
+Vous avez trouvé un problème de sécurité ? N'ouvrez pas d'issue publique — consultez la [Politique de sécurité](../../SECURITY.md).
 
 ## 📄 Licence
 
-[MIT](./LICENSE)
+[MIT](../../LICENSE)
 
 ## 🙏 Remerciements
 
