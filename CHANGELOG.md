@@ -2,7 +2,7 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
-## [Unreleased]
+## [0.4.3] - 2026-08-21
 
 > **内置主题（深色 / 跟随系统）在切换预设后失忆的补强。** 修复远端浏览器里内置 `dark` / `light` 主题偏好被 agent
 > 预设重载冲回 `system` 的问题。
