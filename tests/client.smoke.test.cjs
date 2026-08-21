@@ -512,6 +512,77 @@ test('issue #11: saved skin survives an agent-preset change that re-adopts the h
 	assert.equal(roseCalls(), bootCount + 2, 'no restore after the user cleared the skin');
 });
 
+test('issue #11 (built-in): saved dark/light survives an agent-preset connection reset', async () => {
+	// The third-party-skin test above covers dream skins. But the reporter also
+	// hit this for a BUILT-IN preference (深色 / 跟随系统): in a remote browser
+	// DSH keeps ui-theme.preference process-local (not in $DSH_HOME/settings.yaml),
+	// so a client reload / connection-reset from an agent-preset change resets a
+	// concrete `dark`/`light` choice back to `system`. The plugin must record the
+	// last concrete built-in and re-apply it across that reset window, while
+	// treating a later, settled `system` switch as an explicit choice that clears it.
+	const h = buildSandbox();
+	const e = h.factory(makeRequire(makeRuntime().RT));
+	const themeHandlers = [];
+	let pref = 'system';
+	const setCalls = [];
+	const theme = {
+		register() { return () => {}; },
+		setTheme(id) { pref = id; setCalls.push(id); },
+		getTheme() { return { preference: pref, active: { id: pref === 'dark' ? 'dark' : 'light', colorScheme: 'dark', tokens: {} }, themes: [], revision: 1 }; },
+		overrideTokens() { return () => {}; }
+	};
+	const ctx = {
+		theme,
+		slots: { inject(n, f) { if (typeof f === 'function') f(); }, register() { return {}; } },
+		locale: { register() {}, bind() { return (k) => k; } },
+		on(ev, fn) { if (ev === 'theme/change') themeHandlers.push(fn); return () => {}; },
+		effect(t) { const d = t(); if (typeof d !== 'function') return; }
+	};
+	// Drive a built-in `dark` selection and record setTheme calls.
+	const emit = (p) => { pref = p; for (const fn of themeHandlers) fn({ preference: p, active: { id: 'dark', colorScheme: 'dark', tokens: {} }, revision: 2 }); };
+	const tick = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+	const darkCalls = () => setCalls.filter((id) => id === 'dark').length;
+
+	assert.doesNotThrow(() => e.apply(ctx));
+	// User picks a concrete built-in preference: dark (Appearance row calls
+	// setTheme('dark'), which fires theme/change — the plugin records it).
+	theme.setTheme('dark');
+	emit('dark');
+	assert.ok(darkCalls() >= 1, 'user setting dark invokes setTheme(dark)');
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:builtin-last'), 'dark', 'dark choice recorded for later restore');
+
+	// Agent-preset change → connection reset → scope re-adoption → theme resets to
+	// system. Simulate a client remount: a FRESH plugin with the same localStorage
+	// (now holding builtin-last=dark) and the host re-adopting `system` right after
+	// mount, while the boot/reset window is still open (< BUILTIN_SETTLE_MS).
+	const h2 = buildSandbox({ seed: { 'dsh-dream-skin:builtin-last': 'dark' } });
+	const e2 = h2.factory(makeRequire(makeRuntime().RT));
+	const theme2Handlers = [];
+	let pref2 = 'system';
+	const setCalls2 = [];
+	const theme2 = {
+		register() { return () => {}; },
+		setTheme(id) { pref2 = id; setCalls2.push(id); },
+		getTheme() { return { preference: pref2, active: { id: 'dark', colorScheme: 'dark', tokens: {} }, themes: [], revision: 1 }; },
+		overrideTokens() { return () => {}; }
+	};
+	const ctx2 = {
+		theme: theme2,
+		slots: { inject(n, f) { if (typeof f === 'function') f(); }, register() { return {}; } },
+		locale: { register() {}, bind() { return (k) => k; } },
+		on(ev, fn) { if (ev === 'theme/change') theme2Handlers.push(fn); return () => {}; },
+		effect(t) { const d = t(); if (typeof d !== 'function') return; }
+	};
+	const emit2 = (p) => { pref2 = p; for (const fn of theme2Handlers) fn({ preference: p, active: { id: 'dark', colorScheme: 'dark', tokens: {} }, revision: 2 }); };
+	const darkCalls2 = () => setCalls2.filter((id) => id === 'dark').length;
+	assert.doesNotThrow(() => e2.apply(ctx2));
+	// The boot/reset window is open right after apply() (settle timer not yet fired).
+	// The host re-adopts system (remote browser lost process-local dark).
+	emit2('system');
+	await tick(30); // < builtinSettled (2000ms) — still in the boot/reset window
+	assert.ok(darkCalls2() >= 1, 'saved dark re-applied after the agent-preset reset to system');
+});
+
 test('setSkin auto-attaches the skin diffused-glow gradient when no user wallpaper is set', () => {
 	// Premium material look: picking a built-in skin should attach that skin's
 	// recommended iOS diffused-glow gradient automatically — but ONLY when the
