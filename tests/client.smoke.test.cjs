@@ -180,6 +180,13 @@ test('issue #18: every skin themes the bubble / selector surfaces (no default-bl
 		const bubble = skin.tokens['--dsw-specific-bubble'];
 		if (skin.colorScheme === 'dark') {
 			assert.ok(!/^#|^rgba\(255|^white/i.test(bubble.trim()), `${skin.id} dark bubble must be a dark fill`);
+			// 0.4.6 regression guard: dark skins must NOT use a near-white translucent
+			// layer-3 (e.g. rgba(255,255,255,.5)) as the tag/card surface — DSH maps
+			// settings cards to it, and a 50%-white "box" makes the light label text
+			// illegible. It must be a dark elevated color so light text stays readable.
+			const layer3 = skin.tokens['--dsw-alias-bg-layer-3'];
+			assert.ok(!/rgba\(255,\s*255,\s*255,\s*0\.5\)/i.test(layer3), `${skin.id} dark layer-3 must not be a 50% white box`);
+			assert.ok(/^#/.test(layer3.trim()), `${skin.id} dark layer-3 must be a solid dark color (readable light text)`);
 		}
 	}
 });
