@@ -2,6 +2,18 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.4.9] - 2026-08-21
+
+> **左右侧栏皮肤一致。** 修复右侧工具面板（Files / 任务管理等）在深色主题下偏浅、与左侧导航栏不一致的问题。
+
+### 修复
+- **右侧工具面板偏浅、与左栏不一致**：DSH 的右侧工作区/工具面板（Files、任务管理等）背景使用
+  `--dsw-alias-bg-module-platform` token，而插件皮肤此前**未覆盖**它，深色主题下它落到 DSH 默认的浅蓝灰
+  （`--dsw-static-neutral-bluish-60`），于是右栏整块偏浅、与左侧深色导航栏对不上。现为 8 套皮肤各补充
+  `--dsw-alias-bg-module-platform`：深色皮肤用与底色协调的深实色（abyss `#151821`、aurora `#131c20`、nebula
+  `#171523`、ember `#1b1712`、midnight `#11111a`），浅色皮肤用近底浅色。此为 **token 级覆盖**，不依赖会随 DSH
+  版本变化的类名，右栏自动跟随主题。已用亮度脚本校验 8 套皮肤该 token 与文字对比充足（差 207+），新增回归测试锁定。
+
 ## [0.4.8] - 2026-08-21
 
 > **文档与注释修正（无运行逻辑变更）。** 修复多语言 README 图片断链、CHANGELOG 格式、代码注释/缩进问题。
