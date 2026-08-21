@@ -156,6 +156,34 @@ test('bundle factory evaluates and exports the expected surface', () => {
 	assert.ok('SETTINGS_NS' in e);
 });
 
+test('issue #18: every skin themes the bubble / selector surfaces (no default-blue leak)', () => {
+	// DSH maps message bubbles to --dsw-specific-bubble (default --dsw-static-deepseek-50,
+	// a brand light-blue) and the composer option button to --dsw-specific-selector (default
+	// blue-grey). If a skin omits these, bubbles/buttons render DSH's default blue on top of a
+	// non-blue theme — the "tag/…未覆盖" complaint. Every skin must define the three surface
+	// tokens (plus --dsw-specific-menu for popovers) so they inherit the theme, not the default.
+	const h = buildSandbox();
+	const e = h.factory(makeRequire(makeRuntime().RT));
+	assert.ok(e.SKINS.length === 8, `expected 8 skins, got ${e.SKINS.length}`);
+	const required = [
+		'--dsw-specific-bubble',
+		'--dsw-specific-bubble-highlight',
+		'--dsw-specific-selector',
+	];
+	for (const skin of e.SKINS) {
+		for (const token of required) {
+			assert.ok(typeof skin.tokens[token] === 'string' && skin.tokens[token].length > 0,
+				`${skin.id} must define ${token}`);
+		}
+		// Dark skins need a readable dark bubble (not the default-light/blue bubble);
+		// light skins need a near-white bubble.
+		const bubble = skin.tokens['--dsw-specific-bubble'];
+		if (skin.colorScheme === 'dark') {
+			assert.ok(!/^#|^rgba\(255|^white/i.test(bubble.trim()), `${skin.id} dark bubble must be a dark fill`);
+		}
+	}
+});
+
 test('apply() mounts slot rows and registers built-in skins without throwing', () => {
 	const h = buildSandbox();
 	const e = h.factory(makeRequire(makeRuntime().RT));

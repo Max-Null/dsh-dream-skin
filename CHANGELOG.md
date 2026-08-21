@@ -2,6 +2,20 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.4.6] - 2026-08-21
+
+> **消息气泡与部分标签 / 选项卡补盖。** 修复未覆盖 `--dsw-specific-bubble` / `--dsw-specific-selector` 等语义 token、
+> 导致消息气泡等仍用 DSH 默认蓝色的问题；同时抬高深色皮肤的 `--dsw-alias-bg-layer-3` 使标签卡片不再近乎透明。
+
+### 修复
+- **消息气泡 / 部分标签、选项卡仍用 DSH 默认蓝色（issue #18）**：DSH 把消息气泡背景映射到 `--dsw-specific-bubble`
+  （默认 `--dsw-static-deepseek-50`，品牌浅蓝）、选项按钮到 `--dsw-specific-selector`（默认蓝灰），但插件皮肤此前未覆盖
+  这两枚 token，导致在 ember / midnight / rose 等非蓝色主题下气泡与按钮仍是刺眼的蓝色、「未被覆盖」。现为 8 套皮肤各补充
+  `--dsw-specific-bubble`、`--dsw-specific-bubble-highlight`、`--dsw-specific-selector`，映射到与各皮肤配色一致的可读表面。
+- **深色皮肤标签卡片近乎透明**：DSH 把 agent 预设/插件库/插件设置等标签卡片背景映射到 `--dsw-alias-bg-layer-3`，而深色皮肤
+  此前把它设到近似全透（`rgba(255,255,255,.085)`），这些标签卡片几乎看不见文字。现将深色皮肤的 layer-3 抬到可读的
+  `rgba(255,255,255,0.5)`（磨砂玻璃），浅色皮肤不受影响。
+
 ## [0.4.5] - 2026-08-21
 
 > **「弹窗不透明度」真正生效。** 修复 slider 只作用于个别选项卡卡片、对真实下拉 / 浮层 / 弹窗无效的问题。
