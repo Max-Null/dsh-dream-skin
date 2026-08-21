@@ -762,6 +762,11 @@ test('liquid-glass material CSS is injected on leaf cards only (no fixed-modal a
 	assert.ok(css.includes('var(--dsw-specific-sidebar-fill)'), 'right panel uses the shared sidebar fill');
 	assert.ok(css.includes('.hHd-Xa_settingsArea, .hHd-Xa_footerActions'), 'sidebar footer/settings pinned to one plane');
 	assert.ok(css.includes('.qDHVXG_fade'), 'list-end fade removed for a uniform left column');
+	// Dropdown / popup menu readability (issue: menus see-through): DSH maps
+	// `--dsw-specific-menu` -> `--dsw-alias-bg-layer-3`, which the skins override
+	// to near-transparent white, so every menu was illegible. The fix points menus
+	// at the readable elevated `layer-2` fill.
+	assert.ok(css.includes('--dsw-specific-menu: var(--dsw-alias-bg-layer-2) !important'), 'menus repointed to the readable elevated layer-2 fill');
 	// The user-questions option card must get a high-opacity readable fill (it
 	// shares input-major with the translucent composer, so it needs its own
 	// solid background or option text becomes illegible).
