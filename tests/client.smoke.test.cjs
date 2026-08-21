@@ -328,7 +328,7 @@ test('all locale dictionaries are complete and keep placeholders', () => {
 		const body = src.slice(start, end);
 		const keys = [...body.matchAll(/"([a-zA-Z0-9.]+)":\s*"/g)].map((m) => m[1]);
 		dicts[lang] = new Set(keys);
-		assert.equal(keys.length, 43, `${lang} has ${keys.length} keys (expected 43)`);
+		assert.equal(keys.length, 45, `${lang} has ${keys.length} keys (expected 45)`);
 	}
 	const zhKeys = dicts.zh;
 	for (const lang of langs.slice(1)) {
@@ -510,6 +510,59 @@ test('setSkin swaps the built-in diffused-glow background when switching skins',
 	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-follows-skin'), '1', 'still following after switch');
 });
 
+test('saved skin survives a page refresh (fresh apply re-stores from localStorage)', () => {
+	// Regression for issue #8: selecting a skin must survive a plain page refresh.
+	// On refresh the SAME origin's localStorage is still present, but the plugin is
+	// a fresh module (empty in-memory cache, getTheme() starts at 'system'). A new
+	// apply() must re-apply the persisted third-party skin from localStorage so the
+	// UI doesn't fall back to Default. We drive the restore by seeding the storage
+	// exactly as a previous "page life" would have left it and re-running apply().
+	const h = buildSandbox({
+		seed: { 'dsh-dream-skin:skin': 'midnight' } // what the pre-refresh session saved
+	});
+	let pref = 'system'; // freshly-booted theme runtime has no preference yet
+	let setCalls = [];
+	const theme = {
+		register() { return () => {}; },
+		setTheme(id) { pref = id; setCalls.push(id); },
+		getTheme() { return { preference: pref, active: { id: 'dark', colorScheme: 'dark', tokens: {} }, themes: [], revision: 1 }; },
+		overrideTokens() { return () => {}; }
+	};
+	const e = h.factory(makeRequire(makeRuntime().RT));
+	const ctx = makeApplyContext(h, { captureActions: true });
+	ctx.theme = theme;
+	assert.doesNotThrow(() => e.apply(ctx));
+	assert.equal(pref, 'midnight', 'refresh restored the saved third-party skin from localStorage');
+	assert.ok(setCalls.includes('midnight'), 'theme.setTheme(midnight) invoked during refresh restore');
+});
+
+test('modal-opacity row registers, persists, and applies the CSS fill variable', () => {
+	// Feature (issue #9): a user-facing popup-opacity control must (a) register as a
+	// settings row, (b) persist its value through the storage seam, and (c) re-apply
+	// the CSS variable so the popup fill actually changes without rebuilding CSS.
+	const styleProps = {};
+	const documentMock = {
+		body: { contains: () => false },
+		head: { children: [], contains(el) { return false; }, appendChild() {} },
+		createElement() { return { style: {}, dataset: {}, textContent: '', remove() {} }; },
+		createTextNode: () => ({}),
+		querySelector: () => null,
+		documentElement: { style: { setProperty(k, v) { styleProps[k] = v; } } }
+	};
+	const h = buildSandbox({ document: documentMock });
+	const e = h.factory(makeRequire(makeRuntime().RT));
+	const ctx = makeApplyContext(h, { captureActions: true });
+	assert.doesNotThrow(() => e.apply(ctx));
+
+	// The row's action bag exists and setOpacity persists + re-applies the variable.
+	const bags = h.actionBags;
+	assert.ok(bags['dream-skin-modal-opacity'], 'modal-opacity row action bag captured');
+	assert.doesNotThrow(() => bags['dream-skin-modal-opacity'].setOpacity(50));
+	assert.equal(h.localStorage.getItem('dsh-dream-skin:modal-opacity'), '0.5', 'modal opacity persisted');
+	// readModalOpacity → 50% → the CSS variable is set to the weight percentage.
+	assert.equal(styleProps['--dsh-dream-skin-modal-fill'], '50%', 'CSS fill variable applied (50%)');
+});
+
 test('liquid-glass material CSS is injected on leaf cards only (no fixed-modal ancestor)', () => {
 	// Regression guard for the settings-modal-trapping bug: the premium material
 	// injector must add backdrop-filter only to LEAF cards (composer, warning,
@@ -552,4 +605,8 @@ test('liquid-glass material CSS is injected on leaf cards only (no fixed-modal a
 	// solid background or option text becomes illegible).
 	assert.ok(css.includes('.Mbwy4a_card'), 'user-questions card overridden');
 	assert.ok(css.includes('color-mix('), 'option card uses a base-color mix for a solid fill');
+	// The fill weight must be adjustable (issue #9): the rule references the
+	// MODAL_FILL_VAR custom property with a readable fallback, not a hardcoded 94%.
+	assert.ok(css.includes('--dsh-dream-skin-modal-fill'), 'option card fill is user-adjustable via CSS variable');
+	assert.ok(css.includes(', 94%'), 'adjustable fill keeps the readable default fallback');
 });
