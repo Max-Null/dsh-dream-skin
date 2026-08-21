@@ -2,6 +2,18 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [Unreleased]
+
+> **内置主题（深色 / 跟随系统）在切换预设后失忆的补强。** 修复远端浏览器里内置 `dark` / `light` 主题偏好被 agent
+> 预设重载冲回 `system` 的问题。
+
+### 修复
+- **内置深色 / 浅色在切换 agent 预设后变回默认（issue #11 复述）**：DSH 只在 loopback 浏览器把 `ui-theme.preference` 写进
+  `$DSH_HOME/settings.yaml`；远端浏览器（如经 HTTP 访问的浏览器）的该偏好仅保存在进程内，一旦客户端重载 /
+  `connection/reset`（切换 agent 预设会触发）就回到 `system` 默认。现插件同样记录最近一次的内置
+  `dark` / `light` 选择（走本插件三层持久化），在「重载 / 连接重置」回落到 `system` 的窗口内重新套用；用户在稳定会话里
+  显式选「跟随系统」则清空记录。针对内置偏好的专项回归测试已补齐，全部 28 项测试通过。
+
 ## [0.4.2] - 2026-08-21
 
 > **弹窗可调 + 刷新持久化加固 + 材质一致性打磨 + 根目录精简。** 新增「弹窗不透明度」调节；为「刷新后主题失效」补充回归测试并加固还原路径；输入框去掉尖角外框、左右面板与侧边栏统一质感；多语言 README 迁入 `docs/i18n/`，根目录只留中文 README。
