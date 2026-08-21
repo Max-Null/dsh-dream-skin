@@ -169,27 +169,53 @@ test('issue #18: every skin themes the bubble / selector surfaces (no default-bl
 		'--dsw-specific-bubble',
 		'--dsw-specific-bubble-highlight',
 		'--dsw-specific-selector',
+		'--dsw-alias-bg-module-platform',
+		'--dsw-alias-bg-base',
 	];
 	for (const skin of e.SKINS) {
 		for (const token of required) {
 			assert.ok(typeof skin.tokens[token] === 'string' && skin.tokens[token].length > 0,
 				`${skin.id} must define ${token}`);
 		}
-		// Dark skins need a readable dark bubble (not the default-light/blue bubble);
-		// light skins need a near-white bubble.
+		// The right tool panel (Files / 任务管理) background uses --dsw-alias-bg-module-platform,
+		// which previously fell back to DSH's default bluish/grey, so the right side stayed
+		// light on dark themes (issue: left vs right sidebar mismatch). On dark skins it must be
+		// a dark fill; on light skins a light fill — matching the theme, not the DSH default.
+		const modulePlatform = skin.tokens['--dsw-alias-bg-module-platform'];
+		const moduleLum = hexLuminance(modulePlatform);
+		if (skin.colorScheme === 'dark') {
+			assert.ok(moduleLum !== null && moduleLum < 100,
+				`${skin.id} dark module-platform must be a dark fill`);
+		} else {
+			assert.ok(moduleLum !== null && moduleLum >= 100,
+				`${skin.id} light module-platform must be a light fill`);
+		}
+		// The bubble fill for dark skins must be a readable dark bubble; for light skins near-white.
 		const bubble = skin.tokens['--dsw-specific-bubble'];
 		if (skin.colorScheme === 'dark') {
 			assert.ok(!/^#|^rgba\(255|^white/i.test(bubble.trim()), `${skin.id} dark bubble must be a dark fill`);
-			// 0.4.6 regression guard: dark skins must NOT use a near-white translucent
-			// layer-3 (e.g. rgba(255,255,255,.5)) as the tag/card surface — DSH maps
-			// settings cards to it, and a 50%-white "box" makes the light label text
-			// illegible. It must be a dark elevated color so light text stays readable.
 			const layer3 = skin.tokens['--dsw-alias-bg-layer-3'];
 			assert.ok(!/rgba\(255,\s*255,\s*255,\s*0\.5\)/i.test(layer3), `${skin.id} dark layer-3 must not be a 50% white box`);
 			assert.ok(/^#/.test(layer3.trim()), `${skin.id} dark layer-3 must be a solid dark color (readable light text)`);
 		}
 	}
 });
+
+// Approximate luminance (0-255) for a #rrggbb / #rgb hex or rgba() color, or null
+// if the value is not a parseable color. For rgba() we use the RGB channels (the
+// alpha only lowers the effective contrast against whatever is behind; the RGB
+// channels still tell us whether the fill is light or dark by intent).
+function hexLuminance(c) {
+	if (typeof c !== 'string') return null;
+	c = c.trim();
+	let m = /^#([0-9a-f]{6})$/i.exec(c);
+	if (m) { const n = parseInt(m[1], 16); return Math.round(0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)); }
+	m = /^#([0-9a-f]{3})$/i.exec(c);
+	if (m) { const h = m[1]; const n = parseInt(h[0] + h[0] + h[1] + h[1] + h[2] + h[2], 16); return Math.round(0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)); }
+	m = /^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)/.exec(c);
+	if (m) return Math.round(0.2126 * (+m[1]) + 0.7152 * (+m[2]) + 0.0722 * (+m[3]));
+	return null;
+}
 
 test('apply() mounts slot rows and registers built-in skins without throwing', () => {
 	const h = buildSandbox();
