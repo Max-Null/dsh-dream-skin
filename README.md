@@ -17,20 +17,49 @@
 
 > 1 行安装 · 纯原生（无注入/不改安装包）· 不因 DSH 更新失效
 
-✨ **Design Philosophy — [一份关于「什么算高级」的设计声明](./docs/design-philosophy.md)** · 以 iOS / Linear 的审美为基准，把「高级感」建立在材质的准确与配色的克制上。
-
-[English](./docs/i18n/README.en.md) · [变更日志](./CHANGELOG.md) · [项目说明](./docs/PROJECT.md) · [设计哲学](./docs/design-philosophy.md) · [发布指引](./docs/publishing-to-npm.md)
-
-![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
-![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
-[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
-![node](https://img.shields.io/badge/node-%3E%3D18-6d9af6)
-![dsh](https://img.shields.io/badge/dsh-0.1.0--rc.6-blueviolet)
-![plugin type](https://img.shields.io/badge/plugin-dual--face%20(dsh.bundle%2Bdsh.client)-4f83f2)
-![ci](https://img.shields.io/github/actions/workflow/status/RevolutionLA/dsh-dream-skin/ci.yml?branch=main&label=CI&color=34d399)
-![code size](https://img.shields.io/github/languages/code-size/RevolutionLA/dsh-dream-skin?color=orange)
-
 </div>
+
+---
+
+## 🤩 先看效果
+
+> 以下皮肤卡由各皮肤的**真实 token** 生成，弥散光背景即你戴上它后的背景壁纸——所见即所得，点开可放大。点击图片可放大查看精致材质。
+
+<p align="center">
+  <a href="docs/mirage-overview.png"><img src="docs/mirage-overview.png" alt="Mirage 幻梦系列 8 套皮肤总览" width="100%"/></a>
+</p>
+
+### 🎨 预览 — Mirage 幻梦系列
+
+<table>
+  <tr>
+    <td align="center"><a href="docs/previews/abyss.png"><img src="docs/previews/abyss.png" width="240" alt="abyss 沉静蓝"/></a><br/><b>abyss</b> · 沉静蓝 · 深海渊</td>
+    <td align="center"><a href="docs/previews/aurora.png"><img src="docs/previews/aurora.png" width="240" alt="aurora 极光青"/></a><br/><b>aurora</b> · 极光青 · 清透</td>
+    <td align="center"><a href="docs/previews/nebula.png"><img src="docs/previews/nebula.png" width="240" alt="nebula 星云紫"/></a><br/><b>nebula</b> · 星云紫 · 深邃</td>
+    <td align="center"><a href="docs/previews/ember.png"><img src="docs/previews/ember.png" width="240" alt="ember 余烬橙"/></a><br/><b>ember</b> · 余烬橙 · 暖光</td>
+  </tr>
+  <tr>
+    <td align="center"><a href="docs/previews/midnight.png"><img src="docs/previews/midnight.png" width="240" alt="midnight 午夜黑"/></a><br/><b>midnight</b> · 午夜黑 · OLED</td>
+    <td align="center"><a href="docs/previews/ivory.png"><img src="docs/previews/ivory.png" width="240" alt="ivory iOS 扁平"/></a><br/><b>ivory</b> · iOS 扁平 · 清爽</td>
+    <td align="center"><a href="docs/previews/mist.png"><img src="docs/previews/mist.png" width="240" alt="mist 液态玻璃"/></a><br/><b>mist</b> · 液态玻璃 · 晨雾</td>
+    <td align="center"><a href="docs/previews/rose.png"><img src="docs/previews/rose.png" width="240" alt="rose 蔷薇粉"/></a><br/><b>rose</b> · 蔷薇粉 · Material</td>
+  </tr>
+</table>
+
+### 预设一览
+
+| id | 风格 | 特质 |
+|------|-------|------|
+| `abyss` | 🕶️ 沉静蓝 | 冷静深沉的靛蓝，克制不喧哗 |
+| `aurora` | 🌌 极光青 | 清冽通透的冷青，自然冷调 |
+| `nebula` | 🪐 星云紫 | 深邃漫射的紫青，朦胧神秘 |
+| `ember` | 🔥 余烬橙 | 温暖克制的琥珀橙 |
+| `midnight` | 🌚 午夜黑 | 极简纯黑，OLED 沉浸 |
+| `ivory` | 📐 iOS 扁平 | 极简平白，iOS 系统灰 + 克制的蓝 |
+| `mist` | 🧊 液态玻璃 | 清透毛玻璃，半透明 + 模糊 |
+| `rose` | 🌸 Material 粉 | 明快彩粉，谷歌 Material 扁平彩色 |
+
+---
 
 ## ⚡ 一句话安装
 
@@ -84,6 +113,8 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 | 校验 + 回滚 | ✅ | 部分 | ✅ |
 | **浏览器 Web GUI，天然跨平台** | ✅ | ✅ | ❌ (需桌面 App) |
 
+---
+
 ## ✨ 功能一览
 
 | 能力 | 说明 |
@@ -110,6 +141,8 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 | ⭐ **收藏** | 收藏喜欢的皮肤，快速切换 |
 | ✅ **校验 + 回滚** | 导入时会校验格式/必填 token/颜色合法性；失败或移除时安全回退，不做破坏性更改 |
 
+---
+
 ## 🧩 它是什么形式的插件
 
 **它是 DeepSeek Harness 的标准「双面插件」（`dsh-plugin`）——加载和用法与官方 `ui-theme` 完全一致。**
@@ -131,37 +164,7 @@ DeepSeek Harness 的口号是「一切皆插件」：模型、工具、沙箱、
 
 也就是说：**你装的不是一个旁门左道的脚本，而是 DSH 官方插件体系里的标准皮肤插件。**
 
-## 🖼️ 预览 — Mirage 幻梦系列
-
-> 以下色卡由各皮肤的**真实 token** 生成，所见即所得。点开可放大。
-
-<table>
-  <tr>
-    <td align="center"><img src="docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · 沉静蓝</td>
-    <td align="center"><img src="docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · 极光青</td>
-    <td align="center"><img src="docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · 星云紫</td>
-    <td align="center"><img src="docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · 余烬橙</td>
-  </tr>
-  <tr>
-    <td align="center"><img src="docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · 午夜黑</td>
-    <td align="center"><img src="docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS 扁平</td>
-    <td align="center"><img src="docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · 液态玻璃</td>
-    <td align="center"><img src="docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material 粉</td>
-  </tr>
-</table>
-
-### 预设一览
-
-| id | 风格 | 特质 |
-|------|-------|------|
-| `abyss` | 🕶️ 沉静蓝 | 冷静深沉的靛蓝，克制不喧哗 |
-| `aurora` | 🌌 极光青 | 清冽通透的冷青，自然冷调 |
-| `nebula` | 🪐 星云紫 | 深邃漫射的紫青，朦胧神秘 |
-| `ember` | 🔥 余烬橙 | 温暖克制的琥珀橙 |
-| `midnight` | 🌚 午夜黑 | 极简纯黑，OLED 沉浸 |
-| `ivory` | 📐 iOS 扁平 | 极简平白，iOS 系统灰 + 克制的蓝 |
-| `mist` | 🧊 液态玻璃 | 清透毛玻璃，半透明 + 模糊 |
-| `rose` | 🌸 Material 粉 | 明快彩粉，谷歌 Material 扁平彩色 |
+---
 
 ## ⚡ 快速开始（3 步）
 
@@ -242,6 +245,8 @@ dsh plugin --profile web remove dsh-dream-skin
 dsh web   # 重启后恢复官方外观
 ```
 
+---
+
 ## 🧩 兼容性
 
 | 项 | 值 |
@@ -251,6 +256,8 @@ dsh web   # 重启后恢复官方外观
 | 浏览器 | 现代 Chromium / WebKit（依赖原生 CSS 变量与 `matchMedia`） |
 
 > 升级 DSH 到新版本时，请同步更新 `package.json` 里的 peerDependencies。
+
+---
 
 ## ⚙️ 工作原理
 
@@ -294,6 +301,8 @@ DSH 的主题系统是 token 化的：web 外壳内置 `--dsw-*` 设计令牌，
   （`dsh-host-apiproxy` 的 `WEB_SETTINGS_NAMESPACES`），第三方命名空间会返回 `settings-not-exposed`；
   产品本身也把远程浏览器偏好进程化。`localStorage` 恰好匹配这一边界，且跨刷新存活。
 
+---
+
 ## 🛠️ 开发 / 扩展主题
 
 客户端 bundle 直接以 `__ModuleLoader__` 格式编写（即 tsdown 为官方 `ui-*` 包输出的形态），**免构建**。
@@ -306,6 +315,8 @@ bundle（`@deepseek-ai/dsh-client-runtime/client`、…）。
   一个 `*.dsh-theme.json` 即可在设置里导入或通过分享链接分发给别人，无需改代码。
 - **放你自己的壁纸**：把图片丢进 [`wallpapers/`](./wallpapers/)（注意只在你有权限的前提下分发），再在
   DSH 的「背景图片」里导入即可。
+- **更新预览图**：预览由 `scripts/generate-skin-mockups.cjs`（真实 token + 弥散光）生成 HTML mockup，
+  用无头 Chrome 截图即得 `docs/previews/*.png`，改皮肤 token 后重跑即可保持预览与真实 skin 同步。
 - **跑校验**：`npm test`（VM 冒烟测试，覆盖 factory 求值、`apply` 挂载、主题包导入/持久化）。
 - **换配色**：参考 `--dsw-alias-*` 令牌（完整契约见 [`docs/themes-spec.md`](./docs/themes-spec.md)）。
 
@@ -320,6 +331,8 @@ bundle（`@deepseek-ai/dsh-client-runtime/client`、…）。
 - [ ] 在线色板 / 主题预览 Studio（纯前端，浏览器内校验 + 对比度检查）
 - [ ] 社区主题库（把主题包投稿到仓库 / 在线 Gallery）
 - [ ] 首帧无闪烁（FOUC）改进
+
+---
 
 ## 🤝 贡献
 
