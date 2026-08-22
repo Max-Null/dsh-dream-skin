@@ -8,7 +8,8 @@
 
 **Give DeepSeek Harness a face that's restrained, clear and textured.**
 
-Native skinning · wallpaper · shareable theme packs — an elegant implementation built entirely on DSH's official `--dsw-*` token system.
+Native skinning · wallpaper · accent color · shareable theme packs — an elegant implementation built entirely on DSH's
+official `--dsw-*` token system. Install once, use forever.
 
 > **TL;DR: your coding space can be quiet.**
 
@@ -17,20 +18,94 @@ Native skinning · wallpaper · shareable theme packs — an elegant implementat
 
 > 1-line install · purely native (no injection, no installer patches) · survives DSH updates
 
-✨ **Design Philosophy — [a statement on what "premium" means](../../docs/design-philosophy.md)** · grounded in iOS / Linear aesthetics, premium comes from material precision and restrained color.
-
-[中文](../../README.md) · [Changelog](../../CHANGELOG.md) · [Project Notes](../../docs/PROJECT.md) · [Design Philosophy](../../docs/design-philosophy.md) · [Publishing Guide](../../docs/publishing-to-npm.md)
-
-![npm version](https://img.shields.io/npm/v/dsh-dream-skin?color=4f83f2&label=npm)
-![license](https://img.shields.io/github/license/RevolutionLA/dsh-dream-skin?color=34d399)
-[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
-![node](https://img.shields.io/badge/node-%3E%3D18-6d9af6)
-![dsh](https://img.shields.io/badge/dsh-0.1.0--rc.6-blueviolet)
-![plugin type](https://img.shields.io/badge/plugin-dual--face%20(dsh.bundle%2Bdsh.client)-4f83f2)
-![ci](https://img.shields.io/github/actions/workflow/status/RevolutionLA/dsh-dream-skin/ci.yml?branch=main&label=CI&color=34d399)
-![code size](https://img.shields.io/github/languages/code-size/RevolutionLA/dsh-dream-skin?color=orange)
-
 </div>
+
+---
+
+## 🎮 Two ways to play, one plugin
+
+<table>
+  <tr>
+    <td align="center" width="50%"><h3>🪄 Way #1: elegant out of the box</h3></td>
+    <td align="center" width="50%"><h3>🧱 Way #2: DIY on your terms</h3></td>
+  </tr>
+  <tr>
+    <td>8 designer-tuned <b>preset skins</b> (the Mirage series), light &amp; dark, each with its own diffused-glow background.<br/><b>Put one on and it's premium — zero tuning.</b></td>
+    <td>On top of any preset you can <b>swap the wallpaper (local / URL / gradient)</b>, <b>stack an Accent color</b>, or <b>import &amp; share a theme pack</b> — every internal token is within reach.<br/><b>Shape it however you like.</b></td>
+  </tr>
+</table>
+
+The two ways are layered and independent: a preset decides the "material &amp; base tone"; DIY is a pure overlay
+(`overrideTokens`), toggle it on/off and revert in one click.
+
+---
+
+## 📸 Screenshots
+
+> Real screenshots, not mockups. Left: DSH after applying a skin; right: the dedicated **Theme / Appearance** section in Settings.
+
+<p align="center">
+  <img src="../../docs/screenshots/preview.png" alt="DSH skin preview" width="46%"/>
+  &nbsp;&nbsp;
+  <img src="../../docs/screenshots/settings.png" alt="Theme section in settings" width="46%"/>
+</p>
+
+---
+
+## 🎨 Preview — the Mirage series
+
+> **Way #1 · elegant out of the box.** The 8 skins below are generated from each skin's **real tokens + dedicated
+> diffused-glow background** — what you see is what you get. Click to zoom for the fine material detail.
+
+<table>
+  <tr>
+    <td align="center"><a href="../../docs/previews/abyss.png"><img src="../../docs/previews/abyss.png" width="230" alt="abyss"/></a><br/><b>abyss</b> · Deep Blue</td>
+    <td align="center"><a href="../../docs/previews/aurora.png"><img src="../../docs/previews/aurora.png" width="230" alt="aurora"/></a><br/><b>aurora</b> · Aurora Green</td>
+    <td align="center"><a href="../../docs/previews/nebula.png"><img src="../../docs/previews/nebula.png" width="230" alt="nebula"/></a><br/><b>nebula</b> · Nebula Purple</td>
+    <td align="center"><a href="../../docs/previews/ember.png"><img src="../../docs/previews/ember.png" width="230" alt="ember"/></a><br/><b>ember</b> · Ember Amber</td>
+  </tr>
+  <tr>
+    <td align="center"><a href="../../docs/previews/midnight.png"><img src="../../docs/previews/midnight.png" width="230" alt="midnight"/></a><br/><b>midnight</b> · Midnight OLED</td>
+    <td align="center"><a href="../../docs/previews/ivory.png"><img src="../../docs/previews/ivory.png" width="230" alt="ivory"/></a><br/><b>ivory</b> · iOS Flat</td>
+    <td align="center"><a href="../../docs/previews/mist.png"><img src="../../docs/previews/mist.png" width="230" alt="mist"/></a><br/><b>mist</b> · Liquid Glass</td>
+    <td align="center"><a href="../../docs/previews/rose.png"><img src="../../docs/previews/rose.png" width="230" alt="rose"/></a><br/><b>rose</b> · Material Pink</td>
+  </tr>
+</table>
+
+### 📋 The presets at a glance
+
+| id | style | trait |
+|------|--------|------|
+| `abyss` | 🕶️ Deep Blue | calm deep indigo, restrained and quiet |
+| `aurora` | 🌌 Aurora Green | crisp translucent cool teal, natural cold tone |
+| `nebula` | 🪐 Nebula Purple | deep diffused violet-blue, hazy and mysterious |
+| `ember` | 🔥 Ember Amber | warm restrained amber orange |
+| `midnight` | 🌚 Midnight OLED | minimal pure black, immersive OLED |
+| `ivory` | 📐 iOS Flat | minimal flat white, iOS system gray + restrained blue |
+| `mist` | 🧊 Liquid Glass | clear frosted glass, translucent + blurred |
+| `rose` | 🌸 Material Pink | bright vivid pink, Google Material flat colors |
+
+---
+
+## 🧱 Serious DIY space (Way #2)
+
+> Beyond the presets, dsh-dream-skin gives you a full customization system, start here to craft a workspace that's
+> uniquely yours.
+
+| Capability | What you can do |
+|------|------|
+| 🖼️ **Wallpaper 2.0** | Local image / **image URL** / **gradient presets**; plus **opacity / blur**; each skin even **suggests** a gradient and can **auto-dim** (lower distraction when focusing) |
+| 🌈 **Per-user Accent** | Stack a custom brand-accent over the active skin (`overrideTokens` layer, the skin untouched): **12 one-click preset swatches**, color picker, randomize, and a clear/restore option |
+| 📦 **Theme-pack import / export / share** | A `*.dsh-theme.json` = manifest + full tokens. Import a file, one-click apply, or copy a **share link** (encoded in the URL hash) |
+| 🪟 **Popup opacity** | A slider that controls dropdown / overlay / dialog bottom-fill transparency, persisted |
+| 🧩 **Local pack library** | Your imported packs in one place; **apply / favorite / remove** in a click |
+| 🎲 **Surprise me** | Randomly switch to a different theme; **star** favorites to switch fast |
+| ✅ **Validation + rollback** | Pack import validates format / required tokens / color legality; failures or removals fall back safely |
+
+> Everything layers on top of a preset, **toggle it on/off and revert to DSH's built-in look in one click** — go ahead
+> and experiment, nothing can break.
+
+---
 
 ## ⚡ One-line install
 
@@ -55,23 +130,13 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 
 ---
 
-## 📸 Screenshots
-
-> Real screenshots, not mockups. Left: DSH after applying a skin; right: the dedicated **Theme / Appearance** section in Settings.
-
-<p align="center">
-  <img src="../../docs/screenshots/preview.png" alt="DSH skin preview" width="46%"/>
-  &nbsp;&nbsp;
-  <img src="../../docs/screenshots/settings.png" alt="Theme section in settings" width="46%"/>
-</p>
-
----
-
 ## 🏆 Why it earns a star (vs alternatives)
 
 | Capability | Ours | Other DSH skinning | Codex-Dream-Skin (desktop) |
 |------|:---:|:---:|:---:|
 | Native token themes — no injection, no installer patches | ✅ | ✅ | ❌ (CDP injection) |
+| **iOS/Linear-style cool translucent material & color** | ✅ | ❌ (anime-flavored) | ❌ |
+| **Restrained premium diffused-glow per skin** | ✅ | partial | ❌ |
 | Custom wallpaper + opacity/blur | ✅ | partial | ✅ |
 | **Theme-pack import/export + share links** | ✅ | ❌ | ✅ (zip packs) |
 | **Per-user Accent override** | ✅ | ❌ | partial |
@@ -79,6 +144,8 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 | Local pack library + favorites + surprise-me | ✅ | ❌ | partial |
 | Validation + rollback | ✅ | partial | ✅ |
 | **Browser Web GUI, cross-platform natively** | ✅ | ✅ | ❌ (needs desktop App) |
+
+---
 
 ## ✨ Features
 
@@ -90,32 +157,7 @@ dsh plugin --profile web add dsh-dream-skin && dsh web
 | ↩️ **Default restore** | Back to DSH's built-in appearance (follow system) in one click |
 | 💾 **Local persistence** | Skin & wallpaper stored in `localStorage`, survives reload |
 
-## 🚀 Advanced capabilities (P0)
-
-Differentiation inspired by existing DSH skin projects plus Codex's skin UX:
-
-| Capability | Description |
-|------------|-------------|
-| 📦 **Theme-pack format + import/export** | A `*.dsh-theme.json` pack = format marker + version + manifest (id/name/author/scheme/accent/tokens). Import a file, one-click apply, and copy a **share link** (encoded in the URL hash) |
-| 🌈 **Per-user Accent** | Stack a custom brand-accent over the active skin (`overrideTokens` layer, the skin untouched): **12 one-click preset swatches**, a color picker, **randomize**, and clear |
-| 🖼️ **Wallpaper 2.0** | Local image / **image URL** / **gradient presets**, with a **per-skin suggested gradient** and **auto-dim**; **Recent** (up to 5) to switch back in one click |
-| 🧩 **Local pack library** | Your imported theme packs in one place; **apply / favorite / remove** in a click (the 8 built-in skins live in the Skins row) |
-| ✅ **Clear selection feedback** | Switching skins updates the checked/bordered highlight **instantly** — no stale white highlight box |
-| 🎲 **Surprise me** | Randomly switch to a theme different from the current one |
-| ⭐ **Favorites** | Star your favorite skins and switch between them fast |
-| ✅ **Validation + rollback** | Pack import validates format / required tokens / color legality; failures or removals fall back safely |
-
-## ⚡ Quick start (3 steps)
-
-```sh
-# 1. install
-dsh plugin --profile web add dsh-dream-skin
-# 2. restart
-dsh web
-# 3. open Settings → Theme / Appearance → pick a skin → done.
-```
-
-> Installs the published npm package — no cloning. If `dsh plugin add` reports a workspace error, append `-w`.
+---
 
 ## 🧩 What kind of plugin is this
 
@@ -140,37 +182,19 @@ packages**:
 In other words: you are not installing a fringe script — this is a standard skin plugin inside DSH's official plugin
 system.
 
-## 🖼️ Preview — the Mirage series
+---
 
-> Previews below are generated from each skin's **real tokens** — what you see is what you get.
+## ⚡ Quick start (3 steps)
 
-<table>
-  <tr>
-    <td align="center"><img src="../../docs/previews/abyss.svg" width="220" alt="abyss"/><br/><b>abyss</b> · Deep Blue</td>
-    <td align="center"><img src="../../docs/previews/aurora.svg" width="220" alt="aurora"/><br/><b>aurora</b> · Aurora Green</td>
-    <td align="center"><img src="../../docs/previews/nebula.svg" width="220" alt="nebula"/><br/><b>nebula</b> · Nebula Purple</td>
-    <td align="center"><img src="../../docs/previews/ember.svg" width="220" alt="ember"/><br/><b>ember</b> · Ember Amber</td>
-  </tr>
-  <tr>
-    <td align="center"><img src="../../docs/previews/midnight.svg" width="220" alt="midnight"/><br/><b>midnight</b> · Midnight OLED</td>
-    <td align="center"><img src="../../docs/previews/ivory.svg" width="220" alt="ivory"/><br/><b>ivory</b> · iOS Flat</td>
-    <td align="center"><img src="../../docs/previews/mist.svg" width="220" alt="mist"/><br/><b>mist</b> · Liquid Glass</td>
-    <td align="center"><img src="../../docs/previews/rose.svg" width="220" alt="rose"/><br/><b>rose</b> · Material Pink</td>
-  </tr>
-</table>
+```sh
+# 1. install
+dsh plugin --profile web add dsh-dream-skin
+# 2. restart
+dsh web
+# 3. open Settings → Theme / Appearance → pick a skin → done.
+```
 
-## 🎲 The presets
-
-| id | style | trait |
-|------|--------|------|
-| `abyss` | 🕶️ Deep Blue | calm deep indigo, restrained and quiet |
-| `aurora` | 🌌 Aurora Green | crisp translucent cool teal, natural cold tone |
-| `nebula` | 🪐 Nebula Purple | deep diffused violet-blue, hazy and mysterious |
-| `ember` | 🔥 Ember Amber | warm restrained amber orange |
-| `midnight` | 🌚 Midnight OLED | minimal pure black, immersive OLED |
-| `ivory` | 📐 iOS Flat | minimal flat white, iOS system gray + restrained blue |
-| `mist` | 🧊 Liquid Glass | clear frosted glass, translucent + blurred |
-| `rose` | 🌸 Material Pink | bright vivid pink, Google Material flat colors |
+> Installs the published npm package — no cloning. If `dsh plugin add` reports a workspace error, append `-w`.
 
 ## 📦 Install
 
@@ -244,6 +268,8 @@ dsh plugin --profile web remove dsh-dream-skin
 dsh web   # restores the official appearance
 ```
 
+---
+
 ## 🧩 Compatibility
 
 | Item | Value |
@@ -253,6 +279,8 @@ dsh web   # restores the official appearance
 | Browser | modern Chromium / WebKit (native CSS variables & `matchMedia`) |
 
 > When upgrading DSH, bump the peerDependencies in `package.json` accordingly.
+
+---
 
 ## ⚙️ How it works
 
@@ -269,7 +297,7 @@ plugins register themes that override the alias layer (`--dsw-alias-*`). This pa
                 └────────────────────────────┴────────────────┘
                              │                         │
                      profile tree loaded      /plugins/dsh-dream-skin/client.js
-                                                         │
+                                                          │
         ┌────────────────────────────────┬────────────────┐
         │                                │                │
    ctx.theme.register(8 skins)     ctx.theme.overrideTokens(wallpaper)   ctx.slots.inject('settings.section' + 'settings.dreamSkin.item')
@@ -297,6 +325,8 @@ are applied as inline custom properties on `<body>` by ui-layout's ThemePresente
   the product itself keeps remote browser preferences process-local. `localStorage` matches that boundary and
   survives reloads.
 
+---
+
 ## 🛠️ Development / extending themes
 
 The client bundle is written directly in the `__ModuleLoader__` format (the same shape tsdown emits for the shipped
@@ -310,6 +340,9 @@ seeds (`react`, `react/jsx-runtime`, …) and registered client bundles (`@deeps
   one `*.dsh-theme.json` is importable in Settings and shareable via a link, no code changes needed.
 - **Add your own wallpapers**: drop images into [`wallpapers/`](../../wallpapers/) (distribute only what you have rights
   to), then import them via DSH's "Wallpaper" row.
+- **Regenerate the previews**: previews are generated by `scripts/generate-skin-mockups.cjs` (real tokens + diffused
+  glow) into HTML mockups, then captured as `docs/previews/*.png` with headless Chrome — re-run it after changing a
+  skin's tokens to keep the preview in sync with the real skin.
 - **Validate**: `npm test` (VM smoke tests covering factory eval, `apply()`, and pack import/persistence).
 - **Repaint**: reference the `--dsw-alias-*` tokens (full contract in [`docs/themes-spec.md`](../../docs/themes-spec.md)).
 
@@ -324,6 +357,8 @@ seeds (`react`, `react/jsx-runtime`, …) and registered client bundles (`@deeps
 - [ ] Online palette / theme-preview Studio (pure frontend, contrast checker)
 - [ ] Community theme gallery (submit packs to the repo / online gallery)
 - [ ] First-paint (FOUC) improvement
+
+---
 
 ## 🤝 Contributing
 
