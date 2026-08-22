@@ -21,28 +21,22 @@
 
 ---
 
-## 🤩 先看效果
+## 🎨 预览 — Mirage 幻梦系列
 
-> 以下皮肤卡由各皮肤的**真实 token** 生成，弥散光背景即你戴上它后的背景壁纸——所见即所得，点开可放大。点击图片可放大查看精致材质。
-
-<p align="center">
-  <a href="docs/mirage-overview.png"><img src="docs/mirage-overview.png" alt="Mirage 幻梦系列 8 套皮肤总览" width="100%"/></a>
-</p>
-
-### 🎨 预览 — Mirage 幻梦系列
+> 8 套皮肤，由各皮肤的**真实 token + 专属弥散光背景**生成——所见即所得。点开可放大查看精致材质。
 
 <table>
   <tr>
-    <td align="center"><a href="docs/previews/abyss.png"><img src="docs/previews/abyss.png" width="240" alt="abyss 沉静蓝"/></a><br/><b>abyss</b> · 沉静蓝 · 深海渊</td>
-    <td align="center"><a href="docs/previews/aurora.png"><img src="docs/previews/aurora.png" width="240" alt="aurora 极光青"/></a><br/><b>aurora</b> · 极光青 · 清透</td>
-    <td align="center"><a href="docs/previews/nebula.png"><img src="docs/previews/nebula.png" width="240" alt="nebula 星云紫"/></a><br/><b>nebula</b> · 星云紫 · 深邃</td>
-    <td align="center"><a href="docs/previews/ember.png"><img src="docs/previews/ember.png" width="240" alt="ember 余烬橙"/></a><br/><b>ember</b> · 余烬橙 · 暖光</td>
+    <td align="center"><a href="docs/previews/abyss.png"><img src="docs/previews/abyss.png" width="230" alt="abyss"/></a><br/><b>abyss</b> · 沉静蓝</td>
+    <td align="center"><a href="docs/previews/aurora.png"><img src="docs/previews/aurora.png" width="230" alt="aurora"/></a><br/><b>aurora</b> · 极光青</td>
+    <td align="center"><a href="docs/previews/nebula.png"><img src="docs/previews/nebula.png" width="230" alt="nebula"/></a><br/><b>nebula</b> · 星云紫</td>
+    <td align="center"><a href="docs/previews/ember.png"><img src="docs/previews/ember.png" width="230" alt="ember"/></a><br/><b>ember</b> · 余烬橙</td>
   </tr>
   <tr>
-    <td align="center"><a href="docs/previews/midnight.png"><img src="docs/previews/midnight.png" width="240" alt="midnight 午夜黑"/></a><br/><b>midnight</b> · 午夜黑 · OLED</td>
-    <td align="center"><a href="docs/previews/ivory.png"><img src="docs/previews/ivory.png" width="240" alt="ivory iOS 扁平"/></a><br/><b>ivory</b> · iOS 扁平 · 清爽</td>
-    <td align="center"><a href="docs/previews/mist.png"><img src="docs/previews/mist.png" width="240" alt="mist 液态玻璃"/></a><br/><b>mist</b> · 液态玻璃 · 晨雾</td>
-    <td align="center"><a href="docs/previews/rose.png"><img src="docs/previews/rose.png" width="240" alt="rose 蔷薇粉"/></a><br/><b>rose</b> · 蔷薇粉 · Material</td>
+    <td align="center"><a href="docs/previews/midnight.png"><img src="docs/previews/midnight.png" width="230" alt="midnight"/></a><br/><b>midnight</b> · 午夜黑</td>
+    <td align="center"><a href="docs/previews/ivory.png"><img src="docs/previews/ivory.png" width="230" alt="ivory"/></a><br/><b>ivory</b> · iOS 扁平</td>
+    <td align="center"><a href="docs/previews/mist.png"><img src="docs/previews/mist.png" width="230" alt="mist"/></a><br/><b>mist</b> · 液态玻璃</td>
+    <td align="center"><a href="docs/previews/rose.png"><img src="docs/previews/rose.png" width="230" alt="rose"/></a><br/><b>rose</b> · 蔷薇粉</td>
   </tr>
 </table>
 
