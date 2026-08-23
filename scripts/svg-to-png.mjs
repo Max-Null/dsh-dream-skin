@@ -20,7 +20,12 @@ const PNG = join(ROOT, 'docs', 'stats.png');
 
 async function main() {
   const svg = await readFile(SVG);
-  const resvg = new Resvg(svg, { fitTo: { mode: 'width', value: 960 }, background: '#ffffff' });
+  const resvg = new Resvg(svg, {
+    fitTo: { mode: 'width', value: 960 },
+    background: '#ffffff',
+    // 显式加载系统字体：GitHub Actions 需先装 fonts-noto-cjk，否则中文渲染成方块
+    font: { loadSystemFonts: true },
+  });
   const png = resvg.render().asPng();
   await writeFile(PNG, png);
   console.log(`[svg-to-png] 已输出 ${PNG}（${png.length} 字节）`);

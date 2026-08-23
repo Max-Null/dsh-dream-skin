@@ -33,6 +33,11 @@ jobs:
         with:
           node-version: 22
 
+      # GitHub Actions 的 ubuntu 镜像默认没有中文字体，resvg 渲染中文会变成方块 □。
+      # 装上 Noto CJK 后 resvg 会自动发现系统字体，图表里的中文（标题/图例）才能正常显示。
+      - name: Install CJK fonts
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+
       - name: Install deps (resvg-js for SVG->PNG)
         run: npm ci
 
