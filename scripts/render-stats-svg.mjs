@@ -126,7 +126,8 @@ function render(series) {
   for (let t = 0; t <= TICKS; t++) {
     const g = (dlTop / TICKS) * t;
     const y = yDL(g, dlTop);
-    grid += `<line x1="${PAD.left}" y1="${y.toFixed(1)}" x2="${W - PAD.right}" y2="${y.toFixed(1)}" stroke="${GRID}" stroke-width="1" ${t === 0 ? 'stroke="#ccd0dd"' : ''}/>`;
+    const strokeColor = t === 0 ? '#ccd0dd' : GRID;
+    grid += `<line x1="${PAD.left}" y1="${y.toFixed(1)}" x2="${W - PAD.right}" y2="${y.toFixed(1)}" stroke="${strokeColor}" stroke-width="1"/>`;
     dlLabels += `<text x="${PAD.left - 8}" y="${(y + 3).toFixed(1)}" text-anchor="end" font-size="10" fill="${AXIS}">${fmt(Math.round(g))}</text>`;
     stLabels += `<text x="${W - PAD.right + 8}" y="${(y + 3).toFixed(1)}" text-anchor="start" font-size="10" fill="${AXIS}">${fmt(Math.round(stTop - (dlTop - g) * (stTop / dlTop)))}</text>`;
   }

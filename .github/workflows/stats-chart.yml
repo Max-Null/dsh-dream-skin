@@ -33,20 +33,26 @@ jobs:
         with:
           node-version: 22
 
+      - name: Install deps (resvg-js for SVG->PNG)
+        run: npm ci
+
       - name: Collect stats
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 自动注入，有仓库读写权限
         run: node scripts/collect-stats.mjs
 
-      - name: Render chart
-        run: node scripts/render-stats-svg.mjs
+      - name: Render chart (SVG) and export PNG
+        run: |
+          node scripts/render-stats-svg.mjs
+          node scripts/svg-to-png.mjs
+        shell: bash
 
       - name: Commit & push if changed
         run: |
           git config user.name "dsh-dream-skin[bot]"
           git config user.email "actions@github.com"
           # 只跟踪这个图表相关的产物，避免误提交别的东西
-          git add docs/stats.json docs/stats.svg
+          git add docs/stats.json docs/stats.svg docs/stats.png
           if git diff --cached --quiet; then
             echo "stats unchanged — nothing to commit"
           else
