@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>dsh-dream-skin · 给 DeepSeek Harness 换一张克制的脸</title>
+<meta name="description" content="dsh-dream-skin —— 为 DeepSeek Harness 换上克制、清透、有质感的皮肤。原生换肤 · 背景壁纸 · 强调色 · 主题包，一条 token 生态内的优雅实现。" />
+<meta name="author" content="刘昂 (RevolutionLA)" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://RevolutionLA.github.io/dsh-dream-skin/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="dsh-dream-skin · DeepSeek Harness 皮肤插件" />
+<meta property="og:description" content="8 套原创主题 · 壁纸 · 强调色 · 主题包可分享。给写代码的地方，一张安静的脸。" />
+<meta property="og:url" content="https://RevolutionLA.github.io/dsh-dream-skin/" />
+<meta name="theme-color" content="#07090d" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --space-0:#07090d;--space-1:#0c121a;--space-2:#111a24;
+  --ink:#dfe6ee;--ink-dim:#8b96a6;--ink-faint:#5d6878;
+  --signal:#34f0a0;--signal-dim:rgba(52,240,160,0.18);--amber:#f2b24c;
+  --grid:rgba(148,168,190,0.07);--stroke:rgba(148,168,190,0.16);--stroke-bright:rgba(148,168,190,0.32);
+  --display:'Space Grotesk','Noto Sans SC',sans-serif;
+  --body:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  --mono:'JetBrains Mono','SFMono-Regular',Consolas,monospace;--max:1120px;--radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{color-scheme:dark;scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--space-0);color:var(--ink);line-height:1.75;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.mono{font-family:var(--mono)}em{font-style:normal;font-weight:600;color:var(--amber)}strong{font-weight:600;color:var(--ink)}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--signal);color:#04120c}
+.container{max-width:var(--max);margin:0 auto;padding:0 28px;position:relative}
+.accent{color:var(--signal)}
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000 0%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000 0%,transparent 100%)}
+
+header.site-header{position:sticky;top:0;z-index:60;background:rgba(7,9,13,0.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--stroke)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-weight:600;font-size:15px}
+.brand-glyph{color:var(--signal);font-weight:700}
+.nav-right{display:flex;align-items:center;gap:22px}
+.nav-link{font-family:var(--mono);font-size:12px;letter-spacing:0.12em;color:var(--ink-dim);transition:color .2s;border:1px solid var(--stroke-bright);padding:8px 16px;border-radius:8px}
+.nav-link:hover{color:var(--signal);border-color:var(--signal)}
+
+.hero{position:relative;min-height:86vh;display:flex;flex-direction:column;justify-content:center;padding:72px 0;overflow:hidden}
+.hero::after{content:"";position:absolute;left:50%;top:10%;transform:translateX(-50%);width:820px;height:600px;background:radial-gradient(ellipse at center,rgba(34,240,160,0.10),transparent 62%);z-index:-1;pointer-events:none}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:0.2em;color:var(--signal);margin-bottom:28px;font-family:var(--mono)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 4px var(--signal-dim),0 0 16px var(--signal)}
+.hero-title{font-family:var(--display);font-size:clamp(46px,9vw,104px);font-weight:700;letter-spacing:-0.02em;line-height:1;margin-bottom:22px;text-wrap:balance}
+.hero-title .en{background:linear-gradient(120deg,var(--signal) 0%,#7dd7ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-zh{font-size:clamp(18px,2.6vw,26px);color:var(--ink);margin-bottom:10px}
+.hero-sub{font-size:15px;color:var(--ink-faint);max-width:600px;line-height:1.8}
+.hero-sub code{font-family:var(--mono);font-size:13px;color:var(--signal);background:var(--space-2);border:1px solid var(--stroke);padding:2px 8px;border-radius:6px}
+.hero-actions{display:flex;gap:16px;margin-top:44px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;letter-spacing:0.02em;padding:15px 30px;border-radius:12px;transition:all .25s;border:1px solid transparent;touch-action:manipulation}
+.btn-primary{background:var(--signal);color:#04120c;font-weight:600;box-shadow:0 0 24px var(--signal-dim)}
+.btn-primary:hover{background:#5cf7b6;box-shadow:0 0 36px rgba(52,240,160,0.4);transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--stroke-bright);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--signal);color:var(--signal);box-shadow:0 0 20px var(--signal-dim)}
+.specbar{display:flex;flex-wrap:wrap;gap:28px;margin-top:52px;padding-top:28px;border-top:1px solid var(--stroke)}
+.spec{display:flex;align-items:baseline;gap:10px;font-size:13px;color:var(--ink-faint);font-family:var(--mono)}
+.spec strong{color:var(--signal);font-size:16px;font-weight:600}
+
+.section{padding:110px 0;position:relative}
+.sec-tag{display:inline-block;font-size:12px;letter-spacing:0.18em;color:var(--signal);margin-bottom:18px;font-family:var(--mono)}
+.sec-title{font-family:var(--display);font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-0.02em;line-height:1.1;margin-bottom:50px;text-wrap:balance}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.card{background:linear-gradient(180deg,var(--space-2),var(--space-1));border:1px solid var(--stroke);border-radius:var(--radius);padding:32px;transition:transform .3s,border-color .3s,box-shadow .3s}
+.card:hover{transform:translateY(-5px);border-color:var(--stroke-bright);box-shadow:0 16px 44px rgba(0,0,0,0.5),0 0 28px var(--signal-dim)}
+.card-icon{font-size:26px;color:var(--signal);margin-bottom:16px;display:block}
+.card h3{font-family:var(--display);font-size:19px;font-weight:600;margin-bottom:12px}
+.card p{color:var(--ink-dim);font-size:15px;line-height:1.8}
+
+.skinwall{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.skin{background:var(--space-2);border:1px solid var(--stroke);border-radius:12px;padding:22px;transition:border-color .3s;text-align:left}
+.skin:hover{border-color:var(--signal);cursor:default}
+.skin .n{font-size:14px;color:var(--ink);font-weight:500;margin-bottom:6px}
+.skin .d{font-size:12px;color:var(--ink-faint);font-family:var(--mono)}
+.swatch{display:flex;gap:6px;margin-bottom:16px}
+.swatch i{width:26px;height:26px;border-radius:7px;border:1px solid var(--stroke)}
+
+footer.site-footer{border-top:1px solid var(--stroke);padding:36px 0 46px}
+.footer-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-faint);font-family:var(--mono)}
+.footer-row a:hover{color:var(--signal)}
+a:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:4px}
+@media (max-width:720px){.section{padding:76px 0}.hero{min-height:auto;padding:64px 0 80px}}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a class="brand" href="/"><span class="brand-glyph mono">&gt;_</span> dsh-dream-skin</a>
+    <div class="nav-right">
+      <a class="nav-link" href="https://github.com/RevolutionLA/dsh-dream-skin" target="_blank" rel="noopener noreferrer">SOURCE ↗</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <p class="kicker"><span class="dot"></span> DSH_THEME · 原生 token 皮肤插件</p>
+    <h1 class="hero-title">给写作代码的地方<br/>一张克制的<span class="en">脸</span></h1>
+    <p class="hero-zh">为 DeepSeek Harness 换上克制、清透、有质感的皮肤。</p>
+    <p class="hero-sub">原生换肤 · 背景壁纸 · 每用户强调色 · 可分享主题包——一条 <code>--dsw-*</code> token 生态内的优雅实现。装一次，用很久。</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://github.com/RevolutionLA/dsh-dream-skin" target="_blank" rel="noopener noreferrer">在 GitHub 查看 →</a>
+      <a class="btn btn-ghost" href="/">REVLA 主页</a>
+    </div>
+    <div class="specbar">
+      <span class="spec">内置主题 <strong>8 套</strong></span>
+      <span class="spec">安装 <strong>1 行</strong></span>
+      <span class="spec">原理 <strong>纯原生无注入</strong></span>
+      <span class="spec">支持 <strong>8 种语言</strong></span>
+    </div>
+  </div>
+</section>
+
+<section class="section container" id="skins">
+  <span class="sec-tag">01 · Mirage 幻梦系列</span>
+  <h2 class="sec-title">八年审美，八套皮肤</h2>
+  <div class="skinwall">
+    <div class="skin"><div class="swatch"><i style="background:#10233c"></i><i style="background:#1a3a5c"></i><i style="background:#3a6ea5"></i></div><div class="n">abyss · 沉静蓝</div><div class="d">冷静深沉 · 极简</div></div>
+    <div class="skin"><div class="swatch"><i style="background:#0c2530"></i><i style="background:#14532d"></i><i style="background:#34f0a0"></i></div><div class="n">aurora · 极光青</div><div class="d">清冽通透 · 冷调</div></div>
+    <div class="skin"><div class="swatch"><i style="background:#1c1233"></i><i style="background:#3b2b6e"></i><i style="background:#8b7bd8"></i></div><div class="n">nebula · 星云紫</div><div class="d">深邃漫射 · 神秘</div></div>
+    <div class="skin"><div class="swatch"><i style="background:#2a1508"></i><i style="background:#7c3f12"></i><i style="background:#f2b24c"></i></div><div class="n">ember · 余烬橙</div><div class="d">温暖克制 · 琥珀</div></div>
+    <div class="skin"><div class="swatch"><i style="background:#000"></i><i style="background:#0e0e0e"></i><i style="background:#1c1c1c"></i></div><div class="n">midnight · 午夜黑</div><div class="d">极简纯黑 · OLED</div></div>
+    <div class="skin"><div class="swatch"><i style="background:#f2f2f7"></i><i style="background:#e5e5ea"></i><i style="background:#0a84ff"></i></div><div class="n">ivory · iOS 扁平</div><div class="d">极简平白 · 系统灰</div></div>
+    <div class="skin"><div class="swatch"><i style="background:rgba(255,255,255,0.2)"></i><i style="background:rgba(255,255,255,0.4)"></i><i style="background:#8b96a6"></i></div><div class="n">mist · 液态玻璃</div><div class="d">清透毛玻璃 · 模糊</div></div>
+    <div class="skin"><div class="swatch"><i style="background:#f6d3e8"></i><i style="background:#d81b60"></i><i style="background:#f48fb1"></i></div><div class="n">rose · 蔷薇粉</div><div class="d">明快彩粉 · Material</div></div>
+  </div>
+</section>
+
+<section class="section container" id="features">
+  <span class="sec-tag">02 · 能力</span>
+  <h2 class="sec-title">两种玩法，一套插件</h2>
+  <div class="grid">
+    <article class="card reveal"><span class="card-icon">🪄</span><h3>开箱即用的优雅</h3><p>8 套设计师调校的预设皮肤，浅色 / 深色兼顾，每套自带专属弥散光背景。戴上即高级，不用调参。</p></article>
+    <article class="card reveal"><span class="card-icon">🧱</span><h3>随你掌控的 DIY</h3><p>换壁纸、叠强调色、拖入或分享一个主题包——内部每个 token 都能摸到。想要的样子，自己捏。</p></article>
+    <article class="card reveal"><span class="card-icon">🖼️</span><h3>壁纸 2.0</h3><p>本地图 / URL / 渐变预设，透明度与模糊可调，每套皮肤自动建议一张渐变。</p></article>
+    <article class="card reveal"><span class="card-icon">🌈</span><h3>每用户强调色</h3><p>12 个典型色块一键选色 + 选色盘 + 随机 + 恢复主题色，不动皮肤本身。</p></article>
+    <article class="card reveal"><span class="card-icon">📦</span><h3>主题包可分享</h3><p>一个 <span class="mono">*.dsh-theme.json</span> 含完整 tokens，导入 / 应用 / 复制分享链接，无需改代码。</p></article>
+    <article class="card reveal"><span class="card-icon">🎲</span><h3>珍藏与随机</h3><p>「换一个试试」随机切换、收藏喜欢皮肤、本地主题包库，一键管理。</p></article>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <span>© <span id="year"></span> 刘昂 (RevolutionLA)</span>
+    <span><a href="/">revolutionla.github.io</a> · <a href="https://github.com/RevolutionLA/dsh-dream-skin" target="_blank" rel="noopener noreferrer">dsh-dream-skin ↗</a></span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+var els=document.querySelectorAll('.card');var io='IntersectionObserver'in window?new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:0.1}):null;
+els.forEach(function(el){if(io){el.classList.add('reveal');io.observe(el)}else{el.classList.add('visible')}});
+</script>
+</body>
+</html>
