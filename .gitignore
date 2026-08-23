@@ -16,5 +16,8 @@ research/
 .idea/
 .vscode/
 
+# vision router working dir (screenshots, crops, present copies)
+/.dsh-vision-router/
+
 # development: local fork clone
 /awesome-dsh-plugin/
