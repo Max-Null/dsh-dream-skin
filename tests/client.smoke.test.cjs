@@ -762,6 +762,64 @@ test('setSkin swaps the built-in diffused-glow background when switching skins',
 	assert.equal(h.localStorage.getItem('dsh-dream-skin:wallpaper-follows-skin'), '1', 'still following after switch');
 });
 
+test('issue #29: wallpaper wash uses the target skin tokens, not BUILTIN_BASE fallback, after a skin round-trip', () => {
+	// Regression: switching rose -> midnight -> rose with a wallpaper wash must leave
+	// --dsw-alias-bg-base / --dsw-specific-sidebar-fill shaded with ROSE's tokens
+	// (rgba(247,240,243,.8)), not the light-theme BUILTIN_BASE white (rgba(255,255,255,.8)).
+	// The re-shade must run from the settled theme/change snapshot (target active), not
+	// from the synchronous setSkin path before the target is active.
+	const h = buildSandbox({
+		seed: {
+			'dsh-dream-skin:wallpaper-kind': 'gradient',
+			'dsh-dream-skin:wallpaper-gradient': 'linear-gradient(135deg, #222 0%, #444 100%)',
+			'dsh-dream-skin:wallpaper-opacity': '0.8',
+			'dsh-dream-skin:wallpaper-follows-skin': '0'
+		}
+	});
+	const e = h.factory(makeRequire(makeRuntime().RT));
+
+	// Minimal per-skin token tables so resolveBase/resolveSidebar can find them.
+	const SKINS2 = {
+		rose: { colorScheme: 'light', tokens: { '--dsw-alias-bg-base': '#f7f0f3', '--dsw-specific-sidebar-fill': '#f6e9ef' } },
+		midnight: { colorScheme: 'dark', tokens: { '--dsw-alias-bg-base': '#0b0b0e', '--dsw-specific-sidebar-fill': 'rgba(11,11,14,0.92)' } }
+	};
+	let cur = 'rose';
+	let changeHandler = null;
+	const wallpaperOverrides = [];
+	const activeFor = () => { const s = SKINS2[cur]; return { id: cur, colorScheme: s.colorScheme, tokens: s.tokens }; };
+	const theme = {
+		register() { return () => {}; },
+		setTheme(id) { cur = id; if (changeHandler) changeHandler({ preference: cur, active: activeFor(), themes: [], revision: 2 }); },
+		getTheme() { return { preference: cur, active: activeFor(), themes: [], revision: 1 }; },
+		overrideTokens(source, tokens) { if (source === 'dsh-dream-skin:wallpaper') wallpaperOverrides.push(tokens); return () => {}; }
+	};
+	const baseCtx = makeApplyContext(h, { captureActions: true });
+	const ctx = { ...baseCtx, theme };
+	// Ensure ctx.on('theme/change', ...) captures the handler this theme emits to.
+	const origOn = baseCtx.on;
+	ctx.on = (ev, fn) => { if (ev === 'theme/change') changeHandler = fn; return origOn(ev, fn); };
+	assert.doesNotThrow(() => e.apply(ctx));
+	const skinBags = h.actionBags['dream-skin'];
+	assert.ok(skinBags && typeof skinBags.setSkin === 'function', 'skin row setSkin captured');
+
+	// The user-kept gradient wallpaper means setSkin does NOT swap the wallpaper, so
+	// the wash re-shade must come from the settled theme/change snapshot (syncSkin).
+	const roseBase = () => wallpaperOverrides.length
+		? wallpaperOverrides[wallpaperOverrides.length - 1]['--dsw-alias-bg-base'].light
+		: null;
+
+	// rose -> midnight -> rose. After the final switch back to rose, the wash must use
+	// rose's (light) base #f7f0f3, NOT the built-in light fallback white.
+	skinBags.setSkin('midnight');
+	assert.ok(wallpaperOverrides.length > 0, 'wallpaper override produced after switching to midnight');
+	skinBags.setSkin('rose');
+	const lastLight = roseBase();
+	assert.ok(/rgba\(247,\s*240,\s*243,\s*0\.8\)/.test(lastLight),
+		'last wash light base must be ROSE token, not white fallback (got ' + lastLight + ')');
+	assert.ok(!/rgba\(255,\s*255,\s*255,\s*0\.8\)/.test(lastLight),
+		'light wash must not fall back to BUILTIN_BASE white');
+});
+
 test('saved skin survives a page refresh (fresh apply re-stores from localStorage)', () => {
 	// Regression for issue #8: selecting a skin must survive a plain page refresh.
 	// On refresh the SAME origin's localStorage is still present, but the plugin is
