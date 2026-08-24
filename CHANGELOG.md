@@ -2,6 +2,13 @@
 
 记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.4.11] - 2026-08-21
+
+> **壁纸遮罩切换皮肤后的兜底色修复。** 从深色切回浅色皮肤时，壁纸遮罩不再误用 DSH 内置的白色兜底，刷新后也不会有差异。
+
+### 修复
+- **切换皮肤后壁纸遮罩使用内置兜底色（issue #29）**：`setSkin()` 里 `syncSkinWith(id)` 原先在 `ctx.theme.setTheme(id)` 之后**同步**调用 `applyWallpaper2`，但此刻主题快照的 `active` 尚未切换/就绪，`shadeTokens2` 里的 `resolveBase/sidebar` 找不到目标皮肤 token，就回退到 `BUILTIN_BASE[scheme]`——浅色主题的兜底是白色，于是写入 `rgba(255,255,255,.8)` 这类错误遮罩，且没有在 active 就绪后校正，一直保留到刷新才恢复。现将 `syncSkinWith` 改为只同步选中态、**不再立即 re-shade**；壁纸遮罩的正确着色委托给 `theme/change` 监听（`syncSkin`），此时 `snapshot.active` 已是对应目标皮肤，可用正确 token 着色。换渐变时由 `setWallpaperKind` 兜底 re-shade，无遗漏路径。**31/31 测试通过**，新增 `rose→midnight→rose` 回归测试断言遮罩用 rose token 而非白色兜底。
+
 ## [0.4.10] - 2026-08-21
 
 > **URL 壁纸安全加固。** 壁纸「图片链接」不再原样拼进 CSS：只放行 http/https/data:image 链接（javascript:/file:/data:text/html 等一律拒绝并提示），拼 CSS 时对引号和反斜杠转义，应用后对坏链做预载检查并提示；顺带清理三处低危项。
