@@ -383,3 +383,15 @@ Ein Sicherheitsproblem gefunden? Öffne kein öffentliches Issue — siehe die [
 
 - Architektur- & API-Referenz: das offizielle Client-Paket [ui-theme](https://github.com/deepseek-ai/deepseek-harness/tree/master/packages/client/ui-theme) von DeepSeek Harness.
 - Konzept-Hommage: [Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-Skin).
+
+---
+
+## 📈 Wachstumskurve
+
+> Täglich automatisch aktualisiert (GitHub Actions). Linke Achse: **kumulierte Downloads** (türkis); rechte Achse: **Sternezahl** (violett) — sehr unterschiedliche Größenordnungen, daher zwei unabhängige Y-Achsen.
+
+<p align="center">
+  <img src="../../docs/stats.png" alt="Tägliche Wachstumskurve Star × kumulierte Downloads von dsh-dream-skin" width="900"/>
+</p>
+
+*Die Daten werden alle 24 Stunden gesammelt: Downloads über die [offizielle npm-API](https://api.npmjs.org/downloads/range/2026-08-15:2026-12-31/dsh-dream-skin), Sterne über die [GitHub-API](https://github.com/RevolutionLA/dsh-dream-skin/stargazers).*

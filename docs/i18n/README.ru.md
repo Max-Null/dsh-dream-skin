@@ -383,3 +383,15 @@ dsh web   # восстанавливает официальный вид
 - Справочник по архитектуре и API: официальный клиентский пакет DeepSeek Harness
   [ui-theme](https://github.com/deepseek-ai/deepseek-harness/tree/master/packages/client/ui-theme).
 - Концептуальная дань: [Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-Skin).
+
+---
+
+## 📈 Кривая роста
+
+> Автоматически обновляется ежедневно (GitHub Actions). Левая ось: **суммарные скачивания** (бирюзовый); правая ось: **число звёзд** (фиолетовый) — сильно разные порядки величин, поэтому у каждого своя независимая ось Y.
+
+<p align="center">
+  <img src="../../docs/stats.png" alt="Ежедневная кривая роста Star × суммарные скачивания dsh-dream-skin" width="900"/>
+</p>
+
+*Данные собираются каждые 24 часа: скачивания — из [официального API npm](https://api.npmjs.org/downloads/range/2026-08-15:2026-12-31/dsh-dream-skin), звёзды — из [API GitHub](https://github.com/RevolutionLA/dsh-dream-skin/stargazers).*

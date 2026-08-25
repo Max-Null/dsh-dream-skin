@@ -383,3 +383,15 @@ Issues와 PR을 환영합니다! [기여 가이드](../../CONTRIBUTING.md)를 �
 - 아키텍처 & API 참고: 공식 DeepSeek Harness
   [ui-theme](https://github.com/deepseek-ai/deepseek-harness/tree/master/packages/client/ui-theme) 클라이언트 패키지.
 - 컨셉 오마주: [Codex-Dream-Skin](https://github.com/Fei-Away/Codex-Dream-Skin).
+
+---
+
+## 📈 성장 곡선
+
+> 매일 자동 업데이트(GitHub Actions). 왼쪽 축: **누적 다운로드 수**(청록); 오른쪽 축: **Star 수**(보라) — 규모가 크게 달라 각각 독립된 이중 축을 사용합니다.
+
+<p align="center">
+  <img src="../../docs/stats.png" alt="dsh-dream-skin 매일 Star × 누적 다운로드 수 성장 곡선" width="900"/>
+</p>
+
+*데이터는 24시간마다 자동 수집됩니다: 다운로드 수는 [npm 공식 API](https://api.npmjs.org/downloads/range/2026-08-15:2026-12-31/dsh-dream-skin), Star 수는 [GitHub API](https://github.com/RevolutionLA/dsh-dream-skin/stargazers)에서 가져옵니다.*
