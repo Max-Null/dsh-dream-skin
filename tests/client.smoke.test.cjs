@@ -191,6 +191,23 @@ test('issue #18: every skin themes the bubble / selector surfaces (no default-bl
 			assert.ok(moduleLum !== null && moduleLum >= 100,
 				`${skin.id} light module-platform must be a light fill`);
 		}
+		// Issue #27: --dsw-alias-bg-layer-1 is a GENERAL token consumed by third-party
+		// plugins (e.g. dshmarket) as a card background. Dark skins must give it a DRAL
+		// opaque-ish surface (readable light text), not a near-transparent or bright
+		// white fill — a 0.65-white makes light text vanish (contrast ~1.4:1), and a
+		// 0.04-white lets the backdrop bleed through (the "字叠一起" report).
+		const layer1 = skin.tokens['--dsw-alias-bg-layer-1'];
+		const layer1Lum = hexLuminance(layer1);
+		if (skin.colorScheme === 'dark') {
+			// Must NOT be a bright white fill (rgba(255,255,255, .65/.5) or a near-#
+			// f..). Must be dark enough that light label text stays readable.
+			assert.ok(layer1Lum !== null && layer1Lum < 100,
+				`${skin.id} dark layer-1 must be a dark surface (got ${layer1})`);
+		} else {
+			// Light skins: layer-1 must stay light (dark text reads on it).
+			assert.ok(layer1Lum !== null && layer1Lum >= 100,
+				`${skin.id} light layer-1 must be a light surface (got ${layer1})`);
+		}
 		// The bubble fill for dark skins must be a readable dark bubble; for light skins near-white.
 		const bubble = skin.tokens['--dsw-specific-bubble'];
 		if (skin.colorScheme === 'dark') {
