@@ -205,7 +205,7 @@ function render(series) {
   <rect width="${W}" height="${H}" fill="url(#bgGrad)"/>
   <g font-family="system-ui,-apple-system,'Segoe UI',sans-serif">
     <text x="18" y="${PAD.top + PLOT_H / 2}" font-size="12" fill="${COL_STAR}" transform="rotate(-90 18 ${PAD.top + PLOT_H / 2})" text-anchor="middle">Star</text>
-    <text x="30" y="${PAD.top + PLOT_H / 2 + 15}" font-size="12" fill="${SUB}" transform="rotate(-90 30 ${PAD.top + PLOT_H / 2 + 15})" text-anchor="middle">累计下载量</text>
+    <text x="${W - 16}" y="${PAD.top + PLOT_H / 2}" font-size="12" fill="${COL_DOWNLOAD}" transform="rotate(-90 ${W - 16} ${PAD.top + PLOT_H / 2})" text-anchor="middle">累计下载量</text>
   </g>
 
   ${title}
