@@ -17,8 +17,8 @@
     </defs>
   <rect width="960" height="430" fill="url(#bgGrad)"/>
   <g font-family="system-ui,-apple-system,'Segoe UI',sans-serif">
-    <text x="18" y="226" font-size="12" fill="#7a8399" transform="rotate(-90 18 226)" text-anchor="middle">累计下载量</text>
-    <text x="28" y="241" font-size="12" fill="#8b5cf6" transform="rotate(-90 28 241)" text-anchor="middle">Star</text>
+    <text x="18" y="226" font-size="12" fill="#8b5cf6" transform="rotate(-90 18 226)" text-anchor="middle">Star</text>
+    <text x="30" y="241" font-size="12" fill="#7a8399" transform="rotate(-90 30 241)" text-anchor="middle">累计下载量</text>
   </g>
 
   
@@ -37,7 +37,7 @@
     </g>
 
   <line x1="78" y1="378.0" x2="886" y2="378.0" stroke="#d3d9e8" stroke-width="1.2" /><line x1="78" y1="317.2" x2="886" y2="317.2" stroke="#e8ebf2" stroke-width="1" stroke-dasharray="3 4"/><line x1="78" y1="256.4" x2="886" y2="256.4" stroke="#e8ebf2" stroke-width="1" stroke-dasharray="3 4"/><line x1="78" y1="195.6" x2="886" y2="195.6" stroke="#e8ebf2" stroke-width="1" stroke-dasharray="3 4"/><line x1="78" y1="134.8" x2="886" y2="134.8" stroke="#e8ebf2" stroke-width="1" stroke-dasharray="3 4"/><line x1="78" y1="74.0" x2="886" y2="74.0" stroke="#e8ebf2" stroke-width="1" stroke-dasharray="3 4"/>
-  <g font-family="system-ui,-apple-system,'Segoe UI',sans-serif"><text x="68" y="381.0" text-anchor="end" font-size="11" fill="#9aa3b5">0</text><text x="68" y="320.2" text-anchor="end" font-size="11" fill="#9aa3b5">2.5k</text><text x="68" y="259.4" text-anchor="end" font-size="11" fill="#9aa3b5">5k</text><text x="68" y="198.6" text-anchor="end" font-size="11" fill="#9aa3b5">7.5k</text><text x="68" y="137.8" text-anchor="end" font-size="11" fill="#9aa3b5">10k</text><text x="68" y="77.0" text-anchor="end" font-size="11" fill="#9aa3b5">12.5k</text><text x="896" y="381.0" text-anchor="start" font-size="11" fill="#9aa3b5">0</text><text x="896" y="320.2" text-anchor="start" font-size="11" fill="#9aa3b5">20</text><text x="896" y="259.4" text-anchor="start" font-size="11" fill="#9aa3b5">40</text><text x="896" y="198.6" text-anchor="start" font-size="11" fill="#9aa3b5">60</text><text x="896" y="137.8" text-anchor="start" font-size="11" fill="#9aa3b5">80</text><text x="896" y="77.0" text-anchor="start" font-size="11" fill="#9aa3b5">100</text></g>
+  <g font-family="system-ui,-apple-system,'Segoe UI',sans-serif"><text x="68" y="381.0" text-anchor="end" font-size="11" fill="#9aa3b5">0</text><text x="68" y="320.2" text-anchor="end" font-size="11" fill="#9aa3b5">20</text><text x="68" y="259.4" text-anchor="end" font-size="11" fill="#9aa3b5">40</text><text x="68" y="198.6" text-anchor="end" font-size="11" fill="#9aa3b5">60</text><text x="68" y="137.8" text-anchor="end" font-size="11" fill="#9aa3b5">80</text><text x="68" y="77.0" text-anchor="end" font-size="11" fill="#9aa3b5">100</text><text x="896" y="381.0" text-anchor="start" font-size="11" fill="#9aa3b5">0</text><text x="896" y="320.2" text-anchor="start" font-size="11" fill="#9aa3b5">2.5k</text><text x="896" y="259.4" text-anchor="start" font-size="11" fill="#9aa3b5">5k</text><text x="896" y="198.6" text-anchor="start" font-size="11" fill="#9aa3b5">7.5k</text><text x="896" y="137.8" text-anchor="start" font-size="11" fill="#9aa3b5">10k</text><text x="896" y="77.0" text-anchor="start" font-size="11" fill="#9aa3b5">12.5k</text></g>
 
   <!-- 轴线 -->
   <line x1="78" y1="74" x2="78" y2="378" stroke="#cdd3e2" stroke-width="1"/>

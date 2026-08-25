@@ -124,16 +124,19 @@ function render(series) {
   const lastDl = series[n - 1].downloads, lastStar = series[n - 1].stars;
 
   // ---- 网格 + 双轴刻度 ----
-  let grid = '', dlLabels = '', stLabels = '';
+  // 左轴 = Star，右轴 = 累计下载量。网格线按左轴(Star)刻度均匀划分，
+  // 右轴(下载量)的值按相同像素行反解标注，保证两轴水平线对齐。
+  let grid = '', stLabels = '', dlLabels = '';
   for (let t = 0; t <= TICKS; t++) {
-    const g = (dlTop / TICKS) * t;
-    const y = yDL(g, dlTop);
-    const isZero = t === 0;
-    grid += `<line x1="${PAD.left}" y1="${y.toFixed(1)}" x2="${W - PAD.right}" y2="${y.toFixed(1)}" stroke="${isZero ? '#d3d9e8' : GRID}" stroke-width="${isZero ? 1.2 : 1}" ${isZero ? '' : 'stroke-dasharray="3 4"'}/>`;
-    dlLabels += `<text x="${PAD.left - 10}" y="${(y + 3).toFixed(1)}" text-anchor="end" font-size="11" fill="${AXIS}">${fmt(Math.round(g))}</text>`;
     const sv = (stTop / TICKS) * t;
-    const sy = yST(sv, stTop);
-    stLabels += `<text x="${W - PAD.right + 10}" y="${(sy + 3).toFixed(1)}" text-anchor="start" font-size="11" fill="${AXIS}">${fmt(Math.round(sv))}</text>`;
+    const sy = yST(sv, stTop); // 左轴 star 刻度所在像素行
+    const isZero = t === 0;
+    grid += `<line x1="${PAD.left}" y1="${sy.toFixed(1)}" x2="${W - PAD.right}" y2="${sy.toFixed(1)}" stroke="${isZero ? '#d3d9e8' : GRID}" stroke-width="${isZero ? 1.2 : 1}" ${isZero ? '' : 'stroke-dasharray="3 4"'}/>`;
+    // 左轴标签 = Star 值
+    stLabels += `<text x="${PAD.left - 10}" y="${(sy + 3).toFixed(1)}" text-anchor="end" font-size="11" fill="${AXIS}">${fmt(Math.round(sv))}</text>`;
+    // 右轴标签 = 同一像素行对应的下载量值（反解）
+    const dlAtSy = dlTop * (1 - (sy - PAD.top) / PLOT_H);
+    dlLabels += `<text x="${W - PAD.right + 10}" y="${(sy + 3).toFixed(1)}" text-anchor="start" font-size="11" fill="${AXIS}">${fmt(Math.round(dlAtSy))}</text>`;
   }
 
   // ---- X 轴（日期） ----
@@ -201,15 +204,15 @@ function render(series) {
   ${defs}
   <rect width="${W}" height="${H}" fill="url(#bgGrad)"/>
   <g font-family="system-ui,-apple-system,'Segoe UI',sans-serif">
-    <text x="18" y="${PAD.top + PLOT_H / 2}" font-size="12" fill="${SUB}" transform="rotate(-90 18 ${PAD.top + PLOT_H / 2})" text-anchor="middle">累计下载量</text>
-    <text x="28" y="${PAD.top + PLOT_H / 2 + 15}" font-size="12" fill="${COL_STAR}" transform="rotate(-90 28 ${PAD.top + PLOT_H / 2 + 15})" text-anchor="middle">Star</text>
+    <text x="18" y="${PAD.top + PLOT_H / 2}" font-size="12" fill="${COL_STAR}" transform="rotate(-90 18 ${PAD.top + PLOT_H / 2})" text-anchor="middle">Star</text>
+    <text x="30" y="${PAD.top + PLOT_H / 2 + 15}" font-size="12" fill="${SUB}" transform="rotate(-90 30 ${PAD.top + PLOT_H / 2 + 15})" text-anchor="middle">累计下载量</text>
   </g>
 
   ${title}
   ${legend}
 
   ${grid}
-  <g font-family="system-ui,-apple-system,'Segoe UI',sans-serif">${dlLabels}${stLabels}</g>
+  <g font-family="system-ui,-apple-system,'Segoe UI',sans-serif">${stLabels}${dlLabels}</g>
 
   <!-- 轴线 -->
   <line x1="${PAD.left}" y1="${PAD.top}" x2="${PAD.left}" y2="${bottomY}" stroke="#cdd3e2" stroke-width="1"/>
