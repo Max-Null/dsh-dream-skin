@@ -60,7 +60,23 @@ jobs:
           git add docs/stats.json docs/stats.svg docs/stats.png
           if git diff --cached --quiet; then
             echo "stats unchanged — nothing to commit"
-          else
-            git commit -m "chore: refresh growth chart (daily)"
-            git push origin main
+            exit 0
           fi
+          # 这个仓库有并发（其他协作者/发版进程会推进 main）。简单 push 会因
+          # non-fast-forward 被拒（曾导致数据采集正确却没推上去）。用重试循环：
+          # commit → push，被拒则 rebase 到远程最新再重试（最多 6 次）。
+          for i in 1 2 3 4 5 6; do
+            git commit --quiet -m "chore: refresh growth chart (daily)" || echo "nothing new; retry stale"
+            if git push --quiet origin main; then
+              echo "pushed on attempt $i"
+              exit 0
+            fi
+            echo "push rejected on attempt $i — rebasing onto latest main and retrying"
+            # --autostash 保护工作区；我们只改独立文件，rebase 冲突概率极低，
+            # 若冲突则复用统计数据侧（这是本 workflow 唯一关心的产物）。
+            git pull --rebase --autostash origin main 2>/dev/null \
+              || git checkout --theirs docs/stats.json docs/stats.svg docs/stats.png \
+              || true
+          done
+          echo "push failed after 6 attempts"
+          exit 1
