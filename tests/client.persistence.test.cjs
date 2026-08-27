@@ -26,6 +26,7 @@ function makeEl() {
 		style: {}, dataset: {}, children: [],
 		setAttribute() {}, removeAttribute() {},
 		appendChild(c) { this.children.push(c); },
+		append(c) { this.children.push(c); },
 		prepend() {}, click() {}, remove() { this.removed = true; },
 		contains(el) { return el && this === el; }
 	};
@@ -38,7 +39,7 @@ function makeEl() {
  */
 function buildSandbox({ hostValue = {}, fetchImpl = null, seed = {} } = {}) {
 	const body = makeEl();
-	const document = { body, createElement: () => makeEl(), createTextNode: () => ({}), querySelector: () => null, head: makeEl() };
+	const document = { body, createElement: () => makeEl(), createTextNode: () => ({}), querySelector: () => null, querySelectorAll: () => [], head: makeEl() };
 	const loc = { origin: 'http://x', pathname: '/', search: '', hash: '' };
 	const store = new Map();
 	// seed keys are the FULL localStorage keys (they already carry dsh-dream-skin: prefix)
@@ -72,6 +73,7 @@ function buildSandbox({ hostValue = {}, fetchImpl = null, seed = {} } = {}) {
 		URL: { createObjectURL: () => 'blob:x', revokeObjectURL() {} },
 		Blob: class {}, FileReader: class {}, Image: function () {},
 		setTimeout, clearTimeout, alert: () => {},
+		MutationObserver: class { observe() {} disconnect() {} },
 		fetch: fetchMock
 	};
 	sandbox.window.__ModuleLoader__ = { load: (o) => { factory = o.factory; } };

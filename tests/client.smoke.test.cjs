@@ -24,6 +24,7 @@ function makeEl() {
 		style: {}, dataset: {}, children: [],
 		setAttribute() {}, removeAttribute() {},
 		appendChild(c) { this.children.push(c); },
+		append(c) { this.children.push(c); },
 		prepend() {}, click() {}, remove() { this.removed = true; },
 		contains(el) { return el && this === el; }
 	};
@@ -31,7 +32,7 @@ function makeEl() {
 
 function buildSandbox(overrides = {}) {
 	const body = makeEl();
-	const document = { body, createElement: () => makeEl(), createTextNode: () => ({}), querySelector: () => null, head: makeEl() };
+	const document = { body, createElement: () => makeEl(), createTextNode: () => ({}), querySelector: () => null, querySelectorAll: () => [], head: makeEl() };
 	const store = new Map();
 	// seed localStorage from overrides.seed
 	if (overrides.seed) for (const [k, v] of Object.entries(overrides.seed)) store.set(k, String(v));
@@ -53,6 +54,7 @@ function buildSandbox(overrides = {}) {
 		TextEncoder, TextDecoder,
 		URL: { createObjectURL: () => 'blob:x', revokeObjectURL() {} },
 		Blob: class {}, FileReader: class {}, Image: function () {}, setTimeout, clearTimeout, alert: () => {},
+		MutationObserver: class { observe() {} disconnect() {} },
 		...overrides,
 	};
 	sandbox.window.__ModuleLoader__ = { load: (o) => { factory = o.factory; } };
@@ -1101,10 +1103,11 @@ test('modal-opacity row registers, persists, applies the CSS fill, and drives po
 	const styleProps = {};
 	const documentMock = {
 		body: { contains: () => false },
-		head: { children: [], contains(el) { return false; }, appendChild() {} },
+		head: { children: [], contains(el) { return false; }, appendChild() {}, append(c) { this.children.push(c); } },
 		createElement() { return { style: {}, dataset: {}, textContent: '', remove() {} }; },
 		createTextNode: () => ({}),
 		querySelector: () => null,
+		querySelectorAll: () => [],
 		documentElement: { style: { setProperty(k, v) { styleProps[k] = v; } } }
 	};
 	const h = buildSandbox({ document: documentMock });
@@ -1154,11 +1157,13 @@ test('liquid-glass material CSS is injected on leaf cards only (no fixed-modal a
 		head: {
 			children: headChildren,
 			contains(el) { return headChildren.includes(el); },
-			appendChild(el) { headChildren.push(el); appended = el; }
+			appendChild(el) { headChildren.push(el); appended = el; },
+			append(el) { headChildren.push(el); appended = el; }
 		},
 		createElement() { return { style: {}, dataset: {}, textContent: '', remove() {} }; },
 		createTextNode: () => ({}),
-		querySelector: () => null
+		querySelector: () => null,
+		querySelectorAll: () => []
 	};
 	const h = buildSandbox({ document: documentMock });
 	const e = h.factory(makeRequire(makeRuntime().RT));
