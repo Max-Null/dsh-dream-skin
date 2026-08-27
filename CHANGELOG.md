@@ -1,6 +1,17 @@
 # Changelog
 
-记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
+记录 `dsh-dream-skin` 的可观变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)。从 `8.28.0` 起，版本号启用**日期式规则**：`M.D.X`（月.日.当日第几个版本），例如 8 月 28 日首个版本 `8.28.0`，当日再发 `8.28.1`，次日则为 `8.29.0`，以取代旧的 `0.4.x` 语义化版本。
+
+## [8.28.0] - 2026-08-28
+
+> **版本号大变革 + 设置导航图标（PR #40）。** 正式切换为日期式版本号（`M.D.X`），并以社区同款方案把本插件「Theme/皮肤」设置行从默认齿轮替换为 Lucide palette（调色板）图标。
+
+### 变更
+- **版本号大变革**：由 `0.4.x`（语义化版本）改为 `M.D.X` 日期式版本——`M` 月、`D` 日、`X` 当日第几个版本。今天（8 月 28 日）首版 `8.28.0`；同日再发布按 `8.28.1`、`8.28.2` 递增；次日新版本从 `8.29.0` 起步。`package.json` / `package-lock.json` / `CHANGELOG.md` 同步更新，并新增本说明。
+- **设置导航图标（PR #40）**：DSH 0.1.x 的 `settings.section` 无 icon 契约，外部插件 section 在设置页导航一律显示默认齿轮。以 MutationObserver 按当前本地化 label（zh/en）标记设置弹窗 nav 行（`data-dsh-dream-skin-nav`），再用 CSS mask 把图标替换为 Lucide palette（调色板 + 颜料点）。仅改 `lib/client.js`，无新增依赖，弹窗未打开时无副作用。
+
+### 修复 / 完善
+- **测试环境适配**：为 smoke/persistence 的 VM DOM mock 补齐 `document.head.append`、`document.querySelectorAll`、`MutationObserver`，使模块加载时的图标 IIFE 在回归门内正常执行，测试保持 **34/34 通过**。
 
 ## [0.4.15] - 2026-08-26
 
